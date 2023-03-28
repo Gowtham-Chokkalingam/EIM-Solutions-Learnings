@@ -26,3 +26,5 @@
   acknowledged: true,
   insertedId: ObjectId("6422d80b770b96e75a320c77")
 }
+
+- To drop database `db.dropDatabase()`
