@@ -1,0 +1,4 @@
+- To open mongoDb in terminal use this command "mongosh"
+- To check the what are all the DBs preseng already "show dbs"
+- To create a new DB "use flight"
+- To insert 
