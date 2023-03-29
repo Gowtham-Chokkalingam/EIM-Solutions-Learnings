@@ -45,3 +45,8 @@ Here we need to filter the items wrt comedy
 
 `db.movies.find({summary:{$regex:/musical/}})`
 <!-- This won't look for full equality it will just search the text which is mentioned in the regex -->
+
+
+*To find the moive data which genere is action and thirller even in differnt order*
+
+`db.movies.find({genere:{$all:['action','thriller']}})`

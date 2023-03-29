@@ -18,3 +18,34 @@ db.movieStats.find({$or:{[{genre:'drama'},{genre:'action'}]}})
 
 db.movieStats.find({$expr:{$gt:["$visitors","$expectedVisitors"]}})
 
+
+
+movieData> db.boxoffice.find({genre:{$size:3}})
+[
+  {
+    _id: ObjectId("64245a6b512bf77bf15a7fc1"),
+    title: 'The Last Student Returns',
+    meta: { rating: 9.5, aired: 2018, runtime: 100 },
+    visitors: 1300000,
+    expectedVisitors: 1550000,
+    genre: [ 'thriller', 'drama', 'action' ],
+    ratings: [ 10, 9 ]
+  }
+]
+
+Ass 2
+1 .mongoimport --drop --db movieData --collection boxoffice --file boxoffice-extended.json --jsonArray
+
+2. Find all movie with exactly two genres
+
+db.boxoffice.find({genre:{$size:2}})
+
+3. Find all movies which aired in 2018
+
+db.boxoffice.find({"meta.aired":2018})
+
+4. Find all movies which have ratings greater than 8 but lower than 10
+
+db.boxoffice.find({ratings:{$elemMatch:{$gt:8, $lt:10}}})
+
+
