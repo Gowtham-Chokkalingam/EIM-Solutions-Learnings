@@ -97,3 +97,17 @@ insertedId: ObjectId("6422d80b770b96e75a320c77")
 
 - Now we want to rename the age to totalAge
 - `db.users.updateMany({},{$rename:{age:"totalAge"}})`
+
+
+
+*upsert* `$upsert:true` it is used as last argument in updateOne, which update if the data exist or create a new data if it doesn't
+
+db.sports.updateOne(   { title: "Cricket" },   { $set: { requiresTeam: true } },   { upsert: true } );
+
+db.sports.updateOne(   { title: "Tennis" },   { $set: { requiresTeam: false } },   { upsert: true } );
+
+
+1) db.sports.updateMany(   { requiresTeam: true },   { $set: { minPlayersReq: 11 } } );
+
+2) db.sports.updateMany(   { requiresTeam: true },   { $inc: { minPlayersReq: 10 } } );
+

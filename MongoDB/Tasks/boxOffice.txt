@@ -1,0 +1,20 @@
+  {
+    _id: ObjectId("64244cee767720cdc8553251"),
+    title: 'The Last Student Returns',
+    meta: { rating: 9.5, aired: 2018, runtime: 100 },
+    visitors: 1300000,
+    expectedVisitors: 1550000,
+    genre: [ 'thriller', 'drama', 'action' ]
+  }
+
+1 .mongoimport --drop --db movieData --collection movieStats --file boxoffice.json --jsonArray
+2.  To find the data where rating grater htan 9.2 and  runtime less than 100 and 
+db.movieStats.find({"meta.rating":{$gt:9.2},"meta.runtime":{$lt:100}})
+
+3. To find the data which genre is either drama or action
+db.movieStats.find({$or:{[{genre:'drama'},{genre:'action'}]}})
+
+4. To find visitors exceeds expectedVisitors
+
+db.movieStats.find({$expr:{$gt:["$visitors","$expectedVisitors"]}})
+
