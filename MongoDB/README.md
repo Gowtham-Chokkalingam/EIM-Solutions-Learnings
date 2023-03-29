@@ -38,7 +38,62 @@ insertedId: ObjectId("6422d80b770b96e75a320c77")
 `db.companies.insertMany([{name:'Masai', city:"Bangalore",_id:1},{name:'Newton', city:"Chennai",_id:2},{name:'Function up', city:"Bangalore",_id:1},{name:'Code Ninja', city:"Bangalore",_id:4}], orderded: false)`
 
 - - **Importing JSON data**
-    
+
     `mongoimport --drop --db movieData --collection movies --file tv-shows.json --jsonArray`
 
+    `mongoimport --drop --db b21 --collection users --file users.json --jsonArray`
+
     `mongoimport --jsonArray --db movieData --collection movies --file tv-shows.json`
+
+- _Update doc in MongoDb_
+  Before update
+  data: {
+  \_id: ObjectId("6423c9236f6a5f552a5e6d8d"),
+  name: 'Chris',
+  hobbies: [ 'Sports', 'Cooking', 'Hiking' ]
+  }
+
+  `db.users.updateOne({_id:ObjectId("6423c9236f6a5f552a5e6d8d")},{$set:{hobbies:[{title:"Sports",freq:5},{title:"Cooking",freq:6},{title:"Hiking",freq:6}]}})`
+  {
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+  }
+  After Update
+  {
+  \_id: ObjectId("6423c9236f6a5f552a5e6d8d"),
+  name: 'Chris',
+  hobbies: [
+  { title: 'Sports', freq: 5 },
+  { title: 'Cooking', freq: 6 },
+  { title: 'Hiking', freq: 6 }
+  ]
+  }
+
+
+*Update Many*
+- First we can check the doc by find methode 
+- `db.users.find({'hobbies.title':'Sports'})`
+- Three items are present in users collections
+- Now we can update by updateMany
+
+`db.users.updateMany({'hobbies.title':'Sports'},{$set:{isSporty:true}})`
+
+- Now we need to add/update the chris data with age
+- `db.users.updateOne({_id:ObjectId("6423c9236f6a5f552a5e6d8d")},{$set:{age:40,phone:8220330478}})`
+
+- Now If we want to do increment or decrement age by some value we can use $inc or $dec operatior
+- `db.users.updateOne({_id:ObjectId("6423c9236f6a5f552a5e6d8d")},{$inc:{age:1}})`
+- And we can do multiple opertation with update math $inc and $set togerter
+- `db.users.updateOne({_id:ObjectId("6423c9236f6a5f552a5e6d8c")},{$inc:{age:-1}},{$set:{isSporty:false}})`
+
+*To Remove the Feild in document*
+`db.users.updateMany({isSporty:true},{$unset:{phone:""}})`
+
+
+*Renaming the Feild*
+
+- Now we want to rename the age to totalAge
+- `db.users.updateMany({},{$rename:{age:"totalAge"}})`
