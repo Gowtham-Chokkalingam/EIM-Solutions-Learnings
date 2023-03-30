@@ -1,3 +1,26 @@
+
+`db.users.updateOne({name:'Chirs'},{$set;{age:40,phone:456565}})`
+
+*$increment $inc*
+`db.users.find({name;'Manuel'},{$inc:{age:1}})`
+
+increment by one and set IsSporty to false
+`db.users.find({name;'Manuel'},{$inc:{age:1}, $set:{isSporty:false}})`
+
+
+*min max and mul*
+
+`db.users.find({name:'Chris}, {$min:{age:35}})`
+
+*To delete the Feild*
+
+`db.users.find({name:'Chirs'}, {$unset:{phone:''}})`
+
+*Rename*
+
+`db.users.find({name:'Chirs'},{$rename:{age:"totalAge'}})`
+
+
 _Updating using match feilds in array_
 
 `db.users.find({hobbies:{$elemMatch:{title:'Sports',freq:{$gte:3}}}})`
