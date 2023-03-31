@@ -120,7 +120,32 @@ db.friends.aggregate([{ $project: { _id: 0, examScore: { $slice: ["$examScores",
 
 db.friends.aggregate([{ $project: { _id: 0, numSocres: { $size: "$examScores" } } }]);
 
-//> Filtering in arrays of element 
+//> Filtering in arrays of element
 // filter the data which examscore array score is greater than 60
 
 db.friends.aggregate([{ $project: { score: { $filter: { input: "$examScores", as: "sc", cond: { $gt: ["$$sc.score", 60] } } } } }]);
+
+//? To find the max score of each person and grup and sort by high to low
+
+db.friends.aggregate([
+  { $unwind: "$examScores" },
+  { $project: { _id: 1, name: 1, score: "$examScores.score" } },
+  { $group: { _id: "$_id", maxScore: { $max: "$score" }, name: { $first: "$name" } } },
+]);
+
+// updateing array Element
+db.friends.updateOne({ name: "Maria" }, { $push: { examScores: { difficulty: 4, score: 88.4 } } });
+
+//? To find the perons with dob from acendng orer and
+
+db.persons.aggregate([{ $project: { _id: 0, name: 1, birthdate: { $toDate: "$dob.date" } } }, { $sort: { birthdate: 1 } }]);
+
+// To dispaly the top 10 but next 10
+
+db.persons.aggregate([
+  { $project: { _id: 0, name: 1, birthdate: { $toDate: "$dob.date" } } },
+  { $sort: { birthdate: 1 } },
+  { $skip: 10 },
+  { $limit: 10 },
+]);
+
