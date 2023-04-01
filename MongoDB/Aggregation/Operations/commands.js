@@ -149,3 +149,21 @@ db.persons.aggregate([
   { $limit: 10 },
 ]);
 
+//join.slack.com/t/masaialumni/shared_invite/zt-1smj7u44g-Wd47h8xtPsjI6h_CfwHqMg
+
+// {
+//   _id: ObjectId("63765855adcc082006833fb2"),
+//   name: 'Dr. Strange',
+//   powers: [ 'magic' ],
+//   health: 86,
+//   villains: [ { name: 'Hela', health: 87 }, { name: 'Dormamu', health: 100 } ],
+//   metadata: { favouriteColor: 'orange', age: 44 }
+// }
+
+db.heros.aggregate([{ $match: { powers: "intelligence" } }, { $project: { _id: 0, name: 1, powers: 1 } }]);
+
+db.heros.aggregate([
+  { $match: { health: { $gt: 10 } } },
+  { $project: { name: 1, _id: 0, health: 1, age: "$metadata.age" } },
+  { $group: { _id: { age: "$age" }, TotalHealth: { $sum: "$health" } } },
+]);
