@@ -167,3 +167,5 @@ db.heros.aggregate([
   { $project: { name: 1, _id: 0, health: 1, age: "$metadata.age" } },
   { $group: { _id: { age: "$age" }, TotalHealth: { $sum: "$health" } } },
 ]);
+
+// ageere
