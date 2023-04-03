@@ -168,4 +168,3 @@ db.heros.aggregate([
   { $group: { _id: { age: "$age" }, TotalHealth: { $sum: "$health" } } },
 ]);
 
-// ageere
