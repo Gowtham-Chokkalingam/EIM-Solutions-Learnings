@@ -176,3 +176,4 @@ db.universities.aggregate([
 // Here number of students is present inside the students array , before suming we need to unwide to get the all summ
 
 db.universities.aggregate([{ $unwind: "$students" }, { $group: { _id: "$name", totalStudents: { $sum: "$students.number" } } }]);
+// ksfj
