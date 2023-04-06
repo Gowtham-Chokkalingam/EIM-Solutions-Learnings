@@ -163,6 +163,8 @@ db.persons.aggregate([
 
 db.heros.aggregate([{ $match: { powers: "intelligence" } }, { $project: { _id: 0, name: 1, powers: 1 } }]);
 
+
+
 db.heros.aggregate([
   { $match: { health: { $gt: 10 } } },
   { $project: { name: 1, _id: 0, health: 1, age: "$metadata.age" } },
