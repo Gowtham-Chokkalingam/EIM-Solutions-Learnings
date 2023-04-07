@@ -2,7 +2,8 @@
 - To check the what are all the DBs preseng already "show dbs"
 - To create a new DB `use flight`
 - To insert data to collection db `db.flightData.insertOne({"name":"Gowtham","city":"Tirupur"})`
-- To inser many data in one command `db.flightData.inserMany({"name":"Gowtham","city":"Tirupur"},{"name":"Chokkalingam","city":"Tirupur"})`
+  
+- To insert many data in one command `db.flightData.inserMany({"name":"Gowtham","city":"Tirupur"},{"name":"Chokkalingam","city":"Tirupur"})`
 - `mongoimport --drop --db b21 --collection flightData --file ./01-flights.json --jsonArray`
 
 - To delete single data in the collection `db.flightData.deleteOne({"name":"Gowtham})`
@@ -16,7 +17,7 @@
 - Updating documets with arrays of items `db.passerngers.updateOne({name:"Albert Twostone"}, {$set:{hobbies:["sports","cooking"]}})`
 
 - Relational database collection '
-- `db.patients.insertOne({name:"Gowtham",age:28,diseaseSummery:"summery-1"})`
+  `db.patients.insertOne({name:"Gowtham",age:28,diseaseSummery:"summery-1"})`
 
 {
 acknowledged: true,
@@ -48,7 +49,7 @@ insertedId: ObjectId("6422d80b770b96e75a320c77")
 - _Update doc in MongoDb_
   Before update
   data: {
-  \_id: ObjectId("6423c9236f6a5f552a5e6d8d"),
+  _id: ObjectId("6423c9236f6a5f552a5e6d8d"),
   name: 'Chris',
   hobbies: [ 'Sports', 'Cooking', 'Hiking' ]
   }
@@ -82,10 +83,11 @@ insertedId: ObjectId("6422d80b770b96e75a320c77")
 `db.users.updateMany({'hobbies.title':'Sports'},{$set:{isSporty:true}})`
 
 - Now we need to add/update the chris data with age
-- `db.users.updateOne({_id:ObjectId("6423c9236f6a5f552a5e6d8d")},{$set:{age:40,phone:8220330478}})`
+`db.users.updateOne({_id:ObjectId("6423c9236f6a5f552a5e6d8d")},{$set:{age:40,phone:8220330478}})`
 
 - Now If we want to do increment or decrement age by some value we can use $inc or $dec operatior
 - `db.users.updateOne({_id:ObjectId("6423c9236f6a5f552a5e6d8d")},{$inc:{age:1}})`
+- 
 - And we can do multiple opertation with update math $inc and $set togerter
 - `db.users.updateOne({_id:ObjectId("6423c9236f6a5f552a5e6d8c")},{$inc:{age:-1}},{$set:{isSporty:false}})`
 

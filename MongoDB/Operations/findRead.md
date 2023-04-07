@@ -99,3 +99,8 @@ This code will project the genres array with first two datas
 
 or
 `db.movies.find({'rating.average':{$gt:9}}, {genres:{$slice:[0,2]},name:1})`
+
+
+*$elemMatch*
+
+`db.users.find({$and:[{'hobbies.title':'Sports'},{"hobbies.frequency":{$gte:20}}]})`

@@ -27,6 +27,8 @@ _Updating using match feilds in array_
 
 `db.users.updateMany({hobbies:{$elemMatch:{title:'Sports',freq:{$gte:2}}}},{$set:{"hobbies.$.highFreq":true}})`
 
+`db.persons.updatMany({}, {$set:{"dob.birthPlace":"India"}})`
+
 _To update all ele in array $[]_
 
 - To update users with totalAge greater Than 30 with incremnet the freq by 1
@@ -49,3 +51,5 @@ _Added or Pushing new element to arry_
 
 _Pushing multiple elements_
 `db.users.updateOne({name:'Manuel'},{$push:{hobbies:{$each:[{title:'Movie', frequency:2},{title:'Tinnes', frequency:4} ],$sort:{frequency:-1}}}})`
+
+
