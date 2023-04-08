@@ -93,14 +93,70 @@ if you dont want to include the data while retriving from collection we can ment
 
 `db.movies.find({},{name:1,runtime:1, "schedule.time":1 })`
 
-*slice*
+_slice_
 This code will project the genres array with first two datas
 `db.movies.find({'rating.average':{$gt:9}}, {genres:{$slice:2},name:1})`
 
 or
 `db.movies.find({'rating.average':{$gt:9}}, {genres:{$slice:[0,2]},name:1})`
 
+_$elemMatch_
 
-*$elemMatch*
+`db.users.find({$and:[{'hobbies.title':'Sports'},{"hobbies.frequency":{$gte:3}}]})`
 
-`db.users.find({$and:[{'hobbies.title':'Sports'},{"hobbies.frequency":{$gte:20}}]})`
+- In this case we will get the rec of frequency with value less than 3 aswell
+- So we need only the matched element to disply for that reason we are using elemMatch
+
+{
+\_id: ObjectId("6423c9236f6a5f552a5e6d8b"),
+name: 'Anna',
+hobbies: [
+{ title: 'Sports', frequency: 2 },
+{ title: 'Yoga', frequency: 3 }
+],
+isSporty: true,
+totalAge: null
+},
+
+- And also we need to get the result with embedeb documents which is nested obj inside the array
+
+`db.users.find({hobbies:{$elemMatch:{title:"Sports", frequency:{$gte:3}}}})`
+
+[
+  {
+    _id: ObjectId("6423c9236f6a5f552a5e6d8a"),
+    name: 'Max',
+    hobbies: [
+      { title: 'Sports', frequency: 3 },
+      { title: 'Cooking', frequency: 6 }
+    ],
+    isSporty: true
+  },
+  {
+    _id: ObjectId("6423c9236f6a5f552a5e6d8c"),
+    name: 'Manuel',
+    hobbies: [
+      { title: 'Sports', frequency: 8 },
+      { title: 'Cooking', frequency: 5 },
+      { title: 'Tinnes', frequency: 4 },
+      { title: 'Cars', frequency: 2 },
+      { title: 'Movie', frequency: 2 }
+    ],
+    phone: '012177972',
+    totalAge: 29
+  }
+]
+
+*To find the document based on text*
+
+db.movies.find({summary:'musical'})
+
+- Above code will check for strict equality
+- But we need to get the data which is based on text we given for that reason we are using $regex
+
+`db.movies.find({summary:{$regex:/musical/}})`
+
+- for avoding case sensitive we can use queries like this
+- `db.movies.find({summary:{$regex:/musical/i}})`
+
+
