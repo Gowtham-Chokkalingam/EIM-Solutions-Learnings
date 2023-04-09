@@ -40,3 +40,32 @@ db.monthlyBudget.aggregate([
    
   ])
   
+db.monthlyBudget.aggregate([
+    console.log('db.monthlyBudget.aggregate([
+    {
+      $group: {
+        _id: "$category",
+        avgSpent: { $avg: "$spent" }
+      }
+    },
+   
+  ])
+  :', db.monthlyBudget.aggregate([
+    {
+      $group: {
+        _id: "$category",
+        avgSpent: { $avg: "$spent" }
+      }
+    },
+   
+  ])
+  )
+    {
+      $group: {
+        _id: "$category",
+        avgSpent: { $avg: "$spent" }
+      }
+    },
+   
+  ])
+  
