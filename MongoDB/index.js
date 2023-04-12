@@ -121,3 +121,6 @@ db.persons.aggregate([
 db.persons.aggregate([{ $sort: { age: -1 } }]);
 db.persons.find({}, { personName: 1, age: 1 }).sort({ age: -1 }).skip(1).limit(1);
 db.persons.aggregate([{ $project: { name: "$personName", age: "$age", _id: 0 } }, { $sort: { age: -1 } }, { $skip: 1 }, { $limit: 1 }]);
+
+
+db.Student.find({},{name:1,runtime:1, "schedule.time":1 })
