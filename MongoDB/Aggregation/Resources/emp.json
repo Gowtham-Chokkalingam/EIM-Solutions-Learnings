@@ -3,6 +3,7 @@
     "personName": "Gowtham",
     "fathersName": "Chokkalingam",
     "gender": "Male",
+    "age": 26,
     "address": {
       "doorNumber": 67,
       "streetName": "TSR Lay Out",
@@ -19,6 +20,7 @@
     "personName": "Vignesh",
     "fathersName": "Karthik",
     "gender": "Male",
+    "age": 26,
     "address": {
       "doorNumber": 75,
       "streetName": "Sv Colony",
@@ -35,6 +37,7 @@
     "personName": "Madhu",
     "fathersName": "Teegredy",
     "gender": "Female",
+    "age": 26,
     "address": {
       "doorNumber": 12,
       "streetName": "Latha Colony",
@@ -51,6 +54,7 @@
     "personName": "Vijay",
     "fathersName": "Kumar",
     "gender": "Male",
+    "age": 26,
     "address": {
       "doorNumber": 56,
       "streetName": "T Nager",
@@ -67,6 +71,7 @@
     "personName": "Janani",
     "fathersName": "Shanmugam",
     "gender": "Female",
+    "age": 26,
     "address": {
       "doorNumber": 56,
       "streetName": "Boyampalayam",
