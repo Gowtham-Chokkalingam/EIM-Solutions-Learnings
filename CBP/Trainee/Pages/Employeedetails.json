@@ -1,0 +1,132 @@
+{
+  "tenant": "100",
+  "systemID": "JTD410",
+  "epic": "SCH-SUPPLIERS",
+  "pageName": "Employee details",
+  "version": "Grid",
+  "showWorkflowActions": false,
+  "showPageBanner": true,
+  "businessComponentDesc": "",
+  "businessComponent": "VMS",
+  "businessComponentInstance": "Digital of life",
+  "pageBanner": {
+    "Business_Comp_Name": "VMS",
+    "Title": "VSM SOLUTIONS INDIA PVT.LMT",
+    "Screen_Name": "Employee page",
+    "Description": "  "
+  },
+  "dataSource": [
+    {
+      "dataSourceType": "businessView",
+      "dataSourceName": "details_BV",
+      "dataSourceDetails": {
+        "businessView": "details_BV"
+      }
+    }
+  ],
+  "rows": [
+    {
+      "columns": [
+        {
+          "components": [
+            {
+              "componentId": 1,
+              "type": "section",
+              "title": "Employee Details",
+              "description": "Add Employee details",
+              "dataSourceName": "details_BV",
+              "headerComponents": [],
+              "sectionBody": {
+                "style": "style2",
+                "rows": [
+                  {
+                    "columns": [
+                      {
+                        "width": "20%",
+                        "components": [
+                          {
+                            "label": "Emp Id ",
+                            "type": "text",
+                            "dbColumnName": "empId",
+                            "dataSourceName": "details_BV",
+                            "displayStyle": "horizontalKeyValue"
+                          },
+                          {
+                            "label": "Gender",
+                            "type": "text",
+                            "dbColumnName": "gender",
+                            "dataSourceName": "details_BV",
+                            "displayStyle": "horizontalKeyValue"
+                          },
+                          {
+                            "label": "company Name",
+                            "type": "text",
+                            "dbColumnName": "companyName",
+                            "dataSourceName": "details_BV",
+                            "displayStyle": "horizontalKeyValue"
+                          }
+                        ]
+                      },
+                      {
+                        "width": "20%",
+                        "components": [
+                          {
+                            "label": "FirstName",
+                            "type": "text",
+                            "dbColumnName": "firstName",
+                            "dataSourceName": "details_BV",
+                            "displayStyle": "horizontalKeyValue"
+                          },
+                          {
+                            "label": "MaritalStatus",
+                            "type": "text",
+                            "dbColumnName": "maritalStatus",
+                            "dataSourceName": "details_BV",
+                            "displayStyle": "horizontalKeyValue"
+                          },
+                          {
+                            "label": "branch",
+                            "type": "text",
+                            "dbColumnName": "branch",
+                            "dataSourceName": "details_BV",
+                            "displayStyle": "horizontalKeyValue"
+                          }
+                        ]
+                      },
+                      {
+                        "width": "20%",
+                        "components": [
+                          {
+                            "label": "LastName",
+                            "type": "text",
+                            "dbColumnName": "lastName",
+                            "dataSourceName": "details_BV",
+                            "displayStyle": "horizontalKeyValue"
+                          },
+                          {
+                            "label": "Age",
+                            "type": "number",
+                            "dbColumnName": "age",
+                            "dataSourceName": "details_BV",
+                            "displayStyle": "horizontalKeyValue"
+                          },
+                          {
+                            "label": "Email_Id",
+                            "type": "text",
+                            "dbColumnName": "emailId",
+                            "dataSourceName": "details_BV",
+                            "displayStyle": "horizontalKeyValue"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

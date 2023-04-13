@@ -1,0 +1,125 @@
+{
+  "tenant": "100",
+  "systemID": "JTD410",
+  "epic": "SCH-SUPPLIERS",
+  "pageName": "LibraryBookDetails",
+  "version": "Grid",
+  "showWorkflowActions": false,
+  "showPageBanner": true,
+  "businessComponentDesc": "",
+  "businessComponent": "Library",
+  "businessComponentInstance": "Library Management",
+  "pageBanner": {
+    "Business_Comp_Name": "Digital Library",
+    "Title": "SCH Digital Library",
+    "Screen_Name": "Book Details Page",
+    "Description": " This page is managed by library admin to add and update the books "
+  },
+  "dataSource": [
+    {
+      "dataSourceType": "businessView",
+      "dataSourceName": "LibraryBookDetails_BV",
+      "dataSourceDetails": {
+        "businessView": "LibraryBookDetails_BV"
+      }
+    }
+  ],
+  "rows": [
+    {
+      "columns": [
+        {
+          "components": [
+            {
+              "componentId": 1,
+              "type": "section",
+              "title": "Book Details",
+              "description": "Check the details below",
+              "dataSourceName": "LibraryBookDetails_BV",
+              "headerComponents": [],
+              "sectionBody": {
+                "style": "style2",
+                "rows": [
+                  {
+                    "columns": [
+                      {
+                        "width": "20%",
+                        "components": [
+                          {
+                            "label": "Book Id ",
+                            "type": "text",
+                            "dbColumnName": "bookId",
+                            "dataSourceName": "LibraryBookDetails_BV",
+                            "displayStyle": "horizontalKeyValue"
+                          },
+                          {
+                            "label": "Title",
+                            "type": "text",
+                            "dbColumnName": "title",
+                            "dataSourceName": "LibraryBookDetails_BV",
+                            "displayStyle": "horizontalKeyValue"
+                          },
+                          {
+                            "label": "Publised On",
+                            "type": "text",
+                            "dbColumnName": "publicationDate",
+                            "dataSourceName": "LibraryBookDetails_BV",
+                            "displayStyle": "horizontalKeyValue"
+                          }
+                        ]
+                      },
+                      {
+                        "width": "20%",
+                        "components": [
+                          {
+                            "label": "Description",
+                            "type": "text",
+                            "dbColumnName": "description",
+                            "dataSourceName": "LibraryBookDetails_BV",
+                            "displayStyle": "horizontalKeyValue"
+                          },
+                          {
+                            "label": "Language",
+                            "type": "text",
+                            "dbColumnName": "language",
+                            "dataSourceName": "LibraryBookDetails_BV",
+                            "displayStyle": "horizontalKeyValue"
+                          },
+                          {
+                            "label": "Number OF Pages",
+                            "type": "text",
+                            "dbColumnName": "pages",
+                            "dataSourceName": "LibraryBookDetails_BV",
+                            "displayStyle": "horizontalKeyValue"
+                          }
+                        ]
+                      },
+                      {
+                        "width": "20%",
+                        "components": [
+                          {
+                            "label": "Books Available",
+                            "type": "text",
+                            "dbColumnName": "totalBooks",
+                            "dataSourceName": "LibraryBookDetails_BV",
+                            "displayStyle": "horizontalKeyValue"
+                          },
+                          {
+                            "label": "Author Name",
+                            "type": "text",
+                            "dbColumnName": "authors",
+                            "dataSourceName": "LibraryBookDetails_BV",
+                            "displayStyle": "horizontalKeyValue"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

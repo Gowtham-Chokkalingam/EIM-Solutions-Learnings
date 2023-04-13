@@ -1,0 +1,52 @@
+{
+  "ruleId": "",
+  "businessView": "details_BV",
+  "defaultSortSetting": {
+    "sortField": "createdAt",
+    "sortDirection": -1
+  },
+  "collection": "EmpTrainees",
+  "aggregation": [
+    {
+      "($)match": {
+        "empId": "{{toString inputParams.empId}}"
+      }
+    },
+    {
+      "($)facet": {
+        "paginatedResults": [
+          {
+            "($)project": {
+              "empId": "($)empId",
+              "firstName": "($)firstName",
+              "lastName": "($)lastName",
+              "gender": "($)gender",
+              "age": "($)age",
+              "maritalStatus": "($)maritalStatus",
+              "companyName": "($)companyName",
+              "branch": "($)branch",
+              "emailId": "($)emailId",
+              "createdAt": "($)createdAt"
+            }
+          },
+          {
+            "($)sort": {
+              "{{componentSetting.matSortActive}}": "{{componentSetting.matSortDirection}}"
+            }
+          },
+          {
+            "($)skip": "{{componentSetting.page}}"
+          },
+          {
+            "($)limit": "{{componentSetting.limit}}"
+          }
+        ],
+        "totalCount": [
+          {
+            "($)count": "count"
+          }
+        ]
+      }
+    }
+  ]
+}

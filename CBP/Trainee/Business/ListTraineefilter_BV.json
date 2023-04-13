@@ -1,0 +1,88 @@
+{
+    "ruleId": "",
+    "businessView": "ListTraineefilter_BV",
+    "defaultSortSetting": {
+        "sortField": "createdAt",
+        "sortDirection": -1
+    },
+    "collection": "EmpTrainees",
+    "aggregation": [
+        {
+            "($)match": {}
+        },
+        {
+            "($)group": {
+                "_id": null,
+                "empId": {
+                    "($)addToSet": "($)empId"
+                },
+                "firstName": {
+                    "($)addToSet": "($)firstName"
+                },
+                "lastName": {
+                    "($)addToSet": "($)lastName"
+                },
+                "gender": {
+                    "($)addToSet": "($)gender"
+                },
+                "age": {
+                    "($)addToSet": "($)age"
+                },
+                "maritalStatus": {
+                    "($)addToSet": "($)maritalStatus"
+                },
+                "companyName": {
+                    "($)addToSet": "($)companyName"
+                },
+                "branch": {
+                    "($)addToSet": "($)branch"
+                },
+                "emailId": {
+                    "($)addToSet": "($)emailId"
+                },
+                "createdAt": {
+                    "($)addToSet": "($)createdAt"
+                }
+            }
+        },
+        {
+            "($)facet": {
+                "paginatedResults": [
+                    {
+                        "($)project": {
+                            "empId": "($)empId",
+                            "firstName": "($)firstName",
+                            "lastName": "($)lastName",
+                            "gender": "($)gender",
+                            "age": "($)age",
+                            "maritalStatus": "($)maritalStatus",
+                            "companyName": "($)companyName",
+                            "branch": "($)branch",
+                            "emailId": "($)emailId",
+                            "createdAt": "($)createdAt"
+                        }
+                    },
+                    {
+                        "($)match": "{{componentSetting.rowFilter}}"
+                    },
+                    {
+                        "($)sort": {
+                            "{{componentSetting.matSortActive}}": "{{componentSetting.matSortDirection}}"
+                        }
+                    },
+                    {
+                        "($)skip": "{{componentSetting.page}}"
+                    },
+                    {
+                        "($)limit": "{{componentSetting.limit}}"
+                    }
+                ],
+                "totalCount": [
+                    {
+                        "($)count": "count"
+                    }
+                ]
+            }
+        }
+    ]
+}

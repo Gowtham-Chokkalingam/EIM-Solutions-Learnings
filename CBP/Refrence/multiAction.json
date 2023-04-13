@@ -1,0 +1,503 @@
+{
+  "tenant": "100",
+  "systemID": "RD4500",
+  "epic": "SCH-SUPPLIER",
+  "pageName": "AdditionalUserCreation",
+  "version": "Grid",
+  "showWorkflowActions": false,
+  "dataSource": [
+    {
+      "dataSourceType": "businessView",
+      "dataSourceName": "VendorListDS21",
+      "dataSourceDetails": {
+        "businessView": "vendoruserlist_BV"
+      }
+    },
+    {
+      "dataSourceType": "businessView",
+      "dataSourceName": "VendorListDS54",
+      "dataSourceDetails": {
+        "businessView": "vendoruserlist_BV2"
+      }
+    }
+  ],
+  "showPageBanner": true,
+  "replicationMDM": false,
+  "pageActions": [
+    {
+      "checkRole": {
+        "hidden": [
+          {
+            "value": true,
+            "roles": ["ES-TEAM-VENDOR"]
+          }
+        ]
+      },
+      "text": "Submit",
+      "type": "submit",
+      "showLabel": true,
+      "style": "style2",
+      "disableFormValidation": false,
+      "onClick": [
+        {
+          "actions": [
+            {
+              "action": "executePageAction",
+              "actionPerformed": "submit",
+              "actionDetails": {
+                "payload": {
+                  "selectedRow": true
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "executePageActions": [
+    {
+      "ID": 1,
+      "Rule": "test",
+      "RuleGroup": "",
+      "enableLogs": true,
+      "WHEN": "'{{payload.pageActionPerformed}}' == 'submit'",
+      "THEN": ["performAction"],
+      "Actions": [
+        {
+          "id": 1,
+          "actionName": "VendorUser",
+          "actionType": "mapFields",
+          "actionDetails": {
+            "sourceSchema": "{{payload.selectedRows.AdditionalVendor.selectedRows}}",
+            "targetSchema": {
+              "indexId": {
+                "type": "string",
+                "relatedField": "system.arrayIndex",
+                "convertToDataType": true
+              },
+              "firstName": {
+                "type": "string",
+                "relatedField": "['First Name']['text']"
+              },
+              "lastName": {
+                "type": "string",
+                "relatedField": "['Last Name']['text']"
+              },
+              "contactEmail": {
+                "type": "string",
+                "relatedField": "['Email']['text']"
+              },
+              "MasterEmail": {
+                "type": "string",
+                "relatedField": "['User Master Email']['text']"
+              },
+              "userIdMaster": {
+                "type": "string",
+                "relatedField": "['Main Supplier']['text']"
+              },
+              "roleName": {
+                "type": "string",
+                "relatedField": "['Role']['text'][0]"
+              },
+              "roleName1": {
+                "type": "string",
+                "relatedField": "['Role']['text'][1]"
+              }
+            }
+          }
+        },
+        {
+          "id": 2,
+          "actionName": "AdditionalUser2",
+          "actionType": "getDataFromDB",
+          "runCount": "{{#forEach actionsResponse.VendorUser}}",
+          "actionDetails": {
+            "database_details": {
+              "database": "{{payload.headers.dbName}}",
+              "collection": "user"
+            },
+            "filter": {},
+            "aggregation": [
+              {
+                "($)match": {
+                  "userId": {
+                    "($)regex": "{{actionsResponse.VendorUser[0]['userIdMaster']}}-"
+                  }
+                }
+              },
+              {
+                "($)group": {
+                  "_id": null,
+                  "count": {
+                    "($)sum": 1
+                  }
+                }
+              },
+              {
+                "($)facet": {
+                  "results": [
+                    {
+                      "($)project": {
+                        "_id": 0,
+                        "count": 1
+                      }
+                    }
+                  ],
+                  "count": [
+                    {
+                      "($)count": "total"
+                    }
+                  ]
+                }
+              },
+              {
+                "($)project": {
+                  "count": {
+                    "($)cond": [
+                      {
+                        "($)gt": [
+                          {
+                            "($)size": "($)count"
+                          },
+                          0
+                        ]
+                      },
+                      {
+                        "($)arrayElemAt": ["($)results", 0]
+                      },
+                      0
+                    ]
+                  }
+                }
+              },
+              {
+                "($)project": {
+                  "count": {
+                    "($)ifNull": ["($)count.count", 0]
+                  },
+                  "index": "{{toInt currentLoopObj.indexId}}",
+                  "userIncrement": {
+                    "($)add": [
+                      {
+                        "($)ifNull": ["($)count.count", 0]
+                      },
+                      "{{toInt currentLoopObj.indexId}}"
+                    ]
+                  }
+                }
+              }
+            ],
+            "projection": {},
+            "sort": {
+              "rfxCollectiveNr": 1
+            },
+            "pagination": {
+              "limit": 0,
+              "pageNumber": 0
+            }
+          }
+        },
+        {
+          "id": 3,
+          "actionName": "userPassword",
+          "actionType": "generatePassword",
+          "actionDetails": {
+            "hashPassword": false,
+            "passwordLength": 10,
+            "numericChars": 2,
+            "specialChars": 0
+          }
+        },
+        {
+          "id": 4,
+          "actionName": "AddUserData2",
+          "actionType": "insertData",
+          "actionDetails": {
+            "database_details": {
+              "database": "{{payload.headers.dbName}}",
+              "collection": "user"
+            },
+            "payload": {
+              "tenant": 100,
+              "userId": "{{actionsResponse.VendorUser[0]['userIdMaster']}}-0{{toString actionsResponse.AdditionalUser2['dataArray'][0]['userIncrement']}}",
+              "onBoardStatus": "On Boarded",
+              "alternatePhoneNumber": [
+                {
+                  "contactNumber": ""
+                }
+              ],
+              "alternateEmail": [],
+              "tempPassword": "{{hashValue actionsResponse.userPassword}}",
+              "loginpassword": "{{hashValue actionsResponse.userPassword}}",
+              "associate": [],
+              "userGroup": ["VEND"],
+              "enabled": true,
+              "image": null,
+              "ssoKey": ["SCH-SUPPLIER"],
+              "passwordFlag": false,
+              "failedPasswordCount": 0,
+              "locked": false
+            }
+          }
+        },
+        {
+          "id": 5,
+          "actionName": "userData1",
+          "actionType": "updateBusinessView",
+          "runCount": "{{#forEach actionsResponse.VendorUser}}",
+          "actionDetails": {
+            "businessView": "VendorUserIdUpdate_BV54",
+            "database": "{{payload.headers.dbName}}",
+            "sourceSchema": {},
+            "targetSchema": {}
+          }
+        },
+        {
+          "id": 6,
+          "actionName": "userData",
+          "actionType": "updateBusinessView",
+          "runCount": "{{#forEach actionsResponse.userData1}}",
+          "actionDetails": {
+            "businessView": "VendorUserIdUpdate_BV",
+            "database": "{{payload.headers.dbName}}",
+            "sourceSchema": {},
+            "targetSchema": {}
+          }
+        },
+        {
+          "id": 7,
+          "actionName": "maillNotifn",
+          "actionType": "sendNotification",
+          "runCount": "{{#forEach actionsResponse.userData1}}",
+          "async": false,
+          "actionDetails": {
+            "apiDetails": {
+              "URL": "https://schdev.emiratessteel.com/notification_engine/send-email-notification",
+              "Method": "Post"
+            },
+            "Body": {
+              "emailId": "{{currentLoopObj.email}}",
+              "ccEmailId": "{{actionsResponse.VendorUser[0].MasterEmail}}",
+              "subject": "Supplier OnBoarding Invitation",
+              "tenant": 100,
+              "templateUrl": "https://sch.s3.ap-south-1.amazonaws.com/templates/sendInvite-2.html",
+              "templateValue": {
+                "title": "Supplier OnBoarding Invitation",
+                "company": "Emirates Steel Arkan Supplier Assurance Team",
+                "pagecaption": "Supplier OnBoarding Notification",
+                "BPCode": "",
+                "suppliercode": "{{actionsResponse.AddUserData2.userId}}",
+                "Password": "{{actionsResponse.userPassword}}",
+                "userName": "Dear Sir/Madam ,",
+                "bannerImage": "",
+                "schlogo": "https://sch-emirate-steels.s3.ap-south-1.amazonaws.com/Login+Images/logo.png",
+                "emailBody": "Welcome to Emirates Steel Arkan Supplier Assurance Team , A new account has been created and you have been issued with a temporary password",
+                "link": "https://schdev.emiratessteel.com",
+                "remarks": "Sincerely,",
+                "footer1": "Emirates Steel Arkan Supplier Assurance Team"
+              }
+            }
+          }
+        }
+      ],
+      "Output": {
+        "message": "Vendor User Id Uploaded Successfully",
+        "refresh": true
+      }
+    }
+  ],
+  "pageBanner": {
+    "pageBannerButtons": [],
+    "Business_Comp_Name": "Vendor User Creation",
+    "Title": "Additional User Creation",
+    "Description": "Vendor Detail",
+    "Images": ["https://sch-emirate-steels.s3.ap-south-1.amazonaws.com/icons/page-banner.png"],
+    "Screen_Name": "Vendor User Creation"
+  },
+  "rows": [
+    {
+      "columns": [
+        {
+          "components": [
+            {
+              "componentId": "AdditionalVendor",
+              "type": "table",
+              "title": "Manage Additonal Supplier User",
+              "description": "Supplier Details",
+              "icon": "Business Partner",
+              "dataSourceName": "VendorListDS21",
+              "tableConfig": {
+                "enableEntityCreation": false,
+                "headerActions": [],
+                "layoutIcon": false,
+                "downloadIcon": false,
+                "sendCompressedData": true,
+                "columnFilterIcon": true,
+                "rowFilterIcon": false,
+                "fullscreenIcon": true,
+                "aggregationFooter": true,
+                "checkbox": true,
+                "singleCheckboxSelection": true,
+                "checkBoxConfig": {
+                  "onLoad": {
+                    "actions": [
+                      {
+                        "action": "changeFieldValue",
+                        "checkCondition": [
+                          {
+                            "sourceType": "column",
+                            "source": "User Id",
+                            "operation": "EQ",
+                            "valueof": {
+                              "text": null
+                            }
+                          }
+                        ],
+                        "setProperty": {
+                          "enabled": true
+                        }
+                      },
+                      {
+                        "action": "changeFieldValue",
+                        "checkCondition": [
+                          {
+                            "sourceType": "column",
+                            "source": "User Id",
+                            "operation": "NE",
+                            "valueof": {
+                              "text": null
+                            }
+                          }
+                        ],
+                        "setProperty": {
+                          "enabled": false
+                        }
+                      }
+                    ]
+                  }
+                },
+                "showChart": false,
+                "businessComponent": "Supplier",
+                "downloadActions": []
+              },
+              "tableColumns": {
+                "Profile": {
+                  "type": "image",
+                  "sticky": null,
+                  "dbColumnName": "organisationName"
+                },
+                "Supplier Code": {
+                  "checkRole": {
+                    "hidden": [
+                      {
+                        "value": true,
+                        "roles": ["portalVendor"]
+                      }
+                    ]
+                  },
+                  "type": "text",
+                  "hidden": false,
+                  "dbColumnName": "supplierCode",
+                  "description": "supplierCode"
+                },
+                "Main Supplier": {
+                  "type": "text",
+                  "dbColumnName": "userIdMaster",
+                  "hidden": false
+                },
+                "Supplier Name": {
+                  "type": "text",
+                  "hidden": false,
+                  "dbColumnName": "organisationName",
+                  "description": "organisationName"
+                },
+                "First Name": {
+                  "type": "text",
+                  "description": "firstName",
+                  "dbColumnName": "firstName",
+                  "hidden": false
+                },
+                "Last Name": {
+                  "type": "text",
+                  "dbColumnName": "lastName"
+                },
+                "Email": {
+                  "type": "text",
+                  "hidden": false,
+                  "dbColumnName": "contactEmail",
+                  "description": "contactEmail"
+                },
+                "User Id": {
+                  "type": "text",
+                  "dbColumnName": "userId2"
+                },
+                "User Master Email": {
+                  "type": "text",
+                  "hidden": true,
+                  "dbColumnName": "masterEmail",
+                  "description": "masterEmail"
+                },
+                "Password": {
+                  "type": "text",
+                  "dbColumnName": "",
+                  "hidden": true
+                },
+                "Role": {
+                  "width": "l",
+                  "mandatory": false,
+                  "hidden": false,
+                  "checkRole": {
+                    "hidden": [
+                      {
+                        "value": true,
+                        "roles": ["ES-TEAM-VENDOR"]
+                      }
+                    ]
+                  },
+                  "type": "selectWithBusinessView",
+                  "multiple": true,
+                  "dbColumnName": "reference",
+                  "dataSourceType": "businessView",
+                  "dataSourceDetails": {
+                    "businessViewName": "GetroleNamesFrom",
+                    "dataKey": "roleDescription",
+                    "dataValue": "roleName",
+                    "payload": {
+                      "field1": "field1"
+                    }
+                  }
+                },
+                "Roles": {
+                  "checkRole": {
+                    "hidden": [
+                      {
+                        "value": true,
+                        "roles": ["portalVendor"]
+                      }
+                    ]
+                  },
+                  "type": "text",
+                  "dbColumnName": "roles"
+                },
+                "Assigned Roles": {
+                  "checkRole": {
+                    "hidden": [
+                      {
+                        "value": true,
+                        "roles": ["ES-TEAM-VENDOR"]
+                      }
+                    ]
+                  },
+                  "type": "text",
+                  "dbColumnName": "roles",
+                  "hidden": false
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

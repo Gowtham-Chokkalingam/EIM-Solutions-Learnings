@@ -1,0 +1,227 @@
+{
+  "_id": "63fef7ef09320a0af4469656",
+  "tenant": "100",
+  "systemID": "JTD410",
+  "epic": "SCH-SUPPLIER",
+  "pageName": "updatePage",
+  "version": "Grid",
+  "showWorkflowActions": false,
+  "showPageBanner": true,
+  "businessComponentDesc": "",
+  "businessComponent": "VMS",
+  "businessComponentInstance": "Digital of life",
+  "dataSource": [
+    { 
+      "dataSourceType": "businessView",
+      "dataSourceName": "updatepage_BV",
+      "dataSourceDetails": {
+        "businessView": "updatepage_BV"
+      }
+    }
+  ],
+  "pageActions": [
+    {
+      "text": "Update",
+      "type": "submit",
+      "showLabel": true,
+      "style": "style2",
+      "disableFormValidation": false,
+      "css": {
+        "font-size": "16px",
+        "color": "#52a5fb",
+        "cursor": "pointer"
+      },
+      "onClick": [
+        {
+          "actions": [
+            {
+              "action": "executePageAction",
+              "actionPerformed": "submit"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "executePageActions": [
+    {
+      "ID": 1,
+      "Rule": "pageAction",
+      "RuleGroup": "",
+      "WHEN": "'{{payload.pageActionPerformed}}' == 'submit'",
+      "THEN": ["performAction"],
+      "Actions": [
+        {
+          "id": 1,
+          "actionName": "updateEmployee",
+          "actionType": "updateBusinessView",
+          "actionDetails": {
+            "businessView": "updatepage_BV2",
+            "database": "sch_core_abg",
+            "targetSchema": {},
+            "sourceSchema": {}
+          }
+        }
+      ],
+      "Output": {
+        "message": "Updated Successfully",
+        "routerLink": "/page/Traineelistpage",
+        "redirect": {
+          "routerLink": "/page/Traineelistpage",
+          "params": {}
+        }
+      }
+    }
+  ],
+  "pageBanner": {
+    "Business_Comp_Name": "VMS",
+    "Title": "VSM SOLUTIONS INDIA PVT.LMT",
+    "Screen_Name": "Employee page",
+    "Description": "  "
+  },
+  "rows": [
+    {
+      "columns": [
+        {
+          "components": [
+            {
+              "componentId": "1",
+              "type": "section",
+              "title": "Employee update Page",
+              "Description": " Employee Edit Page ",
+              "icon": "Employee update page",
+              "dataSourceName": "updatepage_BV",
+              "headerComponents": [],
+              "sectionBody": {
+                "style": "style1",
+                "rows": [
+                  {
+                    "columns": [
+                      {
+                        "width": "18%",
+                        "components": [
+                          {
+                            "label": "Emp Id",
+                            "type": "text",
+                            "mandatory": false,
+                            "dbColumnName": "empId",
+                            "dataSourceName": "updatepage_BV",
+                            "displayStyle": "verticalKeyValue",
+                            "formcontrol": "empId",
+                            "componentId": "empId",
+                            "icon": "https://image"
+                          },
+                          {
+                            "label": "Gender",
+                            "type": "text",
+                            "dataSourceName": "updatepage_BV",
+                            "displayStyle": "verticalKeyValue",
+                            "dbColumnName": "gender",
+                            "mandatory": false,
+                            "formcontrol": "gender",
+                            "componentId": "gender",
+                            "icon": "https://image"
+                          },
+                          {
+                            "label": "company Name",
+                            "type": "text",
+                            "dbColumnName": "companyName",
+                            "readOnly": false,
+                            "componentId": "companyName",
+                            "dataSourceName": "updatepage_BV",
+                            "formcontrol": "companyName",
+                            "displayStyle": "verticalKeyValue",
+                            "icon": "https://image"
+                          }
+                        ]
+                      },
+                      {
+                        "width": "15%",
+                        "components": [
+                          {
+                            "label": "FirstName",
+                            "type": "text",
+                            "mandatory": false,
+                            "dbColumnName": "firstName",
+                            "dataSourceName": "updatepage_BV",
+                            "displayStyle": "verticalKeyValue",
+                            "readOnly": false,
+                            "uniqueInDb": false,
+                            "formcontrol": "firstName",
+                            "componentId": "firstName",
+                            "value": "",
+                            "icon": "https://image"
+                          },
+                          {
+                            "label": "MaritalStatus",
+                            "type": "text",
+                            "dbColumnName": "maritalStatus",
+                            "dataSourceName": "updatepage_BV",
+                            "displayStyle": "verticalKeyValue",
+                            "readOnly": false,
+                            "formcontrol": "maritalStatus",
+                            "componentId": "maritalStatus",
+                            "icon": "https://image"
+                          },
+                          {
+                            "label": "branch",
+                            "type": "text",
+                            "closeOnSelect": true,
+                            "readOnly": false,
+                            "formcontrol": "branch",
+                            "dbColumnName": "branch",
+                            "multiple": true,
+                            "dataSourceName": "updatepage_BV",
+                            "displayStyle": "verticalKeyValue",
+                            "componentId": "branch"
+                          }
+                        ]
+                      },
+                      {
+                        "width": "15%",
+                        "components": [
+                          {
+                            "label": "LastName",
+                            "type": "text",
+                            "dbColumnName": "lastName",
+                            "dataSourceName": "updatepage_BV",
+                            "displayStyle": "verticalKeyValue",
+                            "formcontrol": "lastName",
+                            "componentId": "lastName"
+                          },
+                          {
+                            "type": "number",
+                            "dbColumnName": "age",
+                            "label": "Age",
+                            "dataSourceName": "updatepage_BV",
+                            "displayStyle": "verticalKeyValue",
+                            "mandatory": false,
+                            "formcontrol": "age",
+                            "componentId": "age",
+                            "icon": "https://image"
+                          },
+                          {
+                            "label": "Emailid",
+                            "type": "text",
+                            "dbColumnName": "emailId",
+                            "dataSourceName": "updatepage_BV",
+                            "displayStyle": "verticalKeyValue",
+                            "readOnly": true,
+                            "formcontrol": "emailId",
+                            "componentId": "emailId",
+                            "hidden": false,
+                            "icon": "https://image"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

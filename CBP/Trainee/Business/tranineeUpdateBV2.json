@@ -1,0 +1,26 @@
+{
+  "ruleId": "",
+  "businessView": "updatepage_BV2",
+  "fieldMapping": {
+    "collectionName": "LibraryBooksList",
+    "sourceSchema": {},
+    "targetSchema": {}
+  },
+  "match": {
+    "empId": "{{payload.section_1.empId}}"
+  },
+  "set": {
+    "($)set": {
+      "empId": "{{payload.section_1.empId}}",
+      "firstName": "{{payload.section_1.firstName}}",
+      "lastName": "{{payload.section_1.lastName}}",
+      "gender": "{{payload.section_1.gender}}",
+      "age": "{{payload.section_1.age}}",
+      "maritalStatus": "{{payload.section_1.maritalStatus}}",
+      "emailId": "{{payload.section_1.emailId}}",
+      "branch": "{{payload.section_1.branch}}",
+      "companyName": "{{payload.section_1.companyName}}"
+    }
+  },
+  "filter": {}
+}

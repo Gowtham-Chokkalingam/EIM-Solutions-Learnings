@@ -1,0 +1,479 @@
+{
+  "_id": "63ecb9a9578c9c0b145646ea",
+  "tenant": "100",
+  "systemID": "JTD410",
+  "epic": "SCH-SUPPLIERS",
+  "pageName": "Traineelistpage",
+  "version": "Grid",
+  "showWorkflowActions": false,
+  "showPageBanner": true,
+  "businessComponentDesc": "",
+  "businessComponent": "VMS",
+  "businessComponentInstance": "Digital of life",
+  "pageBanner": {
+    "Business_Comp_Name": "VMS",
+    "Title": "VSM SOLUTIONS INDIA PVT.LMT",
+    "Screen_Name": "Employee page",
+    "Description": "  "
+  },
+  "dataSource": [
+    {
+      "dataSourceType": "businessView",
+      "dataSourceName": "ListTrainee_BV",
+      "dataSourceDetails": {
+        "businessView": "ListTrainee_BV"
+      }
+    },
+    {
+      "dataSourceType": "businessView",
+      "dataSourceName": "Embarded_BV",
+      "dataSourceDetails": {
+        "businessView": "Embarded_BV"
+      }
+    }
+  ],
+  "pageActions": [
+    {
+      "text": "Submit",
+      "type": "submit",
+      "showLabel": false,
+      "style": "style2",
+      "disableFormValidation": false,
+      "css": {
+        "font-size": "16px",
+        "color": "#52a5fb",
+        "cursor": "pointer"
+      },
+      "onClick": [
+        {
+          "actions": [
+            {
+              "action": "executePageAction",
+              "actionPerformed": "submit"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "executePageActions": [
+    {
+      "ID": 1,
+      "Rule": "pageAction",
+      "RuleGroup": "",
+      "WHEN": "'{{payload.pageActionPerformed}}' == 'submit'",
+      "THEN": ["performAction"],
+      "Actions": [
+        {
+          "id": 1,
+          "actionName": "collectionListInsert",
+          "actionType": "insertData",
+          "actionDetails": {
+            "database_details": {
+              "database": "{{payload.headers.dbName}}",
+              "collection": "EmpTrainees"
+            },
+            "payload": {
+              "empId": "{{payload.formData.empId}}",
+              "firstName": "{{payload.formData.firstName}}",
+              "lastName": "{{payload.formData.lastName}}",
+              "gender": "{{payload.formData.gender}}",
+              "age": "{{payload.formData.age}}",
+              "maritalStatus": "{{payload.formData.maritalStatus}}",
+              "companyName": "{{payload.formData.companyName}}",
+              "branch": "{{payload.formData.branch}}",
+              "emailId": "{{payload.formData.emailId}}"
+            }
+          }
+        }
+      ],
+      "Output": {
+        "message": "Details are added to EmpTrainees Collection",
+        "refresh": true
+      }
+    }
+  ],
+  "rows": [
+    {
+      "columns": [
+        {
+          "components": [
+            {
+              "componentId": 1,
+              "type": "table",
+              "title": "Employee Personal Details",
+              "description": "Personal Details",
+              "dataSourceName": "ListTrainee_BV",
+              "tableConfig": {
+                "layoutIcon": false,
+                "downloadIcon": true,
+                "columnFilterIcon": true,
+                "rowFilterIcon": true,
+                "fullscreenIcon": true,
+                "aggregationFooter": false,
+                "checkbox": true,
+                "downloadActions": [
+                  {
+                    "action": "excelDownload"
+                  },
+                  {
+                    "action": "pdfDownload"
+                  }
+                ],
+                "DataDownload": {
+                  "downloadColumnName": [
+                    {
+                      "label": "EmpId",
+                      "property": "EmpId",
+                      "dbColumnName": "empId"
+                    },
+                    {
+                      "label": "First Name",
+                      "property": "First Name",
+                      "dbColumnName": "firstName"
+                    },
+                    {
+                      "label": "Gender",
+                      "property": "Gender",
+                      "dbColumnName": "gender"
+                    },
+                    {
+                      "label": "Age",
+                      "property": "Age",
+                      "dbColumnName": "age"
+                    },
+                    {
+                      "label": "Marital Status",
+                      "property": "Marital Status",
+                      "dbColumnName": "maritalStatus"
+                    },
+                    {
+                      "label": "CompanyName",
+                      "property": "CompanyName",
+                      "dbColumnName": "companyName"
+                    },
+                    {
+                      "label": "branch",
+                      "property": "branch",
+                      "dbColumnName": "branch"
+                    },
+                    {
+                      "label": "Email id",
+                      "property": "Email id",
+                      "dbColumnName": "emailId"
+                    }
+                  ]
+                },
+                "headerActions": [
+                  {
+                    "text": "Add",
+                    "icon": "ficon feather icon-plus",
+                    "showLabel": true,
+                    "onClick": [
+                      {
+                        "actions": [
+                          {
+                            "action": "confirmationPopup",
+                            "actionDetails": {
+                              "formDetails": {
+                                "header": {
+                                  "title": "Add Trainee"
+                                },
+                                "body": {
+                                  "title2": "Add Trainee",
+                                  "components": [
+                                    {
+                                      "label": "EmpId",
+                                      "type": "text",
+                                      "displayStyle": "horizontalValues",
+                                      "dbcolumnName": "empId",
+                                      "formcontrol": "empId",
+                                      "placeholder": "EmpId",
+                                      "mandatory": true
+                                    },
+                                    {
+                                      "label": "First Name",
+                                      "type": "text",
+                                      "dbcolumnName": "firstName",
+                                      "formcontrol": "firstName",
+                                      "placeholder": "First Name",
+                                      "mandatory": true,
+                                      "readOnly": false
+                                    },
+                                    {
+                                      "label": "Last Name",
+                                      "type": "text",
+                                      "dbcolumnName": "lastName",
+                                      "formcontrol": "lastName",
+                                      "placeholder": "Last Name",
+                                      "mandatory": true,
+                                      "readOnly": false
+                                    },
+                                    {
+                                      "label": "Gender",
+                                      "type": "text",
+                                      "dbcolumnName": "gender",
+                                      "formcontrol": "gender",
+                                      "placeholder": "Gender",
+                                      "mandatory": true,
+                                      "readOnly": false
+                                    },
+                                    {
+                                      "label": "Age",
+                                      "type": "text",
+                                      "dbcolumnName": "age",
+                                      "formcontrol": "age",
+                                      "placeholder": "Age",
+                                      "mandatory": true,
+                                      "readOnly": false
+                                    },
+                                    {
+                                      "label": "Marital Status",
+                                      "type": "text",
+                                      "dbcolumnName": "maritalStatus",
+                                      "formcontrol": "maritalStatus",
+                                      "placeholder": "Marital Status",
+                                      "mandatory": true,
+                                      "readOnly": false
+                                    },
+                                    {
+                                      "label": "CompanyName",
+                                      "type": "text",
+                                      "dbcolumnName": "companyName",
+                                      "formcontrol": "companyName",
+                                      "placeholder": "CompanyName",
+                                      "mandatory": true,
+                                      "readOnly": false
+                                    },
+                                    {
+                                      "label": "branch",
+                                      "type": "text",
+                                      "dbcolumnName": "branch",
+                                      "formcontrol": "branch",
+                                      "placeholder": "branch",
+                                      "mandatory": true,
+                                      "readOnly": false
+                                    },
+                                    {
+                                      "label": "Email id",
+                                      "type": "text",
+                                      "dbcolumnName": "emailId",
+                                      "formcontrol": "emailId",
+                                      "placeholder": "Email id",
+                                      "mandatory": true,
+                                      "readOnly": false
+                                    }
+                                  ]
+                                },
+                                "footer": {
+                                  "button": [
+                                    {
+                                      "text": "cancel",
+                                      "type": "button",
+                                      "action": "close"
+                                    },
+                                    {
+                                      "text": "save",
+                                      "type": "submit",
+                                      "action": "submit",
+                                      "onClick": [
+                                        {
+                                          "actions": [
+                                            {
+                                              "action": "executePageAction",
+                                              "actionPerformed": "submit"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "text": "Create",
+                    "showLabel": true,
+                    "icon": "ficon feather icon-plus",
+                    "hidden": true,
+                    "image": "",
+                    "css": {},
+                    "style": "style5",
+                    "onClick": [
+                      {
+                        "actions": [
+                          {
+                            "action": "redirect",
+                            "actionDetails": {
+                              "routerLink": "/page/Traineelistpage",
+                              "params": {}
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "tableFilter": {
+                  "dataSourceType": "inline",
+                  "dataSource": [
+                    {
+                      "dataSourceType": "businessView",
+                      "dataSourceName": "ListTraineefilter_BV",
+                      "dataSourceDetails": {
+                        "businessView": "ListTraineefilter_BV"
+                      }
+                    }
+                  ],
+                  "Filters": [
+                    {
+                      "description": "Gender",
+                      "dbColumnName": "gender",
+                      "placeholder": "Gender",
+                      "dataSourceName": "ListTraineefilter_BV",
+                      "filterType": "checkBox"
+                    },
+                    {
+                      "description": "CompanyName",
+                      "placeholder": "CompanyName",
+                      "dataSourceName": "ListTraineefilter_BV",
+                      "dbColumnName": "companyName",
+                      "filterType": "checkBox"
+                    },
+                    {
+                      "description": "branch",
+                      "placeholder": "branch",
+                      "dataSourceName": "ListTraineefilter_BV",
+                      "dbColumnName": "branch",
+                      "filterType": "checkBox"
+                    }
+                  ]
+                }
+              },
+              "tableColumns": {
+                "EmpId": {
+                  "type": "text",
+                  "dbColumnName": null,
+                  "value": {
+                    "routerLink": "/page/Employee details",
+                    "text": "{{empId}}",
+                    "params": {
+                      "empId": "{{empId}}"
+                    }
+                  }
+                },
+                "First Name": {
+                  "type": "text",
+                  "dbColumnName": "firstName"
+                },
+                "Last Name": {
+                  "type": "text",
+                  "dbColumnName": "lastName"
+                },
+                "Gender": {
+                  "type": "text",
+                  "dbColumnName": "gender"
+                },
+                "Age": {
+                  "type": "text",
+                  "dbColumnName": "age"
+                },
+                "Marital Status": {
+                  "type": "text",
+                  "dbColumnName": "maritalStatus"
+                },
+                "CompanyName": {
+                  "type": "text",
+                  "dbColumnName": "companyName"
+                },
+                "branch": {
+                  "type": "text",
+                  "dbColumnName": "branch"
+                },
+                "Email id": {
+                  "type": "text",
+                  "dbColumnName": "emailId"
+                },
+                "Edit": {
+                  "type": "icon",
+                  "dbColumnName": null,
+                  "value": {
+                    "routerLink": "/page/updatePage",
+                    "params": {
+                      "empId": "{{empId}}"
+                    },
+                    "enabled": true,
+                    "eventId": "openItemText",
+                    "text": "{{empId}}}"
+                  },
+                  "icon": "feather icon-edit-1"
+                },
+                "Details": {
+                  "type": "embeddedTable",
+                  "dataSourceName": "Embarded_BV",
+                  "componentId": ["empId"],
+                  "counterSize": "m",
+                  "style": "style0",
+                  "tableConfig": {
+                    "enableEntityCreation": false,
+                    "entityCreationDetails": {
+                      "addTableRow": false
+                    }
+                  },
+                  "tableColumns": {
+                    "Profile": {
+                      "type": "image",
+                      "dbColumnName": "firstName",
+                      "sticky": true
+                    },
+                    "EmpId": {
+                      "type": "text",
+                      "dbColumnName": "empId",
+                      "sticky": true,
+                      "emphasize": true
+                    },
+                    "First Name": {
+                      "type": "text",
+                      "dbColumnName": "firstName",
+                      "trimLeftZeroes": true,
+                      "hidden": false
+                    },
+                    "Last Name": {
+                      "type": "text",
+                      "dbColumnName": "lastName",
+                      "trimLeftZeroes": true,
+                      "hidden": false
+                    },
+                    "CompanyName": {
+                      "type": "text",
+                      "dbColumnName": "companyName",
+                      "trimLeftZeroes": true,
+                      "hidden": false
+                    },
+                    "branch": {
+                      "type": "text",
+                      "dbColumnName": "branch",
+                      "trimLeftZeroes": true,
+                      "hidden": false
+                    },
+                    "Email id": {
+                      "type": "text",
+                      "dbColumnName": "emailId",
+                      "trimLeftZeroes": true,
+                      "hidden": false
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
