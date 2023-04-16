@@ -1,0 +1,192 @@
+[
+  {
+    "sNo": "6483",
+    "procurementTeam": "103",
+    "workCenter": "",
+    "L1": "portalBuyer",
+    "L2": null,
+    "L3": null,
+    "L4": null,
+    "tenant": "120",
+    "workflowId": "WF_MS_NEW_PROCESSING",
+    "type": "measurementSheet",
+    "updatedAt": "2023-03-13T11:06:10.223Z",
+    "companyCode": "8000"
+  },
+  {
+    "sNo": "6481",
+    "procurementTeam": "101",
+    "workCenter": "",
+    "L1": "9000-Functional Manager-Civil",
+    "L2": "Functional Head-Civil",
+    "L3": "2010-RO-Approval",
+    "L4": "",
+    "tenant": "120",
+    "workflowId": "WF_MS_NEW_PROCESSING",
+    "type": "measurementSheet",
+    "companyCode": "7000"
+  },
+  {
+    "sNo": "6481",
+    "plant": "9000",
+    "procurementTeam": "101",
+    "L1": "9000-Functional Manager-Civil",
+    "L2": "Functional Head-Civil",
+    "tenant": "120",
+    "workflowId": "WF_MS_PAR_PROCESSING",
+    "type": "measurementSheet"
+  },
+  {
+    "sNo": "6482",
+    "plant": "9000",
+    "procurementTeam": "102",
+    "L1": "9000-Functional Manager-Electrical",
+    "L2": "Functional Head-Electrical",
+    "tenant": "120",
+    "workflowId": "WF_MS_PAR_PROCESSING",
+    "type": "measurementSheet"
+  },
+  {
+    "sNo": "6482",
+    "plant": "9000",
+    "procurementTeam": "102",
+    "L1": "9000-Functional Manager-Electrical",
+    "L2": "Functional Head-Electrical",
+    "tenant": "120",
+    "workflowId": "WF_MS_PART_PROCESSING",
+    "type": "measurementSheet"
+  }
+]
+
+db.plant.insertMany([
+  {
+    "sNo": "6483",
+    "procurementTeam": "103",
+    "workCenter": "",
+    "L1": "portalBuyer",
+    "L2": null,
+    "L3": null,
+    "L4": null,
+    "tenant": "120",
+    "workflowId": "WF_MS_NEW_PROCESSING",
+    "type": "measurementSheet",
+    "updatedAt": "2023-03-13T11:06:10.223Z",
+    "companyCode": "8000"
+  },
+  {
+    "sNo": "6481",
+    "procurementTeam": "101",
+    "workCenter": "",
+    "L1": "9000-Functional Manager-Civil",
+    "L2": "Functional Head-Civil",
+    "L3": "2010-RO-Approval",
+    "L4": "",
+    "tenant": "120",
+    "workflowId": "WF_MS_NEW_PROCESSING",
+    "type": "measurementSheet",
+    "companyCode": "7000"
+  },
+  {
+    "sNo": "6481",
+    "plant": "9000",
+    "procurementTeam": "101",
+    "L1": "9000-Functional Manager-Civil",
+    "L2": "Functional Head-Civil",
+    "tenant": "120",
+    "workflowId": "WF_MS_PAR_PROCESSING",
+    "type": "measurementSheet"
+  },
+  {
+    "sNo": "6482",
+    "plant": "9000",
+    "procurementTeam": "102",
+    "L1": "9000-Functional Manager-Electrical",
+    "L2": "Functional Head-Electrical",
+    "tenant": "120",
+    "workflowId": "WF_MS_PAR_PROCESSING",
+    "type": "measurementSheet"
+  },
+  {
+    "sNo": "6482",
+    "plant": "9000",
+    "procurementTeam": "102",
+    "L1": "9000-Functional Manager-Electrical",
+    "L2": "Functional Head-Electrical",
+    "tenant": "120",
+    "workflowId": "WF_MS_PART_PROCESSING",
+    "type": "measurementSheet"
+  }
+])
+// db.plant.insertMany([
+//   {
+//     "sNo": "6483",
+//     "procurementTeam": "103",
+//     "workCenter": "",
+//     "L1": "portalBuyer",
+//     "L2": null,
+//     "L3": null,
+//     "L4": null,
+//     "tenant": "120",
+//     "workflowId": "WF_MS_NEW_PROCESSING",
+//     "type": "measurementSheet",
+//     "updatedAt": "2023-03-13T11:06:10.223Z",
+//     "companyCode": "9000"
+//   },
+//   {
+//     "sNo": "6481",
+//     "procurementTeam": "101",
+//     "workCenter": "",
+//     "L1": "9000-Functional Manager-Civil",
+//     "L2": "Functional Head-Civil",
+//     "L3": "2010-RO-Approval",
+//     "L4": "",
+//     "tenant": "120",
+//     "workflowId": "WF_MS_NEW_PROCESSING",
+//     "type": "measurementSheet",
+//     "companyCode": "9000"
+//   },
+//   {
+//     "sNo": "6481",
+//     "plant": "9000",
+//     "procurementTeam": "101",
+//     "L1": "9000-Functional Manager-Civil",
+//     "L2": "Functional Head-Civil",
+//     "tenant": "120",
+//     "workflowId": "WF_MS_PAR_PROCESSING",
+//     "type": "measurementSheet"
+//   },
+//   {
+//     "sNo": "6482",
+//     "plant": "9000",
+//     "procurementTeam": "102",
+//     "L1": "9000-Functional Manager-Electrical",
+//     "L2": "Functional Head-Electrical",
+//     "tenant": "120",
+//     "workflowId": "WF_MS_PAR_PROCESSING",
+//     "type": "measurementSheet"
+//   }
+// ])
+db.plant.update({_id:ObjectId("643a47ff56c13a9996821951")},{$set:{companyCode:""}})
+db.plant.aggregate([
+  {
+    $match: {
+      workflowId: { $in: ["WF_MS_NEW_PROCESSING", "WF_MS_PAR_PROCESSING"] }
+    }
+  },
+  {
+    $project: {
+      code: {
+        $cond: [
+          { $ifNull: ["$companyCode", false] },
+          "$companyCode",
+          "$plant"
+        ]
+      }, sLNo:"$sNo", workFlowID:"$workflowId",
+      plant:"$plant",
+      companyCode:"$companyCode"
+    }
+  }
+])
+
+
+The $cond operator is used to check whether the companyCode field exists. If it does, then the code field is set to the value of companyCode, otherwise it is set to the value of plant.

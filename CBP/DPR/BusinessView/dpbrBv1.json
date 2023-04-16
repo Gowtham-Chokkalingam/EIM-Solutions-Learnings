@@ -1,0 +1,68 @@
+{
+  "ruleId": "",
+  "businessView": "workflowList_DPR_BV",
+  "defaultSortSetting": {
+    "sortField": "createdAt",
+    "sortDirection": -1
+  },
+  "collection": "workflowConditions",
+  "searchTermFields": ["sNo", "plant", "workCenter", "procurementTeam", "L1", "L2", "L3", "L4", "tenant", "workflowId", "type"],
+  "aggregation": [
+    {
+      "($)match": {
+        "($)or": [
+          {
+            "workflowId": "WF_MS_NEW_PROCESSING"
+          },
+          {
+            "workflowId": "WF_MS_PAR_PROCESSING"
+          }
+        ]
+      }
+    },
+    {
+      "($)sort": {
+        "{{componentSetting.matSortActive}}": "{{componentSetting.matSortDirection}}"
+      }
+    },
+    {
+      "($)facet": {
+        "paginatedResults": [
+          {
+            "($)project": {
+              "sNo": "($)sNo",
+              "plant": "($)plant",
+              "procurementTeam": "($)procurementTeam",
+              "workCenter": "($)workCenter",
+              "L1": "($)L1",
+              "L2": "($)L2",
+              "L3": "($)L3",
+              "L4": "($)L4",
+              "tenant": "($)tenant",
+              "workflowId": "($)workflowId",
+              "type": "($)type",
+              "code": { "($)cond": [{ "($)ifNull": ["($)companyCode", false] }, "($)companyCode", "($)plant"] }
+            }
+          },
+          {
+            "($)match": "{{componentSetting.rowFilter}}"
+          },
+          {
+            "($)match": "{{searchTerm}}"
+          },
+          {
+            "($)skip": "{{componentSetting.page}}"
+          },
+          {
+            "($)limit": "{{componentSetting.limit}}"
+          }
+        ],
+        "totalCount": [
+          {
+            "($)count": "count"
+          }
+        ]
+      }
+    }
+  ]
+}
