@@ -1,0 +1,18 @@
+{
+  "ruleId": "",
+  "businessView": "DummyUpdateBV",
+  "fieldMapping": {
+    "collectionName": "DummyUsers",
+    "sourceSchema": {},
+    "targetSchema": {}
+  },
+  "match": {
+    "userName": "Gowtham"
+  },
+  "set": {
+    "($)set": {
+      "userName": "{{payload.section_1.userName}}"
+    }
+  },
+  "filter": {}
+}

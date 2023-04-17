@@ -1,0 +1,127 @@
+{
+  "tenant": "100",
+  "systemID": "JTD410",
+  "epic": "SCH-SUPPLIER",
+  "pageName": "LibraryBooksUserLogin",
+  "version": "Grid",
+  "showWorkflowActions": false,
+  "showPageBanner": false,
+  "businessComponentDesc": "",
+  "businessComponent": "Library",
+  "businessComponentInstance": "Digital Library Management",
+  "dataSource": [
+    {
+      "dataSourceType": "businessView",
+      "dataSourceName": "DummyProjectBV",
+      "dataSourceDetails": {
+        "businessView": "DummyProjectBV"
+      }
+    }
+  ],
+  "pageBanner": {
+    "Business_Comp_Name": "Digital Library",
+    "Title": "SCH Digital Library",
+    "Screen_Name": "Update Page",
+    "Description": " This page is managed by library admin to Update and update the books "
+  },
+  "rows": [
+    {
+      "columns": [
+        {
+          "components": [
+            {
+              "componentId": "1",
+              "type": "section",
+              "title": "Book Update Page",
+              "Description": " Books Edit Page ",
+              "icon": "Book update page",
+              "dataSourceName": "DummyProjectBV",
+              "headerComponents": [],
+              "sectionBody": {
+                "style": "style1",
+                "rows": [
+                  {
+                    "columns": [
+                      {
+                        "width": "18%",
+                        "components": [
+                          {
+                            "label": "User Name",
+                            "type": "text",
+                            "displayStyle": "horizontalValues",
+                            "dbcolumnName": "userName",
+                            "formcontrol": "userName",
+                            "placeholder": "User Name",
+                            "mandatory": true
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "pageActions": [
+    {
+      "text": "Login",
+      "type": "submit",
+      "showLabel": true,
+      "style": "style2",
+      "disableFormValidation": false,
+      "css": {
+        "font-size": "16px",
+        "color": "#52a5fb",
+        "cursor": "pointer"
+      },
+      "onClick": [
+        {
+          "actions": [
+            {
+              "action": "executePageAction",
+              "actionPerformed": "submit"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "executePageActions": [
+    {
+      "ID": 1,
+      "Rule": "pageAction",
+      "RuleGroup": "",
+      "WHEN": "'{{payload.pageActionPerformed}}' == 'submit'",
+      "THEN": ["performAction"],
+      "Actions": [
+        {
+          "id": 1,
+          "actionName": "updateEmployee",
+          "actionType": "updateBusinessView",
+          "actionDetails": {
+            "businessView": "DummyUpdateBV",
+            "database": "sch_core_abg",
+            "targetSchema": {},
+            "sourceSchema": {}
+          }
+        }
+      ],
+      "Output": {
+        "message": "Login Successfully",
+        "routerLink": "/page/LibraryBooksListAdmin",
+        "redirect": {
+          "routerLink": "/page/LibraryBooksListAdmin",
+          "text": "{{payload.formData.userName}}",
+          "params": {
+            "dataSourceName": "DummyProjectBV",
+            "name": "userName"
+          }
+        }
+      }
+    }
+  ]
+}

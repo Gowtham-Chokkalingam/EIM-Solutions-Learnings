@@ -1,0 +1,52 @@
+{
+    "ruleId": "",
+    "businessView": "LibraryBooksListUsers_BV",
+    "defaultSortSetting": {
+        "sortField": "bookId",
+        "sortDirection": -1
+    },
+    "collection": "LibraryBooksList",
+    "aggregation": [
+        {
+            "($)match": {}
+        },
+        {
+            "($)facet": {
+                "paginatedResults": [
+                    {
+                        "($)project": {
+                            "bookId": "($)bookId",
+                            "title": "($)title",
+                            "publicationDate": "($)publicationDate",
+                            "description": "($)description",
+                            "language": "($)language",
+                            "pages": "($)pages",
+                            "totalBooks": "($)totalBooks",
+                            "authors": "($)authors",
+                            "createdAt": "($)createdAt"
+                        }
+                    },
+                    {
+                        "($)match": "{{componentSetting.rowFilter}}"
+                    },
+                    {
+                        "($)sort": {
+                            "{{componentSetting.matSortActive}}": "{{componentSetting.matSortDirection}}"
+                        }
+                    },
+                    {
+                        "($)skip": "{{componentSetting.page}}"
+                    },
+                    {
+                        "($)limit": "{{componentSetting.limit}}"
+                    }
+                ],
+                "totalCount": [
+                    {
+                        "($)count": "count"
+                    }
+                ]
+            }
+        }
+    ]
+}
