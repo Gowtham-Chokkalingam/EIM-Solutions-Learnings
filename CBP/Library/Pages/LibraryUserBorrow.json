@@ -1,0 +1,284 @@
+{
+    "tenant": "100",
+    "systemID": "JTD410",
+    "epic": "SCH-SUPPLIER",
+    "pageName": "LibraryUserBorrow",
+    "version": "Grid",
+    "showWorkflowActions": false,
+    "showPageBanner": false,
+    "businessComponentDesc": "",
+    "businessComponent": "Library",
+    "businessComponentInstance": "Digital Library Management",
+    "dataSource": [
+        {
+            "dataSourceType": "businessView",
+            "dataSourceName": "LibraryBooksListAdminUpdate_BV",
+            "dataSourceDetails": {
+                "businessView": "LibraryBooksListAdminUpdate_BV"
+            }
+        },
+        {
+            "dataSourceType": "businessView",
+            "dataSourceName": "LibraryUserBorrowPageDisplayBV",
+            "dataSourceDetails": {
+                "businessView": "LibraryUserBorrowPageDisplayBV"
+            }
+        }
+    ],
+    "pageActions": [
+        {
+            "text": "Borrow",
+            "type": "submit",
+            "showLabel": true,
+            "style": "style2",
+            "disableFormValidation": false,
+            "css": {
+                "font-size": "16px",
+                "color": "#52a5fb",
+                "cursor": "pointer"
+            },
+            "onClick": [
+                {
+                    "actions": [
+                        {
+                            "action": "executePageAction",
+                            "actionPerformed": "submit"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "executePageActions": [
+        {
+            "ID": 1,
+            "Rule": "pageAction",
+            "RuleGroup": "",
+            "WHEN": "'{{payload.pageActionPerformed}}' == 'submit'",
+            "THEN": [
+                "performAction"
+            ],
+            "Actions": [
+                {
+                    "id": 1,
+                    "actionName": "updateUser",
+                    "actionType": "updateBusinessView",
+                    "actionDetails": {
+                        "businessView": "LibraryUpdateUserBV",
+                        "database": "sch_core_abg",
+                        "targetSchema": {},
+                        "sourceSchema": {}
+                    }
+                },
+                {
+                    "id": 2,
+                    "actionName": "updateBook",
+                    "actionType": "updateBusinessView",
+                    "actionDetails": {
+                        "businessView": "LibraryUpdateBookBV",
+                        "database": "sch_core_abg",
+                        "targetSchema": {},
+                        "sourceSchema": {}
+                    }
+                }
+            ],
+            "Output": {
+                "message": "Book Borrowed Successfully",
+                "redirect": {
+                    "params": {}
+                }
+            }
+        }
+    ],
+    "pageBanner": {
+        "Business_Comp_Name": "Digital Library",
+        "Title": "SCH Digital Library",
+        "Screen_Name": "Book Borrow Page",
+        "Description": " This page is managed by library admin to Update and update the books "
+    },
+    "rows": [
+        {
+            "columns": [
+                {
+                    "components": [
+                        {
+                            "componentId": "1",
+                            "type": "section",
+                            "title": "Book Borrow Page",
+                            "Description": " Books Borrow Page ",
+                            "icon": "Book borrow page",
+                            "dataSourceName": "LibraryBooksListAdminUpdate_BV",
+                            "headerComponents": [],
+                            "sectionBody": {
+                                "style": "style1",
+                                "rows": [
+                                    {
+                                        "columns": [
+                                            {
+                                                "width": "18%",
+                                                "components": [
+                                                    {
+                                                        "label": "BookId",
+                                                        "type": "text",
+                                                        "mandatory": false,
+                                                        "dataSourceName": "LibraryBooksListAdminUpdate_BV",
+                                                        "dbColumnName": "bookId",
+                                                        "displayStyle": "verticalKeyValue",
+                                                        "formcontrol": "bookId",
+                                                        "componentId": "bookId",
+                                                        "readOnly": true,
+                                                        "icon": "https://image"
+                                                    },
+                                                    
+                                                     {
+                                                        "label": "Book Title",
+                                                        "type": "text",
+                                                        "mandatory": false,
+                                                        "dataSourceName": "LibraryBooksListAdminUpdate_BV",
+                                                        "dbColumnName": "title",
+                                                        "displayStyle": "verticalKeyValue",
+                                                        "formcontrol": "title",
+                                                        "componentId": "title",
+                                                        "readOnly": true,
+                                                        "icon": "https://image"
+                                                    },{
+                                                        "label": "Language",
+                                                        "type": "text",
+                                                        "mandatory": false,
+                                                        "dataSourceName": "LibraryBooksListAdminUpdate_BV",
+                                                        "dbColumnName": "language",
+                                                        "displayStyle": "verticalKeyValue",
+                                                        "formcontrol": "language",
+                                                        "componentId": "language",
+                                                        "readOnly": true,
+                                                        "icon": "https://image"
+                                                    
+                                                    },{
+                                                        "label": "Total Books Availabe In Library",
+                                                        "type": "text",
+                                                        "mandatory": false,
+                                                        "dataSourceName": "LibraryBooksListAdminUpdate_BV",
+                                                        "dbColumnName": "totalBooks",
+                                                        "displayStyle": "verticalKeyValue",
+                                                        "formcontrol": "totalBooks",
+                                                        "componentId": "totalBooks",
+                                                        "readOnly": true,
+                                                        "icon": "https://image"
+                                                    },
+                                                   
+                                                
+                                                  
+                                                     {
+                                                        "label": "Author",
+                                                        "type": "text",
+                                                        "mandatory": false,
+                                                        "dataSourceName": "LibraryBooksListAdminUpdate_BV",
+                                                        "dbColumnName": "authors",
+                                                        "displayStyle": "verticalKeyValue",
+                                                        "formcontrol": "authors",
+                                                        "componentId": "authors",
+                                                        "readOnly": true,
+                                                        "icon": "https://image"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "width": "20%",
+                                                "components": [
+                                                    {
+                                                        "label": "UserId",
+                                                        "type": "text",
+                                                        "mandatory": false,
+                                                        "dbColumnName": "userID",
+                                                        "dataSourceName": "LibraryUserBorrowPageDisplayBV",
+                                                        "displayStyle": "verticalKeyValue",
+                                                        "formcontrol": "userID",
+                                                        "componentId": "userID",
+                                                        "readOnly": true,
+                                                        "icon": "https://image"
+                                                    },
+                                                    {
+                                                        "label": "User Name",
+                                                        "type": "text",
+                                                        "mandatory": false,
+                                                        "dbColumnName": "name",
+                                                        "dataSourceName": "LibraryUserBorrowPageDisplayBV",
+                                                        "displayStyle": "verticalKeyValue",
+                                                        "formcontrol": "name",
+                                                        "componentId": "name",
+                                                        "readOnly": true,
+                                                        "icon": "https://image"
+                                                    },
+                                                    {
+                                                        "label": "Remaining Number Of Borrows",
+                                                        "type": "text",
+                                                        "mandatory": false,
+                                                        "dbColumnName": "booksCount",
+                                                        "dataSourceName": "LibraryUserBorrowPageDisplayBV",
+                                                        "displayStyle": "verticalKeyValue",
+                                                        "formcontrol": "booksCount",
+                                                        "componentId": "booksCount",
+                                                        "readOnly": true,
+                                                        "icon": "https://image"
+                                                    },
+                                                    
+                                                   
+                                                    {
+                                                        "label": "Remaining Number Of Borrows",
+                                                        "type": "text",
+                                                        "dbColumnName": "booksCount",
+                                                        "dataSourceName": "LibraryUserBorrowPageDisplayBV",
+                                                        "displayStyle": "horizontalKeyValue"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "components": [
+                                                    {
+                                                        "type": "datetime-local",
+                                                        "label": "Borrowing Date",
+                                                        "dataSourceName": "SelectedPR",
+                                                        "dbColumnName": "borrowDate",
+                                                        "mandatory": true,
+                                                        "style": "style1",
+                                                        "validation": {
+                                                            "min": {
+                                                                "valueof": {
+                                                                    "componentId": "section_RFQBiddingDetails.OpeningDate",
+                                                                    "property": "value"
+                                                                }
+                                                            }
+                                                        },
+                                                        "formcontrol": "borrowDate",
+                                                        "hidden": false
+                                                    },
+                                                    {
+                                                        "type": "datetime-local",
+                                                        "dataSourceName": "SelectedPR",
+                                                        "dbColumnName": "returnDate",
+                                                        "label": "Returning Date",
+                                                        "mandatory": true,
+                                                        "style": "style1",
+                                                        "validation": {
+                                                            "min": {
+                                                                "valueof": {
+                                                                    "componentId": "section_RFQBiddingDetails.OpeningDate",
+                                                                    "property": "value"
+                                                                }
+                                                            }
+                                                        },
+                                                        "formcontrol": "returnDate"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

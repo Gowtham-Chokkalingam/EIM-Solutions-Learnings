@@ -1,0 +1,17 @@
+{
+  "businessView": "LibraryUpdateBookBV",
+  "fieldMapping": {
+    "collectionName": "LibraryBooksList",
+    "sourceSchema": "{}",
+    "targetSchema": {}
+  },
+  "match": {
+    "bookId": "{{payload.section_1.bookId}}"
+  },
+  "set": {
+    "($)set": {},
+    "($)inc": {
+      "totalBooks": 1
+    }
+  }
+}

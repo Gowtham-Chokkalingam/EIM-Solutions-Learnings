@@ -1,0 +1,29 @@
+{
+  "ruleId": "",
+  "businessView": "LibraryUpdateUserBV",
+  "fieldMapping": {
+    "collectionName": "LibraryUsersList",
+    "sourceSchema": {},
+    "targetSchema": {}
+  },
+  "match": {
+    "userID": "{{payload.section_1.userID}}"
+  },
+  "set": {
+    "($)set": {
+      "borrowingDate": "{{payload.section_1.borrowDate}}",
+      "returningData": "{{payload.section_1.returnDate}}"
+    },
+    "($)push": {
+      "booksList": {
+        "bookId": "{{payload.section_1.bookId}}",
+        "title": "{{payload.section_1.title}}",
+        "author": "{{payload.section_1.authors}}"
+      }
+    },
+    "($)inc": {
+      "booksCount": -1
+    }
+  },
+  "filter": {}
+}

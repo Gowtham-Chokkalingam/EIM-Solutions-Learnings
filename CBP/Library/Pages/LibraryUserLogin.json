@@ -2,7 +2,7 @@
   "tenant": "100",
   "systemID": "JTD410",
   "epic": "SCH-SUPPLIER",
-  "pageName": "LibraryBooksUserLogin",
+  "pageName": "LibraryUserLogin",
   "version": "Grid",
   "showWorkflowActions": false,
   "showPageBanner": false,
@@ -35,7 +35,7 @@
               "title": "Book Update Page",
               "Description": " Books Edit Page ",
               "icon": "Book update page",
-              "dataSourceName": "DummyProjectBV",
+
               "headerComponents": [],
               "sectionBody": {
                 "style": "style1",
@@ -52,6 +52,15 @@
                             "dbcolumnName": "userName",
                             "formcontrol": "userName",
                             "placeholder": "User Name",
+                            "mandatory": true
+                          },
+                          {
+                            "label": "Password",
+                            "type": "text",
+                            "displayStyle": "horizontalValues",
+                            "dbcolumnName": "password",
+                            "formcontrol": "password",
+                            "placeholder": "Password",
                             "mandatory": true
                           }
                         ]
@@ -100,7 +109,7 @@
       "Actions": [
         {
           "id": 1,
-          "actionName": "updateEmployee",
+          "actionName": "updateUser",
           "actionType": "updateBusinessView",
           "actionDetails": {
             "businessView": "DummyUpdateBV",
@@ -114,11 +123,10 @@
         "message": "Login Successfully",
         "routerLink": "/page/LibraryBooksListAdmin",
         "redirect": {
-          "routerLink": "/page/LibraryBooksListAdmin",
+          "routerLink": "/page/LibraryBooksListUsers",
           "text": "{{payload.formData.userName}}",
           "params": {
-            "dataSourceName": "DummyProjectBV",
-            "name": "userName"
+            "userName": "{{payload.section_1.userName}}"
           }
         }
       }

@@ -1,25 +1,19 @@
 {
-  "ruleId": "",
-  "businessView": "LibraryBooksListUsers_BV",
+  "businessView": "LibraryBooksListAdminUpdate_BV",
   "defaultSortSetting": {
-    "sortField": "bookId",
-    "sortDirection": 1
+    "sortField": "createdAt",
+    "sortDirection": -1
   },
   "collection": "LibraryBooksList",
   "aggregation": [
     {
+      "($)match": {
+        "bookId": "{{inputParams.bookId}}"
+      }
+    },
+    {
       "($)facet": {
         "paginatedResults": [
-          {
-            "($)match": {}
-          },
-          {
-            "($)addFields": {
-              "totalBooksCon": {
-                "($)toString": "($)totalBooks"
-              }
-            }
-          },
           {
             "($)project": {
               "bookId": "($)bookId",
@@ -28,13 +22,10 @@
               "description": "($)description",
               "language": "($)language",
               "pages": "($)pages",
-              "totalBooks": "($)totalBooksCon",
+              "totalBooks": "($)totalBooks",
               "authors": "($)authors",
               "createdAt": "($)createdAt"
             }
-          },
-          {
-            "($)match": "{{componentSetting.rowFilter}}"
           },
           {
             "($)sort": {

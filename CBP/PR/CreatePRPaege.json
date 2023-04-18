@@ -1,0 +1,2778 @@
+{
+    "tenant": "100",
+    "systemID": "JTD410",
+    "epic": "SCH-SUPPLIER",
+    "pageName": "IndinfravitCreateRFQ",
+    "version": "Grid",
+    "showWorkflowActions": false,
+    "showPageBanner": true,
+    "sweetAlert": true,
+    "businessComponent": "PR",
+    "businessComponentDesc": "CreateRFQNew",
+    "businessComponentInstance": "",
+    "popups": {
+        "temporaryVendorCreationPopup": {
+            "type": "inline",
+            "inlineJson": {
+                "type": "form",
+                "header": {
+                    "heading": "Temporary user creation"
+                },
+                "body": {
+                    "containerCSS": {
+                        "flex": "1 1 25%"
+                    },
+                    "css": {
+                        "display": "flex",
+                        "flex-wrap": "wrap",
+                        "gap": "0 1rem"
+                    },
+                    "components": [
+                        {
+                            "label": "Name",
+                            "type": "text",
+                            "dbcolumnName": "name",
+                            "formcontrol": "name",
+                            "placeholder": "enter name",
+                            "mandatory": true,
+                            "readOnly": false,
+                            "tableColumnName": "Profile"
+                        },
+                        {
+                            "label": "Phone Number",
+                            "type": "number",
+                            "dbcolumnName": "phoneNumber",
+                            "formcontrol": "phoneNumber",
+                            "placeholder": "enter phoneNumber",
+                            "mandatory": true,
+                            "readOnly": false,
+                            "tableColumnName": "Contact",
+                            "tableColumnGroupName": "contactNumber"
+                        },
+                        {
+                            "label": "Company Name",
+                            "type": "text",
+                            "dbcolumnName": "companyName",
+                            "formcontrol": "companyName",
+                            "placeholder": "enter companyName",
+                            "mandatory": true,
+                            "readOnly": false,
+                            "tableColumnName": "Vendor",
+                            "tableColumnGroupName": "1. Vendor Name"
+                        },
+                        {
+                            "label": "Email",
+                            "type": "text",
+                            "dbcolumnName": "email",
+                            "formcontrol": "email",
+                            "placeholder": "enter email",
+                            "mandatory": true,
+                            "readOnly": false,
+                            "tableColumnName": "Contact",
+                            "tableColumnGroupName": "emailAddress",
+                            "uniqueInDb": true,
+                            "pattern": "[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}",
+                            "uniqueInDbDetails": {
+                                "collection": "vendors",
+                                "dbColumnName": "emailAddress"
+                            }
+                        },
+                        {
+                            "label": "Vendor Description",
+                            "type": "text",
+                            "dbcolumnName": "vendorDescription",
+                            "formcontrol": "vendorDescription",
+                            "placeholder": "enter vendorDescription",
+                            "mandatory": true,
+                            "readOnly": false
+                        },
+                        {
+                            "label": "Status",
+                            "type": "text",
+                            "dbcolumnName": "Status",
+                            "formcontrol": "Status",
+                            "placeholder": "enter Status",
+                            "mandatory": false,
+                            "readOnly": true,
+                            "tableColumnName": "Status",
+                            "value": "Temporary Vendor"
+                        },
+                        {
+                            "label": "userId",
+                            "type": "text",
+                            "dbcolumnName": "userId",
+                            "formcontrol": "userId",
+                            "placeholder": "enter userId",
+                            "mandatory": false,
+                            "readOnly": true,
+                            "tableColumnName": "Vendor",
+                            "tableColumnGroupName": "2. UserID",
+                            "value": "",
+                            "hidden": true
+                        },
+                        {
+                            "label": "Permission",
+                            "type": "text",
+                            "dbcolumnName": "Status",
+                            "formcontrol": "Status",
+                            "placeholder": "enter Status",
+                            "mandatory": false,
+                            "readOnly": true,
+                            "tableColumnName": "Status",
+                            "value": "Allowed",
+                            "hidden": true
+                        }
+                    ]
+                },
+                "footer": {
+                    "button": [
+                        {
+                            "text": "close",
+                            "type": "button",
+                            "action": "close"
+                        },
+                        {
+                            "text": "save",
+                            "type": "submit",
+                            "action": "submit",
+                            "onClick": [
+                                {
+                                    "actions": [
+                                        {
+                                            "action": "apiCall",
+                                            "actionDetails": {
+                                                "url": "/associate_service/vendors/createTemporaryVendor",
+                                                "method": "POST"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "pageActions": [
+        {
+            "text": "Attach Forms",
+            "type": "router",
+            "showLabel": true,
+            "css": {
+                "font-size": "16px",
+                "color": "#52a5fb",
+                "cursor": "pointer"
+            },
+            "onClick": [
+                {
+                    "actions": [
+                        {
+                            "action": "getInputFromPopUpPage",
+                            "actionDetails": {
+                                "dataSourceType": "page",
+                                "dataSourceDetails": {
+                                    "pageName": "attachment-form"
+                                }
+                            }
+                        },
+                        {
+                            "action": "appendPreviousActionOutputAsPageComponent"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "text": "Create",
+            "type": "submit",
+            "showLabel": true,
+            "style": "style2",
+            "disableFormValidation": false,
+            "css": {
+                "font-size": "16px",
+                "color": "#52a5fb",
+                "cursor": "pointer"
+            },
+            "onClick": [
+                {
+                    "actions": [
+                        {
+                            "checkCondition": [
+                                {
+                                    "source": "countOfTableRows",
+                                    "failureMessage": "At least one participant needs to be added",
+                                    "params": [
+                                        {
+                                            "componentId": "invitedVendors"
+                                        }
+                                    ],
+                                    "sourceType": "function",
+                                    "operation": "GT",
+                                    "valueof": {
+                                        "value": 0
+                                    }
+                                },
+                                {
+                                    "failureMessage": "Please attach at least one form",
+                                    "source": "countOfAttachedComponents",
+                                    "sourceType": "function",
+                                    "operation": "GTE",
+                                    "valueof": {
+                                        "value": 1
+                                    }
+                                }
+                            ],
+                            "action": "executePageAction",
+                            "actionPerformed": "submit",
+                            "showLoader": true
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "text": "Save as Draft",
+            "type": "submit",
+            "showLabel": true,
+            "style": "style1",
+            "disableFormValidation": true,
+            "css": {
+                "font-size": "16px",
+                "color": "#52a5fb",
+                "cursor": "pointer"
+            },
+            "onClick": [
+                {
+                    "actions": [
+                        {
+                            "checkCondition": [],
+                            "action": "executePageAction",
+                            "actionPerformed": "draft"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "executePageActions": [
+        {
+            "ID": 1,
+            "Rule": "pageAction",
+            "RuleGroup": "",
+            "enableLogs": true,
+            "WHEN": "'{{payload.pageActionPerformed}}' == 'submit'",
+            "THEN": [
+                "performAction"
+            ],
+            "Actions": [
+                {
+                    "id": 1,
+                    "actionName": "logData",
+                    "actionType": "insertData",
+                    "actionDetails": {
+                        "database_details": {
+                            "database": "{{payload.headers.dbName}}",
+                            "collection": "pageActions"
+                        },
+                        "primaryKey": {
+                            "fieldName": "pageActions",
+                            "prefix": "SCH-PAGE"
+                        },
+                        "payload": "{{payload}}"
+                    }
+                },
+                {
+                    "id": 2,
+                    "actionName": "selectedPRData",
+                    "actionType": "mapFields",
+                    "actionDetails": {
+                        "sourceSchema": "{{payload.selectedRows.SelectedLineItems.selectedRows}}",
+                        "targetSchema": {
+                            "schRfqItemNr": {
+                                "type": "string",
+                                "relatedField": "{{system.arrayIndex}}"
+                            },
+                            "purchaseDocumentNr": {
+                                "type": "string",
+                                "relatedField": "['PR Number']['text']"
+                            },
+                            "purchaseDocumentItem": {
+                                "type": "string",
+                                "relatedField": "Item.text"
+                            },
+                            "materialCode": {
+                                "type": "string",
+                                "relatedField": "Material['fields']['1. Material']"
+                            },
+                            "briefDescription": {
+                                "type": "string",
+                                "relatedField": "Material['fields']['2. Material Desc']"
+                            },
+                            "itemStatus": {
+                                "type": "string",
+                                "relatedField": "Status.text"
+                            },
+                            "quantity": {
+                                "type": "string",
+                                "relatedField": "['RFQ Quantity']['text']"
+                            },
+                            "prQuantity": {
+                                "type": "string",
+                                "relatedField": "['PR Quantity']['fields']['1.Qty']"
+                            },
+                            "prQuantityUnit": {
+                                "type": "string",
+                                "relatedField": "['PR Quantity']['fields']['2.UOM']"
+                            },
+                            "internalRate": {
+                                "type": "string",
+                                "relatedField": "['Internal Rate']['value']"
+                            },
+                            "rfqValue": {
+                                "type": "string",
+                                "relatedField": "['RFQ Value']['text']"
+                            },
+                            "deliveryDate": {
+                                "type": "string",
+                                "relatedField": "['Delivery Date']['text']"
+                            },
+                            "attachment": {
+                                "type": "string",
+                                "relatedField": "Attachments.articleId"
+                            },
+                            "remark": {
+                                "type": "string",
+                                "relatedField": "Remark.value"
+                            },
+                            "itemText": {
+                                "type": "string",
+                                "relatedField": "['Item Text']['text']",
+                                "default": null
+                            },
+                            "mandatory": {
+                                "type": "string",
+                                "relatedField": "Mandatory.value"
+                            }
+                        }
+                    }
+                },
+                {
+                    "id": 3,
+                    "actionName": "rfxHeaderData",
+                    "actionType": "mapFields",
+                    "actionDetails": {
+                        "sourceSchema": {
+                            "section_RFQHeader": "{{payload.section_RFQHeader}}",
+                            "section_RFQHeaderDataEntry": "{{payload.section_RFQHeaderDataEntry}}",
+                            "section_RFQBudget": "{{payload.section_RFQBudget}}",
+                            "section_RFQBiddingDetails": "{{payload.section_RFQBiddingDetails}}"
+                        },
+                        "targetSchema": {
+                            "rfqTitle": {
+                                "type": "string",
+                                "relatedField": "section_RFQHeaderDataEntry.rfqTitle"
+                            },
+                            "rfqDescription": {
+                                "type": "string",
+                                "relatedField": "section_RFQHeaderDataEntry.shortDescription"
+                            },
+                            "natureOfWork": {
+                                "type": "string",
+                                "relatedField": "section_RFQHeaderDataEntry.natureOfWork"
+                            },
+                            "currency": {
+                                "type": "string",
+                                "relatedField": "section_RFQHeaderDataEntry.RFQCurrency"
+                            },
+                            "rfqValue": {
+                                "type": "string",
+                                "relatedField": "section_RFQHeaderDataEntry.RFQtotalAmount"
+                            },
+                            "deviation": {
+                                "type": "string",
+                                "relatedField": "section_RFQHeaderDataEntry.Deviation"
+                            },
+                            "deviationRemarks": {
+                                "type": "string",
+                                "relatedField": "section_RFQHeaderDataEntry.deviationRemarks"
+                            },
+                            "openingDate": {
+                                "type": "string",
+                                "relatedField": "section_RFQBiddingDetails.OpeningDate"
+                            },
+                            "closingDate": {
+                                "type": "string",
+                                "relatedField": "section_RFQBiddingDetails.closingDate"
+                            },
+                            "timeZone": {
+                                "type": "string",
+                                "relatedField": "section_RFQBiddingDetails.timeZone"
+                            },
+                            "estimatedAwardDate": {
+                                "type": "string",
+                                "relatedField": "section_RFQBiddingDetails.EstimatedAwardDate"
+                            },
+                            "attachmentHdr": {
+                                "type": "string",
+                                "relatedField": "section_RFQHeaderDataEntry.imageUploadObj",
+                                "default": null
+                            },
+                            "rfxtitle": {
+                                "type": "string",
+                                "relatedField": "section_RFQHeaderDataEntry.rfqTitle",
+                                "default": null
+                            },
+                            "rfqImage": {
+                                "type": "string",
+                                "relatedField": "section_RFQHeaderDataEntry.imageUploadObj",
+                                "default": null
+                            },
+                            "bidType": {
+                                "type": "string",
+                                "relatedField": "section_RFQBiddingDetails.bidType"
+                            },
+                            "justify": {
+                                "type": "string",
+                                "relatedField": "section_RFQHeaderDataEntry.rfxJustify"
+                            }
+                        }
+                    }
+                },
+                {
+                    "id": 4,
+                    "actionName": "referencePR",
+                    "actionType": "mapFields",
+                    "actionDetails": {
+                        "sourceSchema": "{{payload.selectedRows.SelectedLineItems.selectedRows}}",
+                        "targetSchema": {
+                            "purchaseReqNumber": {
+                                "type": "string",
+                                "relatedField": "['PR Number']['text']"
+                            },
+                            "purchaseReqItem": {
+                                "type": "string",
+                                "relatedField": "Item.text"
+                            },
+                            "requestedQuantity": {
+                                "type": "string",
+                                "relatedField": "['PR Quantity']['fields']['1.Qty']"
+                            },
+                            "prDocType": {
+                                "type": "string",
+                                "relatedField": "['Purchase Req Doc Type']['text']"
+                            },
+                            "procurementOffice": {
+                                "type": "string",
+                                "relatedField": "['Procurement Office']['text']"
+                            },
+                            "procurementTeam": {
+                                "type": "string",
+                                "relatedField": "['Procurement Team']['text']"
+                            }
+                        }
+                    }
+                },
+                {
+                    "id": 5,
+                    "actionName": "supplierList",
+                    "actionType": "mapFields",
+                    "actionDetails": {
+                        "sourceSchema": "{{payload.selectedRows.invitedVendors.selectedRows}}",
+                        "targetSchema": {
+                            "invitationNrForSupplier": {
+                                "type": "string",
+                                "relatedField": "{{system.arrayIndex}}"
+                            },
+                            "sapRfqNumber": {
+                                "type": "string",
+                                "relatedField": "",
+                                "default": null
+                            },
+                            "schAssociateNumber": {
+                                "type": "string",
+                                "relatedField": "['SCH Number']['text']"
+                            },
+                            "vendorNatureOfWork": {
+                                "type": "string",
+                                "relatedField": "['Nature of Work']['text']"
+                            },
+                            "sapAssociateNumber": {
+                                "type": "string",
+                                "relatedField": "Associate.text",
+                                "default": null
+                            },
+                            "associateCategory": {
+                                "type": "string",
+                                "relatedField": "Category.text"
+                            },
+                            "associateType": {
+                                "type": "string",
+                                "relatedField": "Type.text"
+                            },
+                            "empanellmentHq": {
+                                "type": "string",
+                                "relatedField": "['Cumulative Empanelment Value']['text']"
+                            },
+                            "empanellmentSite": {
+                                "type": "string",
+                                "relatedField": "['Single Empanelment Value']['text']"
+                            },
+                            "vendorName": {
+                                "type": "string",
+                                "relatedField": "['Vendor']['fields']['1. Vendor Name']"
+                            },
+                            "userId": {
+                                "type": "string",
+                                "relatedField": "['Vendor']['fields']['2. UserID']"
+                            },
+                            "permission": {
+                                "type": "string",
+                                "relatedField": "Permission.text",
+                                "default": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "id": 6,
+                    "actionName": "extentionData",
+                    "actionType": "mapFields",
+                    "actionDetails": {
+                        "sourceSchema": "{{payload.selectedRows.table_1.selectedRows}}",
+                        "targetSchema": {
+                            "extentionDate": {
+                                "type": "string",
+                                "relatedField": "['Extention Date']['text']",
+                                "default": null
+                            },
+                            "createdAt": {
+                                "type": "string",
+                                "relatedField": "['Created Date']",
+                                "default": null
+                            },
+                            "extentionRemarks": {
+                                "type": "string",
+                                "relatedField": "['Extention Remarks']",
+                                "default": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "id": 7,
+                    "actionName": "rfxInsert",
+                    "actionType": "insertData",
+                    "actionDetails": {
+                        "database_details": {
+                            "database": "{{payload.headers.dbName}}",
+                            "collection": "rfxDocument"
+                        },
+                        "primaryKey": {
+                            "fieldName": "rfxCollectiveNr",
+                            "prefix": "IND"
+                        },
+                        "payload": {
+                            "rfxType": "normal",
+                            "tenant": "{{payload.headers.tenant}}",
+                            "rfqVersion": "v0",
+                            "followOnDocType": null,
+                            "docDeletionFlag": null,
+                            "language": "{{payload.section_RFQHeader.language}}",
+                            "prValue": "{{payload.section_RFQHeader.totalAmount}}",
+                            "userId": "{{payload.section_RFQHeader.userId}}",
+                            "rfxTitle": "{{actionsResponse.rfxHeaderData.rfqTitle}}",
+                            "rfxDescription": "{{actionsResponse.rfxHeaderData.rfqDescription}}",
+                            "rfxImage": "{{payload.section_RFQHeaderDataEntry.imageUploadObj}}",
+                            "rfxCurrency": "{{payload.section_RFQHeaderDataEntry.RFQCurrency}}",
+                            "prCurrency": "{{payload.section_RFQHeaderDataEntry.RFQCurrency}}",
+                            "rfxValue": "{{payload.section_RFQHeaderDataEntry.RFQtotalAmount}}",
+                            "rfxStatus": "New",
+                            "rfxPurchaseOrg": "{{payload.section_RFQHeaderDataEntry.rfxPurchaseOrg}}",
+                            "rfxPurchaseGroup": "{{payload.section_RFQHeaderDataEntry.rfxPurchaseGroup}}",
+                            "rfxPurchaseGroupDescription": "{{payload.section_RFQHeaderDataEntry.rfxPurchaseGroupDescription}}",
+                            "rfxPaymentTerm": "{{payload.section_RFQHeaderDataEntry.rfxPaymentTerm}}",
+                            "lDPerdayPercentage": "{{payload.section_RFQHeaderDataEntry.lDPerdayPercentage}}",
+                            "legalEntity": null,
+                            "quotationCount": 0,
+                            "justificationRemark": "{{payload.section_RFQHeaderDataEntry.rfxJustify}}",
+                            "budgetDeviation": "{{actionsResponse.rfxHeaderData.deviation}}",
+                            "budgetDeviationReason": "{{payload.section_RFQHeaderDataEntry.deviationRemarks}}",
+                            "openingDate": "{{payload.section_RFQBiddingDetails.OpeningDate}}",
+                            "closingDate": "{{payload.section_RFQBiddingDetails.closingDate}}",
+                            "openingTime": "{{payload.section_RFQBiddingDetails.OpeningDate}}",
+                            "closingTime": "{{payload.section_RFQBiddingDetails.closingDate}}",
+                            "targetValue": "{{payload.section_RFQHeaderDataEntry.RFQtotalAmount}}",
+                            "extentions": "{{actionsResponse.extentionData}}",
+                            "timeZone": "{{actionsResponse.rfxHeaderData.timeZone}}",
+                            "natureOfWork": "{{actionsResponse.rfxHeaderData.natureOfWork}}",
+                            "attachmentHdr": "{{payload.section_RFQHeaderDataEntry.attachmentHdr}}",
+                            "estimatedAwardDate": "{{actionsResponse.rfxHeaderData.estimatedAwardDate}}",
+                            "items": "{{actionsResponse.selectedPRData}}",
+                            "templateArray": "{{payload.attachedComponents}}",
+                            "supplierList": "{{actionsResponse.supplierList}}",
+                            "bidType": "{{actionsResponse.rfxHeaderData.bidType}}"
+                        }
+                    }
+                },
+                {
+                    "id": 8,
+                    "actionName": "insertschRfqNr",
+                    "actionType": "updateBusinessView",
+                    "actionDetails": {
+                        "businessView": "insertschRfqNrBV",
+                        "database": "{{payload.headers.dbName}}",
+                        "targetSchema": {},
+                        "sourceSchema": {}
+                    }
+                },
+                {
+                    "id": 9,
+                    "actionName": "RFQCreateUpdate",
+                    "actionType": "updateBusinessView",
+                    "runCount": "{{#forEach payload.selectedRows.SelectedLineItems.selectedRows}}",
+                    "actionDetails": {
+                        "businessView": "RFQCreateUpdate",
+                        "database": "{{payload.headers.dbName}}"
+                    }
+                },
+                {
+                    "id": 10,
+                    "actionName": "collectionData",
+                    "actionType": "getDataFromDB",
+                    "actionDetails": {
+                        "database_details": {
+                            "database": "{{payload.headers.dbName}}",
+                            "collection": "rfxDocument"
+                        },
+                        "filter": {},
+                        "aggregation": [
+                            {
+                                "($)match": {
+                                    "rfxCollectiveNr": "{{actionsResponse.rfxInsert.rfxCollectiveNr}}"
+                                }
+                            },
+                            {
+                                "($)facet": {
+                                    "paginatedResults": [
+                                        {
+                                            "($)project": {
+                                                "total": {
+                                                    "($)sum": "($)items.rfqValue"
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "totalCount": [
+                                        {
+                                            "($)count": "count"
+                                        }
+                                    ]
+                                }
+                            }
+                        ],
+                        "projection": {},
+                        "sort": {
+                            "purchaseReqNumber": 1
+                        },
+                        "pagination": {
+                            "limit": 0,
+                            "pageNumber": 0
+                        }
+                    }
+                },
+                {
+                    "id": 11,
+                    "actionName": "publishEvent",
+                    "actionType": "workflowPublishEvent",
+                    "async": false,
+                    "actionDetails": {
+                        "Body": {
+                            "Action": "Create",
+                            "Tenant": "{{payload.headers.tenant}}",
+                            "Message": null,
+                            "Remarks": "",
+                            "Event_Id": "RFQ_Create",
+                            "Initiator": "{{payload.headers.userId}}",
+                            "User_Agent": null,
+                            "Workflow_Id": null,
+                            "Context_Data": {
+                                "rfxCollectionNr": "{{actionsResponse.rfxInsert.rfxCollectiveNr}}",
+                                "buyerId": "{{payload.headers.userId}}",
+                                "tenant": "{{payload.headers.tenant}}",
+                                "WF_BASE_URL": "{{payload.baseUrl}}",
+                                "rfxStatus": "{{actionsResponse.rfxInsert.rfxStatus}}",
+                                "rfxTitle": "{{actionsResponse.rfxInsert.rfxTitle}}",
+                                "rfxDescription": "{{actionsResponse.rfxInsert.rfxDescription}}",
+                                "bidType": "{{actionsResponse.rfxInsert.bidType}}",
+                                "openingDate": "{{actionsResponse.rfxInsert.openingDate}}",
+                                "closingDate": "{{actionsResponse.rfxInsert.closingDate}}",
+                                "targetValue": "{{actionsResponse.rfxInsert.targetValue}}",
+                                "prDocType": "{{toString actionsResponse.referencePR[0].prDocType}}",
+                                "amount": "{{actionsResponse.collectionData[0].paginatedResults[0].total}}",
+                                "procurementOffice": "{{toString actionsResponse.referencePR[0].procurementOffice}}",
+                                "purOrgDesc": "{{actionsResponse.rfxInsert.rfxPurchaseGroupDescription}}",
+                                "procurementTeam": "{{toString actionsResponse.referencePR[0].procurementTeam}}"
+                            },
+                            "Trigger_Date": "{{timeStamp YYYY-MM-DD}}",
+                            "Work_Item_Id": null,
+                            "Business_Comp_Id": "RFQ",
+                            "Business_Comp_Instance_Id": "{{actionsResponse.rfxInsert.rfxCollectiveNr}}"
+                        }
+                    }
+                },
+                {
+                    "id": 12,
+                    "actionName": "PRData",
+                    "actionType": "getDataFromDB",
+                    "runCount": "{{#forEach actionsResponse.selectedPRData}}",
+                    "actionDetails": {
+                        "database_details": {
+                            "database": "sch_core_abg",
+                            "collection": "PurchaseRequisition"
+                        },
+                        "filter": {},
+                        "aggregation": [
+                            {
+                                "($)match": {
+                                    "purchaseReqNumber": "{{currentLoopObj.purchaseDocumentNr}}"
+                                }
+                            },
+                            {
+                                "($)facet": {
+                                    "paginatedResults": [
+                                        {
+                                            "($)addFields": {
+                                                "Itemsize": {
+                                                    "($)size": "($)item"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "($)addFields": {
+                                                "rfqCount": {
+                                                    "($)size": {
+                                                        "($)filter": {
+                                                            "input": "($)item",
+                                                            "as": "rfqC",
+                                                            "cond": {
+                                                                "($)eq": [
+                                                                    "($)($)rfqC.statusItem",
+                                                                    "RFQ Created"
+                                                                ]
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "($)addFields": {
+                                                "HdrStatus": {
+                                                    "($)switch": {
+                                                        "branches": [
+                                                            {
+                                                                "case": {
+                                                                    "($)eq": [
+                                                                        "($)rfqCount",
+                                                                        "($)Itemsize"
+                                                                    ]
+                                                                },
+                                                                "then": "RFQ Created"
+                                                            },
+                                                            {
+                                                                "case": {
+                                                                    "($)ne": [
+                                                                        "($)rfqCount",
+                                                                        "($)Itemsize"
+                                                                    ]
+                                                                },
+                                                                "then": "RFQ Partially created"
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "($)project": {
+                                                "HdrStatus": "($)HdrStatus",
+                                                "purchaseReqNumber": "($)purchaseReqNumber"
+                                            }
+                                        }
+                                    ],
+                                    "totalCount": [
+                                        {
+                                            "($)count": "count"
+                                        }
+                                    ]
+                                }
+                            }
+                        ],
+                        "projection": {},
+                        "sort": {
+                            "purchaseReqNumber": 1
+                        },
+                        "pagination": {
+                            "limit": 0,
+                            "pageNumber": 0
+                        }
+                    }
+                },
+                {
+                    "id": 14,
+                    "actionName": "UpdateHdrStatus",
+                    "actionType": "updateBusinessView",
+                    "runCount": "{{#forEach actionsResponse.PRData.dataArray}}",
+                    "actionDetails": {
+                        "businessView": "updateHdrStatus",
+                        "database": "{{payload.headers.dbName}}"
+                    }
+                },
+                {
+                    "id": 15,
+                    "actionName": "rfqActivityUpdateComplete",
+                    "actionType": "completed",
+                    "actionDetails": {}
+                }
+            ],
+            "Output": {
+                "message": "RFQ Created Successfully - {{actionsResponse.rfxInsert.rfxCollectiveNr}}",
+                "routerLink": "/page/IndinfravitRFQlist",
+                "redirect": {
+                    "routerLink": "/page/IndinfravitRFQlist",
+                    "params": {}
+                }
+            }
+        },
+        {
+            "ID": 1,
+            "Rule": "pageAction",
+            "RuleGroup": "",
+            "WHEN": "'{{payload.pageActionPerformed}}' == 'draft'",
+            "THEN": [
+                "performAction"
+            ],
+            "Actions": [
+                {
+                    "id": 1,
+                    "actionName": "logData",
+                    "actionType": "insertData",
+                    "actionDetails": {
+                        "database_details": {
+                            "database": "{{payload.headers.dbName}}",
+                            "collection": "pageActions"
+                        },
+                        "primaryKey": {
+                            "fieldName": "pageActions",
+                            "prefix": "SCH-PAGE"
+                        },
+                        "payload": "{{payload}}"
+                    }
+                },
+                {
+                    "id": 2,
+                    "actionName": "selectedPRData",
+                    "actionType": "mapFields",
+                    "actionDetails": {
+                        "sourceSchema": "{{payload.selectedRows.SelectedLineItems.selectedRows}}",
+                        "targetSchema": {
+                            "schRfqItemNr": {
+                                "type": "string",
+                                "relatedField": "{{system.arrayIndex}}"
+                            },
+                            "purchaseDocumentNr": {
+                                "type": "string",
+                                "relatedField": "['PR Number']['text']",
+                                "default": null
+                            },
+                            "purchaseDocumentItem": {
+                                "type": "string",
+                                "relatedField": "Item.text",
+                                "default": null
+                            },
+                            "materialCode": {
+                                "type": "string",
+                                "relatedField": "Material['fields']['1. Material']",
+                                "default": null
+                            },
+                            "briefDescription": {
+                                "type": "string",
+                                "relatedField": "Material['fields']['2. Material Desc']",
+                                "default": null
+                            },
+                            "itemStatus": {
+                                "type": "string",
+                                "relatedField": "Status.text",
+                                "default": null
+                            },
+                            "quantity": {
+                                "type": "string",
+                                "relatedField": "['RFQ Quantity']['text']",
+                                "default": null
+                            },
+                            "prQuantity": {
+                                "type": "string",
+                                "relatedField": "['PR Quantity']['fields']['1.Qty']",
+                                "default": null
+                            },
+                            "prQuantityUnit": {
+                                "type": "string",
+                                "relatedField": "['PR Quantity']['fields']['2.UOM']",
+                                "default": null
+                            },
+                            "internalRate": {
+                                "type": "string",
+                                "relatedField": "['Internal Rate']['value']",
+                                "default": null
+                            },
+                            "rfqValue": {
+                                "type": "string",
+                                "relatedField": "['RFQ Value']['text']",
+                                "default": null
+                            },
+                            "deliveryDate": {
+                                "type": "string",
+                                "relatedField": "['Delivery Date']['text']",
+                                "default": null
+                            },
+                            "attachment": {
+                                "type": "string",
+                                "relatedField": "Attachments.articleId",
+                                "default": null
+                            },
+                            "remark": {
+                                "type": "string",
+                                "relatedField": "Remark.value",
+                                "default": null
+                            },
+                            "itemText": {
+                                "type": "string",
+                                "relatedField": "['Item Text']['text']",
+                                "default": null
+                            },
+                            "mandatory": {
+                                "type": "string",
+                                "relatedField": "Mandatory.value",
+                                "default": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "id": 3,
+                    "actionName": "rfxHeaderData",
+                    "actionType": "mapFields",
+                    "actionDetails": {
+                        "sourceSchema": {
+                            "section_RFQHeader": "{{payload.section_RFQHeader}}",
+                            "section_RFQHeaderDataEntry": "{{payload.section_RFQHeaderDataEntry}}",
+                            "section_RFQBudget": "{{payload.section_RFQBudget}}",
+                            "section_RFQBiddingDetails": "{{payload.section_RFQBiddingDetails}}"
+                        },
+                        "targetSchema": {
+                            "rfqTitle": {
+                                "type": "string",
+                                "relatedField": "section_RFQHeaderDataEntry.rfqTitle",
+                                "default": null
+                            },
+                            "rfqDescription": {
+                                "type": "string",
+                                "relatedField": "section_RFQHeaderDataEntry.shortDescription",
+                                "default": null
+                            },
+                            "natureOfWork": {
+                                "type": "string",
+                                "relatedField": "section_RFQHeaderDataEntry.natureOfWork",
+                                "default": null
+                            },
+                            "currency": {
+                                "type": "string",
+                                "relatedField": "section_RFQHeaderDataEntry.RFQCurrency",
+                                "default": null
+                            },
+                            "rfqValue": {
+                                "type": "string",
+                                "relatedField": "section_RFQHeaderDataEntry.RFQtotalAmount",
+                                "default": null
+                            },
+                            "deviation": {
+                                "type": "string",
+                                "relatedField": "section_RFQHeaderDataEntry.Deviation",
+                                "default": null
+                            },
+                            "deviationRemarks": {
+                                "type": "string",
+                                "relatedField": "section_RFQHeaderDataEntry.deviationRemarks",
+                                "default": null
+                            },
+                            "openingDate": {
+                                "type": "string",
+                                "relatedField": "section_RFQBiddingDetails.OpeningDate",
+                                "default": null
+                            },
+                            "closingDate": {
+                                "type": "string",
+                                "relatedField": "section_RFQBiddingDetails.closingDate",
+                                "default": null
+                            },
+                            "timeZone": {
+                                "type": "string",
+                                "relatedField": "section_RFQBiddingDetails.timeZone",
+                                "default": null
+                            },
+                            "estimatedAwardDate": {
+                                "type": "string",
+                                "relatedField": "section_RFQBiddingDetails.EstimatedAwardDate",
+                                "default": null
+                            },
+                            "attachmentHdr": {
+                                "type": "string",
+                                "relatedField": "section_RFQHeaderDataEntry.imageUploadObj",
+                                "default": null
+                            },
+                            "rfxtitle": {
+                                "type": "string",
+                                "relatedField": "section_RFQHeaderDataEntry.rfqTitle",
+                                "default": null
+                            },
+                            "rfqImage": {
+                                "type": "string",
+                                "relatedField": "section_RFQHeaderDataEntry.imageUploadObj",
+                                "default": null
+                            },
+                            "bidType": {
+                                "type": "string",
+                                "relatedField": "section_RFQBiddingDetails.bidType",
+                                "default": null
+                            },
+                            "justify": {
+                                "type": "string",
+                                "relatedField": "section_RFQHeaderDataEntry.rfxJustify",
+                                "default": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "id": 4,
+                    "actionName": "referencePR",
+                    "actionType": "mapFields",
+                    "actionDetails": {
+                        "sourceSchema": "{{payload.selectedRows.SelectedLineItems.selectedRows}}",
+                        "targetSchema": {
+                            "purchaseReqNumber": {
+                                "type": "string",
+                                "relatedField": "['PR Number']['text']",
+                                "default": null
+                            },
+                            "purchaseReqItem": {
+                                "type": "string",
+                                "relatedField": "Item.text",
+                                "default": null
+                            },
+                            "requestedQuantity": {
+                                "type": "string",
+                                "relatedField": "['PR Quantity']['fields']['1.Qty']",
+                                "default": null
+                            },
+                            "prDocType": {
+                                "type": "string",
+                                "relatedField": "['Purchase Req Doc Type']['text']",
+                                "default": null
+                            },
+                            "procurementOffice": {
+                                "type": "string",
+                                "relatedField": "['Procurement Office']['text']",
+                                "default": null
+                            },
+                            "procurementTeam": {
+                                "type": "string",
+                                "relatedField": "['Procurement Team']['text']",
+                                "default": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "id": 5,
+                    "actionName": "supplierList",
+                    "actionType": "mapFields",
+                    "actionDetails": {
+                        "sourceSchema": "{{payload.selectedRows.invitedVendors.selectedRows}}",
+                        "targetSchema": {
+                            "invitationNrForSupplier": {
+                                "type": "string",
+                                "relatedField": "{{system.arrayIndex}}"
+                            },
+                            "sapRfqNumber": {
+                                "type": "string",
+                                "relatedField": "",
+                                "default": null
+                            },
+                            "schAssociateNumber": {
+                                "type": "string",
+                                "relatedField": "['SCH Number']['text']",
+                                "default": null
+                            },
+                            "vendorNatureOfWork": {
+                                "type": "string",
+                                "relatedField": "['Nature of Work']['text']",
+                                "default": null
+                            },
+                            "sapAssociateNumber": {
+                                "type": "string",
+                                "relatedField": "Associate.text",
+                                "default": null
+                            },
+                            "associateCategory": {
+                                "type": "string",
+                                "relatedField": "Category.text",
+                                "default": null
+                            },
+                            "associateType": {
+                                "type": "string",
+                                "relatedField": "Type.text",
+                                "default": null
+                            },
+                            "empanellmentHq": {
+                                "type": "string",
+                                "relatedField": "['Cumulative Empanelment Value']['text']",
+                                "default": null
+                            },
+                            "empanellmentSite": {
+                                "type": "string",
+                                "relatedField": "['Single Empanelment Value']['text']",
+                                "default": null
+                            },
+                            "vendorName": {
+                                "type": "string",
+                                "relatedField": "['Vendor']['fields']['1. Vendor Name']",
+                                "default": null
+                            },
+                            "userId": {
+                                "type": "string",
+                                "relatedField": "['Vendor']['fields']['2. UserID']",
+                                "default": null
+                            },
+                            "permission": {
+                                "type": "string",
+                                "relatedField": "Permission.text",
+                                "default": null
+                            }
+                        }
+                    }
+                },
+                {
+                    "id": 7,
+                    "actionName": "rfxInsert",
+                    "actionType": "insertData",
+                    "actionDetails": {
+                        "database_details": {
+                            "database": "{{payload.headers.dbName}}",
+                            "collection": "rfxDocument"
+                        },
+                        "primaryKey": {
+                            "fieldName": "rfxCollectiveNr",
+                            "prefix": "IND"
+                        },
+                        "payload": {
+                            "rfxType": "normal",
+                            "tenant": "{{payload.headers.tenant}}",
+                            "rfqVersion": "v0",
+                            "followOnDocType": null,
+                            "docDeletionFlag": null,
+                            "language": "{{payload.section_RFQHeader.language}}",
+                            "prValue": "{{payload.section_RFQHeader.totalAmount}}",
+                            "userId": "{{payload.section_RFQHeader.userId}}",
+                            "rfxTitle": "{{actionsResponse.rfxHeaderData.rfqTitle}}",
+                            "rfxDescription": "{{actionsResponse.rfxHeaderData.rfqDescription}}",
+                            "rfxImage": "{{payload.section_RFQHeaderDataEntry.imageUploadObj}}",
+                            "rfxCurrency": "{{payload.section_RFQHeaderDataEntry.RFQCurrency}}",
+                            "prCurrency": "{{payload.section_RFQHeaderDataEntry.RFQCurrency}}",
+                            "rfxValue": "{{payload.section_RFQHeaderDataEntry.RFQtotalAmount}}",
+                            "rfxStatus": "Draft RFQ",
+                            "rfxPurchaseOrg": "{{payload.section_RFQHeaderDataEntry.rfxPurchaseOrg}}",
+                            "rfxPurchaseGroup": "{{payload.section_RFQHeaderDataEntry.rfxPurchaseGroup}}",
+                            "rfxPurchaseGroupDescription": "{{payload.section_RFQHeaderDataEntry.rfxPurchaseGroupDescription}}",
+                            "rfxPaymentTerm": "{{payload.section_RFQHeaderDataEntry.rfxPaymentTerm}}",
+                            "lDPerdayPercentage": "{{payload.section_RFQHeaderDataEntry.lDPerdayPercentage}}",
+                            "legalEntity": null,
+                            "quotationCount": 0,
+                            "justificationRemark": "{{payload.section_RFQHeaderDataEntry.rfxJustify}}",
+                            "budgetDeviation": "{{actionsResponse.rfxHeaderData.deviation}}",
+                            "budgetDeviationReason": "{{payload.section_RFQHeaderDataEntry.deviationRemarks}}",
+                            "openingDate": "{{payload.section_RFQBiddingDetails.OpeningDate}}",
+                            "closingDate": "{{payload.section_RFQBiddingDetails.closingDate}}",
+                            "openingTime": "{{payload.section_RFQBiddingDetails.OpeningDate}}",
+                            "closingTime": "{{payload.section_RFQBiddingDetails.closingDate}}",
+                            "targetValue": "{{payload.section_RFQHeaderDataEntry.RFQtotalAmount}}",
+                            "extentions": "{{actionsResponse.extentionData}}",
+                            "timeZone": "{{actionsResponse.rfxHeaderData.timeZone}}",
+                            "natureOfWork": "{{actionsResponse.rfxHeaderData.natureOfWork}}",
+                            "attachmentHdr": "{{payload.section_RFQHeaderDataEntry.attachmentHdr}}",
+                            "estimatedAwardDate": "{{actionsResponse.rfxHeaderData.estimatedAwardDate}}",
+                            "items": "{{actionsResponse.selectedPRData}}",
+                            "templateArray": "{{payload.attachedComponents}}",
+                            "supplierList": "{{actionsResponse.supplierList}}",
+                            "bidType": "{{actionsResponse.rfxHeaderData.bidType}}"
+                        }
+                    }
+                },
+                {
+                    "id": 8,
+                    "actionName": "insertschRfqNr",
+                    "actionType": "updateBusinessView",
+                    "actionDetails": {
+                        "businessView": "insertschRfqNrBV",
+                        "database": "{{payload.headers.dbName}}",
+                        "targetSchema": {},
+                        "sourceSchema": {}
+                    }
+                }
+            ],
+            "Output": {
+                "message": "RFQ Details Drafted Successfully - {{actionsResponse.rfxInsert.rfxCollectiveNr}}",
+                "routerLink": "/page/IndinfravitRFQlist",
+                "redirect": {
+                    "routerLink": "/page/IndinfravitRFQlist",
+                    "params": {}
+                }
+            }
+        }
+    ],
+    "pageBanner": {
+        "Business_Comp_Name": "Create RFQ",
+        "Title": "Create RFQ Details Page",
+        "Screen_Name": "Create RFQ",
+        "Description": "Create RFQ details"
+    },
+    "dataSource": [
+        {
+            "dataSourceType": "rule",
+            "dataSourceName": "selectedLineItem",
+            "dataSourceDetails": {
+                "ruleSetName": "selectedRowsData",
+                "data": {
+                    "selectedRows": "{{inputParams['selectedRows']}}",
+                    "componentSetting": "{{componentSetting}}",
+                    "userId": "{{headers.userid}}",
+                    "headers": {
+                        "dbName": "{{headers.dbName}}"
+                    }
+                },
+                "defaultSortSetting": {
+                    "sortField": "purchaseReqItem",
+                    "sortDirection": 1
+                }
+            },
+            "dataSourceResData": "Value.data.dataArray"
+        },
+        {
+            "dataSourceType": "businessView",
+            "dataSourceName": "SelectedPR",
+            "dataSourceDetails": {
+                "businessView": "SelectedPRBV"
+            }
+        }
+    ],
+    "rows": [
+        {
+            "columns": [
+                {
+                    "components": [
+                        {
+                            "componentId": "RFQHeader",
+                            "type": "section",
+                            "title": "RFQ Header",
+                            "description": "RFQ Header description",
+                            "icon": "RFQ",
+                            "dataSourceName": "SelectedPR",
+                            "headerComponents": [],
+                            "sectionBody": {
+                                "style": "style1",
+                                "verticalSpacing": "fixed",
+                                "horizontalSpacing": "fixed",
+                                "horizontalSpacingSize": "M",
+                                "rows": [
+                                    {
+                                        "columns": [
+                                            {
+                                                "width": "17%",
+                                                "components": [
+                                                    {
+                                                        "type": "image",
+                                                        "dbColumnName": "RFQNumber",
+                                                        "label": "Profile",
+                                                        "dataSourceName": "SelectedPR",
+                                                        "url": "https://res.cloudinary.com/eim-solutions/image/upload/v1656975015/SCH/sch_05_Create_RFQ_B_nt3yz3.png",
+                                                        "css": {
+                                                            "grid-row": "1/-3",
+                                                            "grid-column": "1/1"
+                                                        },
+                                                        "value": "Air Conditioner"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "components": [
+                                                    {
+                                                        "type": "text",
+                                                        "dbColumnName": "vendorNumber",
+                                                        "label": "RFQ ID",
+                                                        "dataSourceName": "SelectedPR",
+                                                        "displayStyle": "horizontalKeyValue"
+                                                    },
+                                                    {
+                                                        "type": "date",
+                                                        "dbColumnName": "createdAt",
+                                                        "label": "Created Date",
+                                                        "dataSourceName": "SelectedPR",
+                                                        "displayStyle": "horizontalKeyValue",
+                                                        "icon": "https://image"
+                                                    },
+                                                    {
+                                                        "type": "text",
+                                                        "dbColumnName": "",
+                                                        "label": "Status",
+                                                        "dataSourceName": "SelectedPR",
+                                                        "displayStyle": "horizontalKeyValue",
+                                                        "icon": "https://image"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "css": {
+                                                    "flex": "0 0 25%"
+                                                },
+                                                "components": [
+                                                    {
+                                                        "type": "text",
+                                                        "dbColumnName": "language",
+                                                        "label": "Language",
+                                                        "dataSourceName": "SelectedPR",
+                                                        "displayStyle": "horizontalKeyValue",
+                                                        "icon": "https://image",
+                                                        "componentId": "language"
+                                                    },
+                                                    {
+                                                        "type": "text",
+                                                        "style": "style1",
+                                                        "displayStyle": "horizontalKeyValue",
+                                                        "label": "Currency",
+                                                        "dbColumnName": "currency1",
+                                                        "dataSourceName": "SelectedPR",
+                                                        "mandatory": false
+                                                    },
+                                                    {
+                                                        "type": "text",
+                                                        "dbColumnName": "rfqVersion",
+                                                        "label": "RFQ Version",
+                                                        "dataSourceName": "SelectedPR",
+                                                        "displayStyle": "horizontalKeyValue",
+                                                        "icon": "https://image"
+                                                    },
+                                                    {
+                                                        "type": "text",
+                                                        "dbColumnName": "prItems",
+                                                        "label": "PR Items",
+                                                        "componentId": "prItems",
+                                                        "dataSourceName": "SelectedPR",
+                                                        "displayStyle": "horizontalKeyValue",
+                                                        "icon": "https://image"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "components": [
+                                                    {
+                                                        "type": "text",
+                                                        "dataSourceName": "SelectedPR",
+                                                        "dbColumnName": "userId",
+                                                        "label": "Creator /  Initiator",
+                                                        "displayStyle": "horizontalKeyValue",
+                                                        "icon": "https://image",
+                                                        "componentId": "userId"
+                                                    },
+                                                    {
+                                                        "type": "text",
+                                                        "dataSourceName": "SelectedPR",
+                                                        "dbColumnName": "email",
+                                                        "label": "Contact",
+                                                        "description": "EmailId",
+                                                        "style": "style1",
+                                                        "displayStyle": "horizontalKeyValue"
+                                                    },
+                                                    {
+                                                        "type": "number",
+                                                        "dataSourceName": "SelectedPR",
+                                                        "dbColumnName": "purchasingDocumentNr",
+                                                        "label": "PR Amount",
+                                                        "displayStyle": "horizontalKeyValue",
+                                                        "icon": "https://image",
+                                                        "componentId": "totalAmount"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "columns": [
+                {
+                    "components": [
+                        {
+                            "componentId": "RFQHeaderDataEntry",
+                            "type": "section",
+                            "title": "RFQ Header Data Entry",
+                            "description": "RFQ Header Data",
+                            "dataSourceName": "SelectedPR",
+                            "icon": "R H",
+                            "businessView": "",
+                            "headerComponents": [],
+                            "sectionBody": {
+                                "verticalSpacing": "fixed",
+                                "horizontalSpacing": "fixed",
+                                "horizontalSpacingSize": "L",
+                                "componentWidthSize": "L",
+                                "rows": [
+                                    {
+                                        "columns": [
+                                            {
+                                                "components": [
+                                                    {
+                                                        "label": "Nature of Work",
+                                                        "type": "select",
+                                                        "placeholder": "Nature of Work",
+                                                        "dbColumnName": "NatureofWork",
+                                                        "dataSourceName": "SelectedPR",
+                                                        "mandatory": true,
+                                                        "option": true,
+                                                        "onChangeGetData": true,
+                                                        "filter": true,
+                                                        "closeOnSelect": true,
+                                                        "sendAllFieldsInSelectedValueAsObject": false,
+                                                        "dataSource": {
+                                                            "method": "GET",
+                                                            "params": {},
+                                                            "url": "https://supplier-demo.supplychainh.com/lowcode-service/sch_core_abg/code?filter={%22codeType%22:%22materialGroup%22}",
+                                                            "optionArrayKey": "data",
+                                                            "dropDownKey": "description",
+                                                            "dropDownValue": "code"
+                                                        },
+                                                        "color": "#f00",
+                                                        "formcontrol": "natureOfWork"
+                                                    },
+                                                    {
+                                                        "label": "Purchase Org",
+                                                        "type": "select",
+                                                        "placeholder": "Project",
+                                                        "dbColumnName": "",
+                                                        "dataSourceName": "SelectedPR",
+                                                        "mandatory": true,
+                                                        "option": true,
+                                                        "onChangeGetData": true,
+                                                        "filter": true,
+                                                        "closeOnSelect": true,
+                                                        "sendAllFieldsInSelectedValueAsObject": false,
+                                                        "dataSource": {
+                                                            "method": "GET",
+                                                            "params": {},
+                                                            "url": "https://supplier-demo.supplychainh.com/lowcode-service/sch_core_abg/code?filter={%22codeType%22:%22purchaseOrganisation%22}",
+                                                            "optionArrayKey": "data",
+                                                            "dropDownKey": "description",
+                                                            "dropDownValue": "code"
+                                                        },
+                                                        "color": "#f00",
+                                                        "formcontrol": "rfxPurchaseOrg"
+                                                    },
+                                                    {
+                                                        "type": "text",
+                                                        "description": "Purchase group",
+                                                        "dataSourceName": "SelectedPR",
+                                                        "label": "Purchase group",
+                                                        "style": "style1",
+                                                        "dbColumnName": "rfxPurchaseGroupDescription",
+                                                        "displayStyle": "horizontalKeyValue",
+                                                        "componentId": "rfxPurchaseGroupDescription"
+                                                    },
+                                                    {
+                                                        "type": "text",
+                                                        "description": "Purchase Group1",
+                                                        "dataSourceName": "SelectedPR",
+                                                        "label": "Purchase Group1",
+                                                        "style": "style1",
+                                                        "hidden": true,
+                                                        "dbColumnName": "rfxPurchaseGroup",
+                                                        "displayStyle": "horizontalKeyValue",
+                                                        "componentId": "rfxPurchaseGroup"
+                                                    },
+                                                    {
+                                                        "label": "Liquidate Damages subject to a maximum of 10% of the total Contract Price. delay in achievement of interim milestone/Final completion LD levied of the total Contract price per day percentage is",
+                                                        "type": "select",
+                                                        "placeholder": "LD Clause",
+                                                        "dbColumnName": "",
+                                                        "dataSourceName": "SelectedPR",
+                                                        "mandatory": true,
+                                                        "option": true,
+                                                        "filter": true,
+                                                        "onChangeGetData": true,
+                                                        "closeOnSelect": true,
+                                                        "sendAllFieldsInSelectedValueAsObject": false,
+                                                        "options": [
+                                                            {
+                                                                "description": "0.07",
+                                                                "value": "0.07"
+                                                            },
+                                                            {
+                                                                "description": "0.14",
+                                                                "value": "0.14"
+                                                            },
+                                                            {
+                                                                "description": "0.25",
+                                                                "value": "0.25"
+                                                            },
+                                                            {
+                                                                "description": "0.3",
+                                                                "value": "0.3"
+                                                            },
+                                                            {
+                                                                "description": "0.35",
+                                                                "value": "0.35"
+                                                            },
+                                                            {
+                                                                "description": "0.4",
+                                                                "value": "0.4"
+                                                            }
+                                                        ],
+                                                        "formcontrol": "lDPerdayPercentage"
+                                                    },
+                                                    {
+                                                        "type": "number",
+                                                        "dbColumnName": "RFQtotalAmount",
+                                                        "label": "Target Value",
+                                                        "dataSourceName": "SelectedPR",
+                                                        "dependent": {},
+                                                        "hidden": true,
+                                                        "style": "style1",
+                                                        "displayStyle": "horizontalKeyValue",
+                                                        "icon": "https://image",
+                                                        "formControl": "RFQtotalAmount",
+                                                        "componentId": "RFQtotalAmount"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "components": [
+                                                    {
+                                                        "type": "text",
+                                                        "description": "description",
+                                                        "dataSourceName": "SelectedPR",
+                                                        "label": "RFQ Title",
+                                                        "style": "style1",
+                                                        "dbColumnName": "RFQTitle",
+                                                        "formcontrol": "rfqTitle",
+                                                        "mandatory": true
+                                                    },
+                                                    {
+                                                        "label": "paymentTerm",
+                                                        "type": "select",
+                                                        "dbColumnName": "",
+                                                        "dataSourceName": "SelectedPR",
+                                                        "mandatory": true,
+                                                        "option": true,
+                                                        "onChangeGetData": true,
+                                                        "filter": true,
+                                                        "closeOnSelect": true,
+                                                        "sendAllFieldsInSelectedValueAsObject": false,
+                                                        "dataSource": {
+                                                            "method": "POST",
+                                                            "body": {
+                                                                "businessView": "payMentTermBV1"
+                                                            },
+                                                            "url": "https://supplier-demo.supplychainh.com/lowcode-service/executeBVData",
+                                                            "optionArrayKey": "data",
+                                                            "dropDownKey": "key",
+                                                            "dropDownValue": "value"
+                                                        },
+                                                        "color": "#f00",
+                                                        "formcontrol": "rfxPaymentTerm"
+                                                    },
+                                                    {
+                                                        "label": "Currency",
+                                                        "type": "select",
+                                                        "placeholder": "currency",
+                                                        "dbColumnName": "currency",
+                                                        "dataSourceName": "SelectedPR",
+                                                        "mandatory": true,
+                                                        "option": true,
+                                                        "onChangeGetData": true,
+                                                        "filter": true,
+                                                        "readOnly": true,
+                                                        "hidden": true,
+                                                        "clearable": false,
+                                                        "closeOnSelect": true,
+                                                        "sendAllFieldsInSelectedValueAsObject": false,
+                                                        "dataSource": {
+                                                            "method": "POST",
+                                                            "params": {},
+                                                            "url": "https://dev-vendorconnect.indinfravit.com:8082/associate_service/vendors/currencyV1?objectID=null&module=createQuotation&activity=View createRFQuotation&screen=createRFQuotation&epic=SCH-SUPPLIER",
+                                                            "optionArrayKey": "data",
+                                                            "dropDownKey": "description",
+                                                            "dropDownValue": "code",
+                                                            "defaultValue": "INR",
+                                                            "disabled": true
+                                                        },
+                                                        "color": "#f00",
+                                                        "formcontrol": "RFQCurrency",
+                                                        "value": null
+                                                    },
+                                                    {
+                                                        "type": "text",
+                                                        "style": "style1",
+                                                        "displayStyle": "horizontalKeyValue",
+                                                        "label": "Currency",
+                                                        "dbColumnName": "currency1",
+                                                        "dataSourceName": "SelectedPR",
+                                                        "mandatory": false,
+                                                        "hidden": true
+                                                    },
+                                                    {
+                                                        "type": "text",
+                                                        "description": "Justify",
+                                                        "style": "style1",
+                                                        "hidden": true,
+                                                        "label": "Justification for Budget",
+                                                        "dbColumnName": "rfqJustify",
+                                                        "formcontrol": "rfxJustify",
+                                                        "dataSourceName": "SelectedPR",
+                                                        "mandatory": false
+                                                    },
+                                                    {
+                                                        "label": "Deviation Other Than Budget",
+                                                        "type": "select",
+                                                        "placeholder": "Deviation Other Than Budget",
+                                                        "style": "style1",
+                                                        "mandatory": false,
+                                                        "dataSourceName": "SelectedPR",
+                                                        "option": true,
+                                                        "onChangeGetData": true,
+                                                        "filter": true,
+                                                        "dbColumnName": "Deviation",
+                                                        "closeOnSelect": true,
+                                                        "sendAllFieldsInSelectedValueAsObject": false,
+                                                        "options": [
+                                                            {
+                                                                "description": "Yes",
+                                                                "value": "Yes"
+                                                            },
+                                                            {
+                                                                "description": "No",
+                                                                "value": "No"
+                                                            }
+                                                        ],
+                                                        "formcontrol": "Deviation",
+                                                        "onChange": [
+                                                            {
+                                                                "checkCondition": {
+                                                                    "value": "Yes"
+                                                                },
+                                                                "action": "changeComponentProperty",
+                                                                "actionDetails": {
+                                                                    "targetComponent": [
+                                                                        "deviationRemarks"
+                                                                    ],
+                                                                    "setProperty": {
+                                                                        "hidden": false
+                                                                    }
+                                                                }
+                                                            },
+                                                            {
+                                                                "checkCondition": {
+                                                                    "value": "No"
+                                                                },
+                                                                "action": "changeComponentProperty",
+                                                                "actionDetails": {
+                                                                    "targetComponent": [
+                                                                        "deviationRemarks"
+                                                                    ],
+                                                                    "setProperty": {
+                                                                        "hidden": true
+                                                                    }
+                                                                }
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "hidden": true,
+                                                        "type": "text",
+                                                        "description": "Deviation Remarks",
+                                                        "label": "Deviation Remarks",
+                                                        "dataSourceName": "SelectedPR",
+                                                        "style": "style1",
+                                                        "dbColumnName": "DeviationRemarks",
+                                                        "formcontrol": "deviationRemarks",
+                                                        "componentId": "deviationRemarks"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "components": [
+                                                    {
+                                                        "type": "number",
+                                                        "dbColumnName": "RFQtotalAmount",
+                                                        "label": "Target Value",
+                                                        "dataSourceName": "SelectedPR",
+                                                        "dependent": {},
+                                                        "style": "style1",
+                                                        "displayStyle": "horizontalKeyValue",
+                                                        "icon": "https://image",
+                                                        "formControl": "RFQtotalAmount",
+                                                        "componentId": "RFQtotalAmount"
+                                                    },
+                                                    {
+                                                        "type": "attachment",
+                                                        "dbColumnName": "headerAttachments",
+                                                        "label": "Attachments",
+                                                        "style": "style2",
+                                                        "iconType": "upload",
+                                                        "editable": true,
+                                                        "articleId": "",
+                                                        "allowUpload": true,
+                                                        "componentId": "attachmentHdr"
+                                                    },
+                                                    {
+                                                        "type": "textarea",
+                                                        "description": "short name",
+                                                        "label": "RFQ Description",
+                                                        "dataSourceName": "SelectedPR",
+                                                        "style": "style1",
+                                                        "formcontrol": "shortDescription",
+                                                        "dbColumnName": "shortDescription",
+                                                        "rows": "9",
+                                                        "mandatory": true
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "columns": [
+                {
+                    "components": [
+                        {
+                            "componentId": "RFQBiddingDetails",
+                            "type": "section",
+                            "title": "RFQ Event Details",
+                            "description": "RFQ Event Details",
+                            "icon": "B D",
+                            "dataSourceName": "SelectedPR",
+                            "businessView": "",
+                            "headerComponents": [],
+                            "sectionBody": {
+                                "horizontalSpacing": "fixed",
+                                "horizontalSpacingSize": "S",
+                                "rows": [
+                                    {
+                                        "columns": [
+                                            {
+                                                "components": [
+                                                    {
+                                                        "type": "radioButton",
+                                                        "style": "style1",
+                                                        "formcontrol": "bidType",
+                                                        "label": "Bid Type",
+                                                        "dbColumnName": "bidType",
+                                                        "dataSourceName": "SelectedPR",
+                                                        "mandatory": true,
+                                                        "radioButtons": [
+                                                            {
+                                                                "label": "Open",
+                                                                "value": "Open"
+                                                            },
+                                                            {
+                                                                "label": "Close",
+                                                                "value": "Close"
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "type": "datetime-local",
+                                                        "dataSourceName": "SelectedPR",
+                                                        "dbColumnName": "TargetAwardDate",
+                                                        "label": "Target Award Date",
+                                                        "mandatory": true,
+                                                        "style": "style1",
+                                                        "validation": {
+                                                            "min": {
+                                                                "valueof": {
+                                                                    "componentId": "section_RFQBiddingDetails.OpeningDate",
+                                                                    "property": "value"
+                                                                }
+                                                            }
+                                                        },
+                                                        "formcontrol": "EstimatedAwardDate"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "components": [
+                                                    {
+                                                        "type": "datetime-local",
+                                                        "label": "Opening Date",
+                                                        "dataSourceName": "SelectedPR",
+                                                        "dbColumnName": "openingDate",
+                                                        "mandatory": true,
+                                                        "style": "style1",
+                                                        "validation": {
+                                                            "min": {
+                                                                "valueof": {
+                                                                    "componentId": "section_RFQBiddingDetails.currentDate",
+                                                                    "property": "value"
+                                                                }
+                                                            }
+                                                        },
+                                                        "formcontrol": "OpeningDate"
+                                                    },
+                                                    {
+                                                        "label": "Time zone",
+                                                        "type": "select",
+                                                        "placeholder": "Time zone",
+                                                        "dbColumnName": "timeZone",
+                                                        "dataSourceName": "SelectedPR",
+                                                        "mandatory": true,
+                                                        "option": true,
+                                                        "onChangeGetData": true,
+                                                        "filter": true,
+                                                        "closeOnSelect": true,
+                                                        "style": "style1",
+                                                        "sendAllFieldsInSelectedValueAsObject": false,
+                                                        "options": [
+                                                            {
+                                                                "description": "Eastern Standard Time",
+                                                                "value": "Eastern Standard Time"
+                                                            },
+                                                            {
+                                                                "description": "US Eastern Standard Time",
+                                                                "value": "US Eastern Standard Time"
+                                                            },
+                                                            {
+                                                                "description": "Central Standard Time",
+                                                                "value": "Central Standard Time"
+                                                            },
+                                                            {
+                                                                "description": "Central America Standard Time",
+                                                                "value": "Central America Standard Time"
+                                                            },
+                                                            {
+                                                                "description": "India Standard Time",
+                                                                "value": "India Standard Time"
+                                                            }
+                                                        ],
+                                                        "color": "#f00",
+                                                        "formcontrol": "timeZone"
+                                                    },
+                                                    {
+                                                        "type": "datetime-local",
+                                                        "label": "Current Date",
+                                                        "dataSourceName": "SelectedPR",
+                                                        "dbColumnName": "currentDate",
+                                                        "mandatory": true,
+                                                        "style": "style1",
+                                                        "validation": {
+                                                            "min": {
+                                                                "valueof": {
+                                                                    "componentId": "section_RFQBiddingDetails.OpeningDate",
+                                                                    "property": "value"
+                                                                }
+                                                            }
+                                                        },
+                                                        "formcontrol": "currentDate",
+                                                        "hidden": true
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "components": [
+                                                    {
+                                                        "type": "datetime-local",
+                                                        "dataSourceName": "SelectedPR",
+                                                        "dbColumnName": "ClosingDate",
+                                                        "label": "Closing Date",
+                                                        "mandatory": true,
+                                                        "style": "style1",
+                                                        "validation": {
+                                                            "min": {
+                                                                "valueof": {
+                                                                    "componentId": "section_RFQBiddingDetails.OpeningDate",
+                                                                    "property": "value"
+                                                                }
+                                                            }
+                                                        },
+                                                        "formcontrol": "closingDate"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "columns": [
+                {
+                    "components": [
+                        {
+                            "componentId": "SelectedLineItems",
+                            "type": "table",
+                            "title": "Bill Of Quantity",
+                            "description": "Bill Of Quantity Details",
+                            "icon": "P R",
+                            "tableConfig": {
+                                "businessComponent": "PR",
+                                "layoutIcon": false,
+                                "downloadIcon": false,
+                                "columnFilterIcon": true,
+                                "rowFilterIcon": true,
+                                "fullscreenIcon": true,
+                                "aggregationFooter": false,
+                                "checkbox": false,
+                                "showRowInSidebar": true,
+                                "showPagination": false,
+                                "headerActions": [],
+                                "localPagination": true,
+                                "numberPipeFormat": "1.0-0"
+                            },
+                            "dataSourceName": "selectedLineItem",
+                            "tableColumns": {
+                                "Profile": {
+                                    "type": "image",
+                                    "dbColumnName": "briefDescription",
+                                    "sticky": true
+                                },
+                                "PR Number": {
+                                    "type": "text",
+                                    "dbColumnName": null,
+                                    "value": {
+                                        "routerLink": "/page/IndinfravitPRItems",
+                                        "text": "{{purchaseReqNumber}}",
+                                        "params": {
+                                            "purchaseReqNumber": "{{purchaseReqNumber}}"
+                                        }
+                                    },
+                                    "sticky": true
+                                },
+                                "Item": {
+                                    "type": "text",
+                                    "dbColumnName": "purchaseReqItem",
+                                    "emphasize": false,
+                                    "sticky": true
+                                },
+                                "PR Priority": {
+                                    "type": "status",
+                                    "dbColumnName": "prPriority",
+                                    "hidden": true
+                                },
+                                "Item Text": {
+                                    "type": "icon",
+                                    "dbColumnName": null,
+                                    "value": {
+                                        "enabled": true,
+                                        "eventId": "openItemText",
+                                        "text": "{{itemText}}"
+                                    },
+                                    "icon": "ficon feather icon-info"
+                                },
+                                "Material ": {
+                                    "fields": [
+                                        {
+                                            "dbColumnName": "material",
+                                            "lable": "1. Material",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "dbColumnName": "briefDescription",
+                                            "lable": "2. Material Desc",
+                                            "type": "text"
+                                        }
+                                    ],
+                                    "noDisplay": "No",
+                                    "type": "group",
+                                    "trimLeftZeroes": true,
+                                    "trimSpaces": false,
+                                    "dbColumnName": "material",
+                                    "sticky": null
+                                },
+                                "Material": {
+                                    "fields": [
+                                        {
+                                            "dbColumnName": "material",
+                                            "lable": "1. Material",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "dbColumnName": "briefDescription",
+                                            "lable": "2. Material Desc",
+                                            "type": "text"
+                                        }
+                                    ],
+                                    "hidden": true,
+                                    "noDisplay": "No",
+                                    "type": "group",
+                                    "trimLeftZeroes": false,
+                                    "trimSpaces": false,
+                                    "dbColumnName": "material",
+                                    "sticky": null
+                                },
+                                "Status": {
+                                    "type": "status",
+                                    "dbColumnName": "statusItem"
+                                },
+                                "PR Quantity": {
+                                    "fields": [
+                                        {
+                                            "dbColumnName": "requestedQuantity",
+                                            "lable": "1.Qty",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "dbColumnName": "quantityUnit",
+                                            "lable": "2.UOM",
+                                            "type": "text"
+                                        }
+                                    ],
+                                    "noDisplay": "No",
+                                    "type": "group",
+                                    "sticky": null,
+                                    "dbColumnName": "requestedQuantity",
+                                    "onLoad": [
+                                        {
+                                            "actions": [
+                                                {
+                                                    "action": "changeFieldValue",
+                                                    "actionDetails": {
+                                                        "targetColumn": [
+                                                            "PR Value"
+                                                        ],
+                                                        "setValue": {
+                                                            "multiply": [
+                                                                {
+                                                                    "valueof": {
+                                                                        "type": "columnName",
+                                                                        "fieldId": "PR Rate"
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "valueof": {
+                                                                        "type": "columnGroupField",
+                                                                        "columnName": "PR Quantity",
+                                                                        "fieldId": "1.Qty"
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "action": "changeFieldValue",
+                                                    "actionDetails": {
+                                                        "targetColumn": [
+                                                            "Open Quantity"
+                                                        ],
+                                                        "setValue": {
+                                                            "addition": [
+                                                                {
+                                                                    "valueof": {
+                                                                        "type": "columnGroupField",
+                                                                        "columnName": "PR Quantity",
+                                                                        "fieldId": "1.Qty"
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "action": "changeFieldValue",
+                                                    "actionDetails": {
+                                                        "targetColumn": [
+                                                            "Open Quantity"
+                                                        ],
+                                                        "setValue": {
+                                                            "substraction": [
+                                                                {
+                                                                    "valueof": {
+                                                                        "type": "columnName",
+                                                                        "fieldId": "RFQ Quantity"
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "action": "changeFieldValue",
+                                                    "actionDetails": {
+                                                        "targetColumn": [
+                                                            "RFQ Value"
+                                                        ],
+                                                        "setValue": {
+                                                            "multiply": [
+                                                                {
+                                                                    "valueof": {
+                                                                        "type": "columnName",
+                                                                        "fieldId": "RFQ Quantity"
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "valueof": {
+                                                                        "type": "columnName",
+                                                                        "fieldId": "Internal Rate"
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "action": "changeFieldValue",
+                                                    "actionDetails": {
+                                                        "targetColumn": [
+                                                            "RFQ Quantity"
+                                                        ],
+                                                        "setProperty": {
+                                                            "readOnly": true
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "action": "updateSection",
+                                                    "actionDetails": {
+                                                        "targetSectionId": "RFQHeader",
+                                                        "targetField": [
+                                                            "totalAmount"
+                                                        ],
+                                                        "setValue": {
+                                                            "sumOfRows": [
+                                                                {
+                                                                    "valueof": {
+                                                                        "type": "columnName",
+                                                                        "fieldId": "PR Value"
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "action": "updateSection",
+                                                    "actionDetails": {
+                                                        "targetSectionId": "RFQHeaderDataEntry",
+                                                        "targetField": [
+                                                            "RFQtotalAmount"
+                                                        ],
+                                                        "setValue": {
+                                                            "sumOfRows": [
+                                                                {
+                                                                    "valueof": {
+                                                                        "type": "columnName",
+                                                                        "fieldId": "RFQ Value"
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "RFQ Quantity": {
+                                    "width": "s",
+                                    "type": "inputText",
+                                    "dbColumnName": "requestedQuantity",
+                                    "validation": [
+                                        {
+                                            "type": "maxDecimalDigits",
+                                            "valueof": {
+                                                "value": 3
+                                            }
+                                        }
+                                    ]
+                                },
+                                "Open Quantity": {
+                                    "type": "text",
+                                    "dbColumnName": "openQuantity",
+                                    "hidden": true
+                                },
+                                "Purchase Req Doc Type": {
+                                    "type": "text",
+                                    "dbColumnName": "purchaseReqDocumentType",
+                                    "hidden": true
+                                },
+                                "Procurement Office": {
+                                    "type": "text",
+                                    "dbColumnName": "procurementOffice",
+                                    "hidden": true
+                                },
+                                "Procurement Team": {
+                                    "type": "text",
+                                    "dbColumnName": "procurementTeam",
+                                    "hidden": true
+                                },
+                                "PR Rate": {
+                                    "type": "text",
+                                    "dbColumnName": "PRRate",
+                                    "validation": [
+                                        {
+                                            "type": "maxDecimalDigits",
+                                            "valueof": {
+                                                "value": 2
+                                            }
+                                        }
+                                    ]
+                                },
+                                "Internal Rate": {
+                                    "type": "inputText",
+                                    "dbColumnName": "PRRate",
+                                    "width": "s",
+                                    "validation": [
+                                        {
+                                            "type": "min",
+                                            "valueof": {
+                                                "percent": [
+                                                    {
+                                                        "valueof": {
+                                                            "value": 90
+                                                        }
+                                                    },
+                                                    {
+                                                        "valueof": {
+                                                            "type": "columnName",
+                                                            "fieldId": "PR Rate"
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            "type": "max",
+                                            "valueof": {
+                                                "percent": [
+                                                    {
+                                                        "valueof": {
+                                                            "value": 110
+                                                        }
+                                                    },
+                                                    {
+                                                        "valueof": {
+                                                            "type": "columnName",
+                                                            "fieldId": "PR Rate"
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            "type": "maxDecimalDigits",
+                                            "valueof": {
+                                                "value": 2
+                                            }
+                                        }
+                                    ],
+                                    "onChange": [
+                                        {
+                                            "actions": [
+                                                {
+                                                    "action": "changeFieldValue",
+                                                    "actionDetails": {
+                                                        "targetColumn": [
+                                                            "RFQ Value"
+                                                        ],
+                                                        "setValue": {
+                                                            "multiply": [
+                                                                {
+                                                                    "valueof": {
+                                                                        "type": "columnName",
+                                                                        "fieldId": "RFQ Quantity"
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "valueof": {
+                                                                        "type": "columnName",
+                                                                        "fieldId": "Internal Rate"
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "action": "updateSection",
+                                                    "actionDetails": {
+                                                        "targetSectionId": "RFQHeaderDataEntry",
+                                                        "targetField": [
+                                                            "RFQtotalAmount"
+                                                        ],
+                                                        "setValue": {
+                                                            "sumOfRows": [
+                                                                {
+                                                                    "valueof": {
+                                                                        "type": "columnName",
+                                                                        "fieldId": "RFQ Value"
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "PR Value": {
+                                    "type": "number",
+                                    "dbColumnName": "PRValue"
+                                },
+                                "RFQ Value": {
+                                    "type": "number",
+                                    "dbColumnName": "RFQValue",
+                                    "validation": [
+                                        {
+                                            "type": "maxDecimalDigits",
+                                            "valueof": {
+                                                "value": 0
+                                            }
+                                        }
+                                    ]
+                                },
+                                "Delivery Date": {
+                                    "type": "date",
+                                    "dbColumnName": "expectedDeliveryDate"
+                                },
+                                "Requested By": {
+                                    "fields": [
+                                        {
+                                            "dbColumnName": "requestedBy",
+                                            "lable": "1. Requested By",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "dbColumnName": "requestedOn",
+                                            "lable": "2. Requested On",
+                                            "type": "text"
+                                        }
+                                    ],
+                                    "noDisplay": "No",
+                                    "type": "group",
+                                    "trimLeftZeroes": true,
+                                    "trimSpaces": true,
+                                    "dbColumnName": "material",
+                                    "sticky": null
+                                },
+                                "SAP Assign Buyer": {
+                                    "type": "text",
+                                    "dbColumnName": "SAPAssignBuyer"
+                                },
+                                "Plant": {
+                                    "type": "text",
+                                    "dbColumnName": "businessLocation"
+                                },
+                                "Purchase Group": {
+                                    "type": "text",
+                                    "dbColumnName": "procurementTeam"
+                                },
+                                "Requisitioner": {
+                                    "type": "text",
+                                    "dbColumnName": "nameOfRequisitioner"
+                                },
+                                "Attachments": {
+                                    "type": "attachment",
+                                    "allowUpload": true,
+                                    "editable": true,
+                                    "dbColumnName": "attachments"
+                                },
+                                "Remark": {
+                                    "type": "inputString",
+                                    "dbColumnName": "InternalRateRemark"
+                                },
+                                "Mandatory": {
+                                    "type": "radioButton",
+                                    "dbColumnName": "radioButton",
+                                    "width": "s",
+                                    "radioButtons": [
+                                        {
+                                            "label": "Yes",
+                                            "value": "Yes"
+                                        },
+                                        {
+                                            "label": "No",
+                                            "value": "No"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "columns": [
+                {
+                    "components": [
+                        {
+                            "componentId": "invitedVendors",
+                            "type": "table",
+                            "title": "Participants",
+                            "dataSourceName": "SelectedPR",
+                            "description": "Participants details",
+                            "icon": "V",
+                            "tableConfig": {
+                                "businessComponent": "VENDOR",
+                                "layoutIcon": false,
+                                "downloadIcon": false,
+                                "columnFilterIcon": true,
+                                "rowFilterIcon": true,
+                                "fullscreenIcon": true,
+                                "aggregationFooter": false,
+                                "checkbox": false,
+                                "headerActions": [
+                                    {
+                                        "text": "Add VendorGrouping",
+                                        "showLabel": true,
+                                        "icon": "ficon feather icon-plus",
+                                        "image": "",
+                                        "css": {},
+                                        "style": "style1",
+                                        "onClick": [
+                                            {
+                                                "actions": [
+                                                    {
+                                                        "action": "getInputFromPopUpPage",
+                                                        "actionDetails": {
+                                                            "dataSourceType": "page",
+                                                            "dataSourceDetails": {
+                                                                "pageName": "addVendorGroupingPopup",
+                                                                "payloadVariables": {
+                                                                    "rfqTotalAmount": {
+                                                                        "valueof": {
+                                                                            "type": "sectionComponentValue",
+                                                                            "componentLabel": "Target Value",
+                                                                            "componentId": "RFQtotalAmount",
+                                                                            "sectionComponentId": "section_RFQHeaderDataEntry"
+                                                                        }
+                                                                    }
+                                                                },
+                                                                "payload": {
+                                                                    "targetValue": "{{rfqTotalAmount}}"
+                                                                }
+                                                            }
+                                                        }
+                                                    },
+                                                    {
+                                                        "action": "appendPreviousActionOutputAsPageComponent"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "text": "Add Vendor",
+                                        "showLabel": true,
+                                        "icon": "ficon feather icon-plus",
+                                        "image": "",
+                                        "css": {},
+                                        "style": "style1",
+                                        "onClick": [
+                                            {
+                                                "actions": [
+                                                    {
+                                                        "action": "getInputFromPopUpPage",
+                                                        "actionDetails": {
+                                                            "dataSourceType": "page",
+                                                            "dataSourceDetails": {
+                                                                "pageName": "addVendorPopup1",
+                                                                "payloadVariables": {
+                                                                    "rfqTotalAmount": {
+                                                                        "valueof": {
+                                                                            "type": "sectionComponentValue",
+                                                                            "componentLabel": "Target Value",
+                                                                            "componentId": "RFQtotalAmount",
+                                                                            "sectionComponentId": "section_RFQHeaderDataEntry"
+                                                                        }
+                                                                    }
+                                                                },
+                                                                "payload": {
+                                                                    "targetValue": "{{rfqTotalAmount}}"
+                                                                }
+                                                            }
+                                                        }
+                                                    },
+                                                    {
+                                                        "action": "appendPreviousActionOutputAsPageComponent"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "text": "Temp Vendor",
+                                        "showLabel": true,
+                                        "icon": "ficon feather icon-plus",
+                                        "image": "",
+                                        "css": {},
+                                        "style": "style1",
+                                        "onClick": [
+                                            {
+                                                "actions": [
+                                                    {
+                                                        "action": "getInputFromPopup",
+                                                        "actionDetails": {
+                                                            "popupName": "temporaryVendorCreationPopup"
+                                                        }
+                                                    },
+                                                    {
+                                                        "action": "appendPreviousActionOutputAsRow"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "enableEntityCreation": false,
+                                "entityCreationDetails": {
+                                    "text": "Temporary Vendor",
+                                    "showLabel": true,
+                                    "icon": "ficon feather icon-plus",
+                                    "entityFormData": {
+                                        "type": "form",
+                                        "header": {
+                                            "heading": "Temporary user creation"
+                                        },
+                                        "body": {
+                                            "containerCSS": {
+                                                "flex": "1 1 25%"
+                                            },
+                                            "css": {
+                                                "display": "flex",
+                                                "flex-wrap": "wrap",
+                                                "gap": "0 1rem"
+                                            },
+                                            "components": [
+                                                {
+                                                    "label": "Name",
+                                                    "type": "text",
+                                                    "dbcolumnName": "name",
+                                                    "formcontrol": "name",
+                                                    "placeholder": "enter name",
+                                                    "mandatory": true,
+                                                    "readOnly": false
+                                                },
+                                                {
+                                                    "label": "Phone Number",
+                                                    "type": "number",
+                                                    "dbcolumnName": "phoneNumber",
+                                                    "formcontrol": "phoneNumber",
+                                                    "placeholder": "enter phoneNumber",
+                                                    "mandatory": true,
+                                                    "readOnly": false
+                                                },
+                                                {
+                                                    "label": "Company Name",
+                                                    "type": "text",
+                                                    "dbcolumnName": "companyName",
+                                                    "formcontrol": "companyName",
+                                                    "placeholder": "enter companyName",
+                                                    "mandatory": true,
+                                                    "readOnly": false
+                                                },
+                                                {
+                                                    "label": "Email",
+                                                    "type": "text",
+                                                    "dbcolumnName": "email",
+                                                    "formcontrol": "email",
+                                                    "placeholder": "enter email",
+                                                    "mandatory": true,
+                                                    "readOnly": false
+                                                },
+                                                {
+                                                    "label": "Vendor Description",
+                                                    "type": "text",
+                                                    "dbcolumnName": "vendorDescription",
+                                                    "formcontrol": "vendorDescription",
+                                                    "placeholder": "enter vendorDescription",
+                                                    "mandatory": true,
+                                                    "readOnly": false
+                                                }
+                                            ]
+                                        },
+                                        "footer": {
+                                            "button": [
+                                                {
+                                                    "text": "close",
+                                                    "type": "button",
+                                                    "action": "close"
+                                                },
+                                                {
+                                                    "text": "save",
+                                                    "type": "submit",
+                                                    "action": "submit",
+                                                    "onClick": [
+                                                        {
+                                                            "actions": [
+                                                                {
+                                                                    "action": "apiCall",
+                                                                    "actionDetails": {
+                                                                        "url": "/associate_service/vendors/createTemporaryVendor",
+                                                                        "method": "POST"
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            },
+                            "tableColumns": {
+                                "Profile": {
+                                    "type": "image",
+                                    "description": "Profile",
+                                    "dbColumnName": "Profile1"
+                                },
+                                "Vendor": {
+                                    "fields": [
+                                        {
+                                            "dbColumnName": "vendorId",
+                                            "label": "1. Vendor Name",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "dbColumnName": "vendorName",
+                                            "label": "2. UserID",
+                                            "type": "text"
+                                        }
+                                    ],
+                                    "type": "group",
+                                    "trimLeftZeroes": true,
+                                    "trimSpaces": true,
+                                    "dbColumnName": "vendorId",
+                                    "sticky": null
+                                },
+                                "Nature of Work": {
+                                    "type": "text",
+                                    "dbColumnName": "vendorNatureOfWork",
+                                    "sticky": null
+                                },
+                                "Associate": {
+                                    "type": "text",
+                                    "dbColumnName": "sapAssociateNumber",
+                                    "sticky": null
+                                },
+                                "SCH Number": {
+                                    "type": "text",
+                                    "dbColumnName": "schAssociateNumber",
+                                    "sticky": null,
+                                    "hidden": true
+                                },
+                                "Cumulative Empanelment Value": {
+                                    "type": "text",
+                                    "dbColumnName": "empanellmentHQ",
+                                    "sticky": null,
+                                    "hidden": true
+                                },
+                                "Single Empanelment Value": {
+                                    "type": "text",
+                                    "dbColumnName": "empanellmentSite",
+                                    "sticky": null,
+                                    "hidden": true
+                                },
+                                "Evaluation Score": {
+                                    "type": "text",
+                                    "dbColumnName": "evaluationScore",
+                                    "sticky": null,
+                                    "hidden": true
+                                },
+                                "Status": {
+                                    "type": "status",
+                                    "description": "Status",
+                                    "dbColumnName": "status",
+                                    "sticky": null
+                                },
+                                "Contact": {
+                                    "fields": [
+                                        {
+                                            "dbColumnName": "ContactCode",
+                                            "label": "1. Mobile Number",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "dbColumnName": "ContactDecs",
+                                            "label": "2. Email Id",
+                                            "type": "text"
+                                        }
+                                    ],
+                                    "type": "group",
+                                    "trimLeftZeroes": true,
+                                    "trimSpaces": true,
+                                    "dbColumnName": "Contact",
+                                    "sticky": null
+                                },
+                                "Created": {
+                                    "type": "date",
+                                    "dbColumnName": "createdAt",
+                                    "sticky": null
+                                },
+                                "Delete": {
+                                    "type": "menu",
+                                    "dbColumnName": "menu",
+                                    "menuDetails": {
+                                        "menuIcon": "feather icon-more-vertical",
+                                        "menuItems": [
+                                            {
+                                                "text": "Delete",
+                                                "icon": "feather icon-trash-2",
+                                                "action": "deleteRow"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "Permission": {
+                                    "type": "status",
+                                    "dbColumnName": "rfxStatus",
+                                    "editable": true,
+                                    "options": [
+                                        "Allowed",
+                                        "Blocked"
+                                    ]
+                                }
+                            },
+                            "data": []
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "updatedAt": ISODate("2022-07-25T09:25:19.065Z")
+}
