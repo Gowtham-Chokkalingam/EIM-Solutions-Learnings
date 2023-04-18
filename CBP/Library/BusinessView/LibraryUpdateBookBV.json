@@ -11,7 +11,7 @@
   "set": {
     "($)set": {},
     "($)inc": {
-      "totalBooks": 1
+      "totalBooks": -1
     }
   }
 }
