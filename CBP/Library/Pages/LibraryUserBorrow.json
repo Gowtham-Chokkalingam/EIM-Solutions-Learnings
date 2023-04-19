@@ -63,7 +63,7 @@
           "actionType": "updateBusinessView",
           "actionDetails": {
             "businessView": "LibraryUpdateUserBV",
-            "database": "sch_core_abg",
+            "database": "{{payload.headers.dbName}}",
             "targetSchema": {},
             "sourceSchema": {}
           }
@@ -74,9 +74,31 @@
           "actionType": "updateBusinessView",
           "actionDetails": {
             "businessView": "LibraryUpdateBookBV",
-            "database": "sch_core_abg",
+            "database": "{{payload.headers.dbName}}",
             "targetSchema": {},
             "sourceSchema": {}
+          }
+        },
+        {
+          "id": 3,
+          "actionName": "transcationDataInsert",
+          "actionType": "insertData",
+          "actionDetails": {
+            "database_details": {
+              "database": "{{payload.headers.dbName}}",
+              "collection": "LibraryTranscationList"
+            },
+            "payload": {
+              "bookId": "{{payload.section_1.bookId}}",
+              "userID": "{{payload.section_1.userID}}",
+              "title": "{{payload.section_1.title}}",
+
+              "authors": "{{payload.section_1.authors}}",
+              "language": "{{payload.section_1.language}}",
+              "name": "{{payload.section_1.name}}",
+              "borrowDate": "{{payload.section_1.borrowDate}}",
+              "returnDate": "{{payload.section_1.returnDate}}"
+            }
           }
         }
       ],

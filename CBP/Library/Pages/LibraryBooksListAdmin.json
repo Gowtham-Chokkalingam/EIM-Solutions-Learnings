@@ -1,347 +1,347 @@
 {
-    "tenant": "100",
-    "systemID": "JTD410",
-    "epic": "SCH-SUPPLIERS",
-    "pageName": "LibraryBooksListAdmin",
-    "version": "Grid",
-    "showWorkflowActions": false,
-    "showPageBanner": true,
-    "businessComponentDesc": "",
-    "businessComponent": "Library",
-    "businessComponentInstance": "Library Management",
-    "pageBanner": {
-        "Business_Comp_Name": "Digital Library",
-        "Title": "SCH Digital Library",
-        "Screen_Name": "Admin Page",
-        "Description": " This page is managed by library admin to add and update the books "
-    },
-    "dataSource": [
+  "_id": "643654c8d9379f0af139ecf9",
+  "tenant": "100",
+  "systemID": "JTD410",
+  "epic": "SCH-SUPPLIERS",
+  "pageName": "LibraryBooksListAdmin",
+  "version": "Grid",
+  "showWorkflowActions": false,
+  "showPageBanner": true,
+  "businessComponentDesc": "",
+  "businessComponent": "Library",
+  "businessComponentInstance": "Admin Library Management",
+  "pageBanner": {
+    "Business_Comp_Name": "Digital Library",
+    "Title": "SCH Digital Library",
+    "Screen_Name": "Admin Page",
+    "Description": " This page is managed by library admin to add and update the books "
+  },
+  "dataSource": [
+    {
+      "dataSourceType": "businessView",
+      "dataSourceName": "LibraryBooksList_BV",
+      "dataSourceDetails": {
+        "businessView": "LibraryBooksList_BV"
+      }
+    }
+  ],
+  "pageActions": [
+    {
+      "text": "Submit",
+      "type": "submit",
+      "showLabel": false,
+      "style": "style2",
+      "disableFormValidation": false,
+      "css": {
+        "font-size": "16px",
+        "color": "#52a5fb",
+        "cursor": "pointer"
+      },
+      "onClick": [
         {
-            "dataSourceType": "businessView",
-            "dataSourceName": "LibraryBooksList_BV",
-            "dataSourceDetails": {
-                "businessView": "LibraryBooksList_BV"
+          "actions": [
+            {
+              "action": "executePageAction",
+              "actionPerformed": "submit"
             }
+          ]
         }
-    ],
-    "pageActions": [
+      ]
+    }
+  ],
+  "executePageActions": [
+    {
+      "ID": 1,
+      "Rule": "pageAction",
+      "RuleGroup": "",
+      "WHEN": "'{{payload.pageActionPerformed}}' == 'submit'",
+      "THEN": ["performAction"],
+      "Actions": [
         {
-            "text": "Submit",
-            "type": "submit",
-            "showLabel": false,
-            "style": "style2",
-            "disableFormValidation": false,
-            "css": {
-                "font-size": "16px",
-                "color": "#52a5fb",
-                "cursor": "pointer"
+          "id": 1,
+          "actionName": "collectionListInsert",
+          "actionType": "insertData",
+          "actionDetails": {
+            "database_details": {
+              "database": "{{payload.headers.dbName}}",
+              "collection": "LibraryBooksList"
             },
-            "onClick": [
-                {
-                    "actions": [
-                        {
-                            "action": "executePageAction",
-                            "actionPerformed": "submit"
-                        }
-                    ]
-                }
-            ]
-        }
-    ],
-    "executePageActions": [
-        {
-            "ID": 1,
-            "Rule": "pageAction",
-            "RuleGroup": "",
-            "WHEN": "'{{payload.pageActionPerformed}}' == 'submit'",
-            "THEN": [
-                "performAction"
-            ],
-            "Actions": [
-                {
-                    "id": 1,
-                    "actionName": "collectionListInsert",
-                    "actionType": "insertData",
-                    "actionDetails": {
-                        "database_details": {
-                            "database": "{{payload.headers.dbName}}",
-                            "collection": "LibraryBooksList"
-                        },
-                        "payload": {
-                            "bookId": "{{payload.formData.bookId}}",
-                            "title": "{{payload.formData.title}}",
-                            "publicationDate": "{{payload.formData.publicationDate}}",
-                            "description": "{{payload.formData.description}}",
-                            "language": "{{payload.formData.language}}",
-                            "pages": "{{payload.formData.pages}}",
-                            "totalBooks": "{{payload.formData.totalBooks}}",
-                            "authors": "{{payload.formData.authors}}"
-                        }
-                    }
-                }
-            ],
-            "Output": {
-                "message": "New Book has been added to the Library",
-                "refresh": true
+            "payload": {
+              "bookId": "{{payload.formData.bookId}}",
+              "title": "{{payload.formData.title}}",
+              "publicationDate": "{{payload.formData.publicationDate}}",
+              "description": "{{payload.formData.description}}",
+              "language": "{{payload.formData.language}}",
+              "pages": "{{payload.formData.pages}}",
+              "totalBooks": "{{payload.formData.totalBooks}}",
+              "authors": "{{payload.formData.authors}}"
             }
+          }
         }
-    ],
-    "rows": [
+      ],
+      "Output": {
+        "message": "New Book has been added to the Library",
+        "refresh": true
+      }
+    }
+  ],
+  "rows": [
+    {
+      "columns": [
         {
-            "columns": [
-                {
-                    "components": [
-                        {
-                            "componentId": 1,
-                            "type": "table",
-                            "title": "Books List",
-                            "description": "Books Details",
-                            "dataSourceName": "LibraryBooksList_BV",
-                            "tableConfig": {
-                                "layoutIcon": false,
-                                "downloadIcon": false,
-                                "columnFilterIcon": true,
-                                "rowFilterIcon": true,
-                                "fullscreenIcon": true,
-                                "aggregationFooter": false,
-                                "checkbox": false,
-                                "headerActions": [
+          "components": [
+            {
+              "componentId": 1,
+              "type": "table",
+              "title": "Books List",
+              "description": "Books Details",
+              "dataSourceName": "LibraryBooksList_BV",
+              "tableConfig": {
+                "layoutIcon": false,
+                "downloadIcon": false,
+                "columnFilterIcon": true,
+                "rowFilterIcon": true,
+                "fullscreenIcon": true,
+                "aggregationFooter": false,
+                "checkbox": false,
+                "headerActions": [
+                  {
+                    "text": "Add Book",
+                    "icon": "ficon feather icon-plus",
+                    "showLabel": true,
+                    "onClick": [
+                      {
+                        "actions": [
+                          {
+                            "action": "confirmationPopup",
+                            "actionDetails": {
+                              "formDetails": {
+                                "header": {
+                                  "title": "Add New Book"
+                                },
+                                "body": {
+                                  "title2": "Add New book",
+                                  "components": [
                                     {
-                                        "text": "Add Book",
-                                        "icon": "ficon feather icon-plus",
-                                        "showLabel": true,
-                                        "onClick": [
-                                            {
-                                                "actions": [
-                                                    {
-                                                        "action": "confirmationPopup",
-                                                        "actionDetails": {
-                                                            "formDetails": {
-                                                                "header": {
-                                                                    "title": "Add New Book"
-                                                                },
-                                                                "body": {
-                                                                    "title2": "Add New book",
-                                                                    "components": [
-                                                                        {
-                                                                            "label": "BookId",
-                                                                            "type": "text",
-                                                                            "displayStyle": "horizontalValues",
-                                                                            "dbcolumnName": "bookId",
-                                                                            "formcontrol": "bookId",
-                                                                            "placeholder": "Book ID",
-                                                                            "mandatory": true
-                                                                        },
-                                                                        {
-                                                                            "label": "Book Title",
-                                                                            "type": "text",
-                                                                            "dbcolumnName": "title",
-                                                                            "formcontrol": "title",
-                                                                            "placeholder": "Book Name",
-                                                                            "mandatory": true,
-                                                                            "readOnly": false
-                                                                        },
-                                                                        {
-                                                                            "label": "Publication Date",
-                                                                            "type": "text",
-                                                                            "dbcolumnName": "publicationDate",
-                                                                            "formcontrol": "publicationDate",
-                                                                            "placeholder": "publication Date",
-                                                                            "mandatory": true,
-                                                                            "readOnly": false
-                                                                        },
-                                                                        {
-                                                                            "label": "Description",
-                                                                            "type": "text",
-                                                                            "dbcolumnName": "description",
-                                                                            "formcontrol": "description",
-                                                                            "placeholder": "Description",
-                                                                            "mandatory": true,
-                                                                            "readOnly": false
-                                                                        },
-                                                                        {
-                                                                            "label": "Language",
-                                                                            "type": "text",
-                                                                            "dbcolumnName": "language",
-                                                                            "formcontrol": "language",
-                                                                            "placeholder": "Language",
-                                                                            "mandatory": true,
-                                                                            "readOnly": false
-                                                                        },
-                                                                        {
-                                                                            "label": "Total Pages",
-                                                                            "type": "number",
-                                                                            "dbcolumnName": "pages",
-                                                                            "formcontrol": "pages",
-                                                                            "placeholder": "No Of Pages",
-                                                                            "mandatory": true,
-                                                                            "readOnly": false
-                                                                        },
-                                                                        {
-                                                                            "label": "Total Number Of Books",
-                                                                            "type": "number",
-                                                                            "dbcolumnName": "totalBooks",
-                                                                            "formcontrol": "totalBooks",
-                                                                            "placeholder": "Total No Books",
-                                                                            "mandatory": true,
-                                                                            "readOnly": false
-                                                                        },
-                                                                        {
-                                                                            "label": "Author",
-                                                                            "type": "text",
-                                                                            "dbcolumnName": "authors",
-                                                                            "formcontrol": "authors",
-                                                                            "placeholder": "Author Name",
-                                                                            "mandatory": true,
-                                                                            "readOnly": false
-                                                                        }
-                                                                    ]
-                                                                },
-                                                                "footer": {
-                                                                    "button": [
-                                                                        {
-                                                                            "text": "cancel",
-                                                                            "type": "button",
-                                                                            "action": "close"
-                                                                        },
-                                                                        {
-                                                                            "text": "save",
-                                                                            "type": "submit",
-                                                                            "action": "submit",
-                                                                            "onClick": [
-                                                                                {
-                                                                                    "actions": [
-                                                                                        {
-                                                                                            "action": "executePageAction",
-                                                                                            "actionPerformed": "submit"
-                                                                                        }
-                                                                                    ]
-                                                                                }
-                                                                            ]
-                                                                        }
-                                                                    ]
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                ]
-                                            }
-                                        ]
+                                      "label": "BookId",
+                                      "type": "text",
+                                      "displayStyle": "horizontalValues",
+                                      "dbcolumnName": "bookId",
+                                      "formcontrol": "bookId",
+                                      "placeholder": "Book ID",
+                                      "mandatory": true
                                     },
                                     {
-                                        "text": "Create",
-                                        "showLabel": true,
-                                        "icon": "ficon feather icon-plus",
-                                        "hidden": true,
-                                        "image": "",
-                                        "css": {},
-                                        "style": "style5",
-                                        "onClick": [
-                                            {
-                                                "actions": [
-                                                    {
-                                                        "action": "redirect",
-                                                        "actionDetails": {
-                                                            "routerLink": "/page/LibraryBooksListAdminUpdate",
-                                                            "params": {}
-                                                        }
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                ],
-                                "tableFilter": {
-                                    "dataSourceType": "inline",
-                                    "dataSource": [
-                                        {
-                                            "dataSourceType": "businessView",
-                                            "dataSourceName": "LibraryBookListFilter_BV",
-                                            "dataSourceDetails": {
-                                                "businessView": "LibraryBookListFilter_BV"
-                                            }
-                                        }
-                                    ],
-                                    "Filters": [
-                                        {
-                                            "description": "Author",
-                                            "dbColumnName": "authors",
-                                            "placeholder": "Author Name",
-                                            "dataSourceName": "LibraryBookListFilter_BV",
-                                            "filterType": "checkBox"
-                                        },
-                                        {
-                                            "description": "Language",
-                                            "placeholder": "Book Language",
-                                            "dataSourceName": "LibraryBookListFilter_BV",
-                                            "dbColumnName": "language",
-                                            "filterType": "checkBox"
-                                        }
-                                    ]
-                                }
-                            },
-                            "tableColumns": {
-                                "BookId": {
-                                    "type": "text",
-                                    "dbColumnName": null,
-                                    "value": {
-                                        "routerLink": "/page/LibraryBookDetails",
-                                        "text": "{{bookId}}",
-                                        "params": {
-                                            "bookId": "{{bookId}}"
-                                        }
-                                    }
-                                },
-                                "profile": {
-                                    "type": "image",
-                                    "dbColumnName": "title"},
-                                "Book Title": {
-                                    "type": "text",
-                                    "dbColumnName": "title"
-                                },
-                                "Publication Date": {
-                                    "type": "text",
-                                    "dbColumnName": "publicationDate"
-                                },
-                                "Description": {
-                                    "type": "text",
-                                    "dbColumnName": "description"
-                                },
-                                "Language": {
-                                    "type": "text",
-                                    "dbColumnName": "language"
-                                },
-                                "Pages": {
-                                    "type": "text",
-                                    "dbColumnName": "pages"
-                                },
-                                "totalBooks": {
-                                    "type": "text",
-                                    "dbColumnName": "totalBooks"
-                                },
-                                "Author": {
-                                    "type": "text",
-                                    "dbColumnName": "authors"
-                                },
-                                "Edit": {
-                                    "type": "icon",
-                                    "dbColumnName": null,
-                                    "value": {
-                                        "routerLink": "/page/LibraryBooksListAdminUpdate",
-                                        "params": {
-                                            "bookId": "{{bookId}}"
-                                        },
-                                        "enabled": true,
-                                        "eventId": "openItemText",
-                                        "text": "{{bookId}}}"
+                                      "label": "Book Title",
+                                      "type": "text",
+                                      "dbcolumnName": "title",
+                                      "formcontrol": "title",
+                                      "placeholder": "Book Name",
+                                      "mandatory": true,
+                                      "readOnly": false
                                     },
-                                    "icon": "feather icon-edit-1"
+                                    {
+                                      "label": "Publication Date",
+                                      "type": "text",
+                                      "dbcolumnName": "publicationDate",
+                                      "formcontrol": "publicationDate",
+                                      "placeholder": "publication Date",
+                                      "mandatory": true,
+                                      "readOnly": false
+                                    },
+                                    {
+                                      "label": "Description",
+                                      "type": "text",
+                                      "dbcolumnName": "description",
+                                      "formcontrol": "description",
+                                      "placeholder": "Description",
+                                      "mandatory": true,
+                                      "readOnly": false
+                                    },
+                                    {
+                                      "label": "Language",
+                                      "type": "text",
+                                      "dbcolumnName": "language",
+                                      "formcontrol": "language",
+                                      "placeholder": "Language",
+                                      "mandatory": true,
+                                      "readOnly": false
+                                    },
+                                    {
+                                      "label": "Total Pages",
+                                      "type": "number",
+                                      "dbcolumnName": "pages",
+                                      "formcontrol": "pages",
+                                      "placeholder": "No Of Pages",
+                                      "mandatory": true,
+                                      "readOnly": false
+                                    },
+                                    {
+                                      "label": "Total Number Of Books",
+                                      "type": "number",
+                                      "dbcolumnName": "totalBooks",
+                                      "formcontrol": "totalBooks",
+                                      "placeholder": "Total No Books",
+                                      "mandatory": true,
+                                      "readOnly": false
+                                    },
+                                    {
+                                      "label": "Author",
+                                      "type": "text",
+                                      "dbcolumnName": "authors",
+                                      "formcontrol": "authors",
+                                      "placeholder": "Author Name",
+                                      "mandatory": true,
+                                      "readOnly": false
+                                    }
+                                  ]
+                                },
+                                "footer": {
+                                  "button": [
+                                    {
+                                      "text": "cancel",
+                                      "type": "button",
+                                      "action": "close"
+                                    },
+                                    {
+                                      "text": "save",
+                                      "type": "submit",
+                                      "action": "submit",
+                                      "onClick": [
+                                        {
+                                          "actions": [
+                                            {
+                                              "action": "executePageAction",
+                                              "actionPerformed": "submit"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
                                 }
+                              }
                             }
-                        }
+                          }
+                        ]
+                      }
                     ]
+                  },
+                  {
+                    "text": "Create",
+                    "showLabel": true,
+                    "icon": "ficon feather icon-plus",
+                    "hidden": true,
+                    "image": "",
+                    "css": {},
+                    "style": "style5",
+                    "onClick": [
+                      {
+                        "actions": [
+                          {
+                            "action": "redirect",
+                            "actionDetails": {
+                              "routerLink": "/page/LibraryBooksListAdminUpdate",
+                              "params": {}
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "tableFilter": {
+                  "dataSourceType": "inline",
+                  "dataSource": [
+                    {
+                      "dataSourceType": "businessView",
+                      "dataSourceName": "LibraryBookListFilter_BV",
+                      "dataSourceDetails": {
+                        "businessView": "LibraryBookListFilter_BV"
+                      }
+                    }
+                  ],
+                  "Filters": [
+                    {
+                      "description": "Author",
+                      "dbColumnName": "authors",
+                      "placeholder": "Author Name",
+                      "dataSourceName": "LibraryBookListFilter_BV",
+                      "filterType": "checkBox"
+                    },
+                    {
+                      "description": "Language",
+                      "placeholder": "Book Language",
+                      "dataSourceName": "LibraryBookListFilter_BV",
+                      "dbColumnName": "language",
+                      "filterType": "checkBox"
+                    }
+                  ]
                 }
-            ]
+              },
+              "tableColumns": {
+                "BookId": {
+                  "type": "text",
+                  "dbColumnName": null,
+                  "value": {
+                    "routerLink": "/page/LibraryBookDetails",
+                    "text": "{{bookId}}",
+                    "params": {
+                      "bookId": "{{bookId}}"
+                    }
+                  }
+                },
+                "profile": {
+                  "type": "image",
+                  "dbColumnName": "title"
+                },
+                "Book Title": {
+                  "type": "text",
+                  "dbColumnName": "title"
+                },
+                "Publication Date": {
+                  "type": "text",
+                  "dbColumnName": "publicationDate"
+                },
+                "Description": {
+                  "type": "text",
+                  "dbColumnName": "description"
+                },
+                "Language": {
+                  "type": "text",
+                  "dbColumnName": "language"
+                },
+                "Pages": {
+                  "type": "text",
+                  "dbColumnName": "pages"
+                },
+                "totalBooks": {
+                  "type": "text",
+                  "dbColumnName": "totalBooks"
+                },
+                "Author": {
+                  "type": "text",
+                  "dbColumnName": "authors"
+                },
+                "Edit": {
+                  "type": "icon",
+                  "dbColumnName": null,
+                  "value": {
+                    "routerLink": "/page/LibraryBooksListAdminUpdate",
+                    "params": {
+                      "bookId": "{{bookId}}"
+                    },
+                    "enabled": true,
+                    "eventId": "openItemText",
+                    "text": "{{bookId}}}"
+                  },
+                  "icon": "feather icon-edit-1"
+                }
+              }
+            }
+          ]
         }
-    ]
+      ]
+    }
+  ]
 }
