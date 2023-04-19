@@ -122,18 +122,92 @@
                 },
                 "BooksCheck": {
                   "type": "text",
-                  "dbColumnName": "totalBooks",
-                  "hidden": true
+                  "dbColumnName": "totalBooks"
                 },
                 "Author": {
                   "type": "text",
                   "dbColumnName": "authors"
                 },
-
-                "Borrow": {
+                "Availability": {
                   "type": "button",
                   "hidden": false,
                   "dbColumnName": "FATAction2",
+                  "onLoad": [
+                    {
+                      "actions": [
+                        {
+                          "action": "changeFieldValue",
+                          "checkCondition": [
+                            {
+                              "source": "Books Available",
+                              "sourceType": "column",
+                              "operation": "EQ",
+                              "valueof": {
+                                "text": "0"
+                              }
+                            }
+                          ],
+                          "actionDetails": {
+                            "targetColumn": ["Availability"],
+                            "setProperty": {
+                              "text": "Not Available",
+                              "style": "style14",
+                              "enabled": false
+                            }
+                          }
+                        },
+                        {
+                          "action": "changeFieldValue",
+                          "checkCondition": [
+                            {
+                              "source": "Books Available",
+                              "sourceType": "column",
+                              "operation": "NE",
+                              "valueof": {
+                                "text": "0"
+                              }
+                            }
+                          ],
+                          "actionDetails": {
+                            "targetColumn": ["Availability"],
+                            "setProperty": {
+                              "text": "Available",
+                              "style": "style14",
+                              "enabled": true
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "onClick": [
+                    {
+                      "actions": [
+                        {
+                          "sourceColumn": "Availability",
+                          "style": "style1",
+                          "checkCondition": {
+                            "text": "Available",
+                            "style": "style14",
+                            "enabled": true
+                          },
+                          "action": "redirect",
+                          "actionDetails": {
+                            "routerLink": "",
+                            "params": {
+                              "selectedRows": true,
+                              "selectedColumns": ["BookId", "{{inputParams.userName}}"]
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "Borrow": {
+                  "type": "icon",
+                  "dbColumnName": "FATAction2",
+                  "hidden": false,
                   "onLoad": [
                     {
                       "actions": [
@@ -152,7 +226,7 @@
                           "actionDetails": {
                             "targetColumn": ["Borrow"],
                             "setProperty": {
-                              "text": "Not Available",
+                              "text": null,
                               "style": "style14",
                               "enabled": false
                             }
@@ -171,9 +245,9 @@
                             }
                           ],
                           "actionDetails": {
-                            "targetColumn": ["Available"],
+                            "targetColumn": ["Borrow"],
                             "setProperty": {
-                              "text": "Borrow",
+                              "text": null,
                               "style": "style14",
                               "enabled": true
                             }
@@ -182,32 +256,19 @@
                       ]
                     }
                   ],
-                  "onClick": [
-                    {
-                      "actions": [
-                        {
-                          "sourceColumn": "Borrow",
-                          "style": "style1",
-                          "checkCondition": {
-                            "text": "Borrow",
-                            "style": "style14",
-                            "enabled": true
-                          },
-                          "action": "redirect",
-                          "actionDetails": {
-                            "routerLink": "/page/LibraryUserBorrow",
-                            "params": {
-                              "selectedRows": true,
-                              "selectedColumns": ["BookId", "{{inputParams.userName}}"]
-                            }
-                          }
-                        }
-                      ]
-                    }
-                  ]
+                  "value": {
+                    "routerLink": "/page/LibraryUserBorrow",
+                    "params": {
+                      "bookId": "{{bookId}}",
+                      "userName": "{{inputParams.userName}}"
+                    },
+                    "enabled": true,
+                    "eventId": "openItemText",
+                    "text": "{{bookId}}}"
+                  },
+                  "icon": "feather icon-plus"
                 },
-
-                "Click To Borrow": {
+                "Borrow1": {
                   "type": "icon",
                   "dbColumnName": null,
                   "hidden": false,

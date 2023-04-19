@@ -121,7 +121,7 @@
       ],
       "Output": {
         "message": "Login Successfully",
-        "routerLink": "/page/LibraryBooksListAdmin",
+        "routerLink": "/page/LibraryBooksListUsers",
         "redirect": {
           "routerLink": "/page/LibraryBooksListUsers",
           "text": "{{payload.formData.userName}}",
