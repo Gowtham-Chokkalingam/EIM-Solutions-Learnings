@@ -2,24 +2,24 @@
   "ruleId": "",
   "businessView": "LibraryBooksListAdminUpdate_BV2",
   "fieldMapping": {
-    "collectionName": "LibraryBooksList",
-    "sourceSchema": {},
-    "targetSchema": {}
+      "collectionName": "LibraryBooksList",
+      "sourceSchema": {},
+      "targetSchema": {}
   },
   "match": {
-    "bookId": "{{payload.section_1.bookId}}"
+      "bookId": "{{payload.section_1.bookId}}"
   },
   "set": {
-    "($)set": {
-      "bookId": "{{payload.section_1.bookId}}",
-      "title": "{{payload.section_1.title}}",
-      "publicationDate": "{{payload.section_1.publicationDate}}",
-      "description": "{{payload.section_1.description}}",
-      "language": "{{payload.section_1.language}}",
-      "pages": "{{payload.section_1.pages}}",
-      "totalBooks": "{{payload.section_1.totalBooks}}",
-      "authors": "{{payload.section_1.authors}}"
-    }
+      "($)set": {
+          "bookId": "{{payload.section_1.bookId}}",
+          "title": "{{payload.section_1.title}}",
+          "publicationDate": "{{payload.section_1.publicationDate}}",
+          "description": "{{payload.section_1.description}}",
+          "language": "{{payload.section_1.language}}",
+          "pages": "{{payload.section_1.pages}}",
+          "totalBooks": "{{payload.section_1.totalBooks}}",
+          "authors": "{{payload.section_1.authors}}"
+      }
   },
   "filter": {}
 }

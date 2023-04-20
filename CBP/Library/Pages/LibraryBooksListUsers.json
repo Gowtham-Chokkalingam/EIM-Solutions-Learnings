@@ -1,5 +1,4 @@
 {
-  "_id": "643cde60f8d37b0b33acb451",
   "tenant": "100",
   "systemID": "JTD410",
   "epic": "SCH-SUPPLIERS",
@@ -11,236 +10,330 @@
   "businessComponent": "User",
   "businessComponentInstance": "{{inputParams.userName}}",
   "pageBanner": {
-      "Business_Comp_Name": "Digital Library",
-      "Title": "SCH Digital Library",
-      "Screen_Name": "Users Page",
-      "Description": " This page is made for users where they can borrow the books"
+    "Business_Comp_Name": "Digital Library",
+    "Title": "Welcome To SCH Digital Library",
+    "Screen_Name": "Users Page",
+    "Description": " This page is made for users where they can borrow the books"
   },
   "dataSource": [
-      {
-          "dataSourceType": "businessView",
-          "dataSourceName": "LibraryBooksListUsers_BV",
-          "dataSourceDetails": {
-              "businessView": "LibraryBooksListUsers_BV"
-          }
-      },
-      {
-          "dataSourceType": "businessView",
-          "dataSourceName": "LibraryUserBorrowPageDisplayBV",
-          "dataSourceDetails": {
-              "businessView": "LibraryUserBorrowPageDisplayBV"
-          }
+    {
+      "dataSourceType": "businessView",
+      "dataSourceName": "LibraryBooksListUsers_BV",
+      "dataSourceDetails": {
+        "businessView": "LibraryBooksListUsers_BV"
       }
+    },
+    {
+      "dataSourceType": "businessView",
+      "dataSourceName": "LibraryUserBorrowPageDisplayBV",
+      "dataSourceDetails": {
+        "businessView": "LibraryUserBorrowPageDisplayBV"
+      }
+    }
+  ],
+  "pageActions": [
+    {
+      "text": "Log Out",
+      "type": "submit",
+      "showLabel": true,
+      "style": "style2",
+      "disableFormValidation": false,
+      "css": {
+        "font-size": "16px",
+        "color": "#52a5fb",
+        "cursor": "pointer"
+      },
+      "onClick": [
+        {
+          "actions": [
+            {
+              "action": "redirect",
+              "actionDetails": {
+                "routerLink": "/page/LibraryUserLogin"
+              }
+            }
+          ]
+        }
+      ]
+    }
   ],
   "rows": [
-      {
-          "columns": [
-              {
-                  "components": [
+    {
+      "columns": [
+        {
+          "components": [
+            {
+              "componentId": 1,
+              "type": "table",
+              "title": "Books List",
+              "description": "Books Details",
+              "dataSourceName": "LibraryBooksListUsers_BV",
+              "tableConfig": {
+                "layoutIcon": false,
+                "downloadIcon": false,
+                "columnFilterIcon": true,
+                "rowFilterIcon": true,
+                "fullscreenIcon": true,
+                "aggregationFooter": false,
+                "checkbox": false,
+                "headerActions": [
+                  {
+                    "text": "User Details",
+                    "showLabel": true,
+                    "icon": "",
+                    "image": "",
+                    "css": {},
+                    "style": "style3",
+                    "onClick": [
                       {
-                          "componentId": 1,
-                          "type": "table",
-                          "title": "Books List",
-                          "description": "Books Details",
-                          "dataSourceName": "LibraryBooksListUsers_BV",
-                          "tableConfig": {
-                              "layoutIcon": false,
-                              "downloadIcon": false,
-                              "columnFilterIcon": true,
-                              "rowFilterIcon": true,
-                              "fullscreenIcon": true,
-                              "aggregationFooter": false,
-                              "checkbox": false,
-                              "tableFilter": {
-                                  "dataSourceType": "inline",
-                                  "dataSource": [
-                                      {
-                                          "dataSourceType": "businessView",
-                                          "dataSourceName": "LibraryBookListFilter_BV",
-                                          "dataSourceDetails": {
-                                              "businessView": "LibraryBookListFilter_BV"
-                                          }
-                                      }
-                                  ],
-                                  "Filters": [
-                                      {
-                                          "description": "Author",
-                                          "dbColumnName": "authors",
-                                          "placeholder": "Author Name",
-                                          "dataSourceName": "LibraryBookListFilter_BV",
-                                          "filterType": "checkBox"
-                                      },
-                                      {
-                                          "description": "Language",
-                                          "placeholder": "Book Language",
-                                          "dataSourceName": "LibraryBookListFilter_BV",
-                                          "dbColumnName": "language",
-                                          "filterType": "checkBox"
-                                      }
-                                  ]
+                        "actions": [
+                          {
+                            "action": "redirect",
+                            "actionDetails": {
+                              "routerLink": "/page/LibraryUserDetails",
+                              "params": {
+                                "studentLibraryId": "{{inputParams.userName}}"
                               }
-                          },
-                          "tableColumns": {
-                              "BookId": {
-                                  "type": "text",
-                                  "dbColumnName": null,
-                                  "value": {
-                                      "routerLink": "/page/LibraryBookDetails",
-                                      "text": "{{bookId}}",
-                                      "params": {
-                                          "bookId": "{{bookId}}"
-                                      }
-                                  }
-                              },
-                              "Profile": {
-                                  "type": "image",
-                                  "dbColumnName": "title"
-                              },
-                              "Book Title": {
-                                  "type": "text",
-                                  "dbColumnName": "title"
-                              },
-                              "Publication Date": {
-                                  "type": "text",
-                                  "dbColumnName": "publicationDate"
-                              },
-                              "Description": {
-                                  "type": "text",
-                                  "dbColumnName": "description",
-                                  "hidden": true
-                              },
-                              "Language": {
-                                  "type": "text",
-                                  "dbColumnName": "language"
-                              },
-                              "Pages": {
-                                  "type": "text",
-                                  "dbColumnName": "pages"
-                              },
-                              "Books Available": {
-                                  "type": "text",
-                                  "dbColumnName": "totalBooks"
-                              },
-                              "BooksCheck": {
-                                  "type": "text",
-                                  "dbColumnName": "totalBooks"
-                              },
-                              "Author": {
-                                  "type": "text",
-                                  "dbColumnName": "authors"
-                              },
-                              "Availability": {
-                                  "type": "status",
-                                  "hidden": false,
-                                  "dbColumnName": "FATAction2",
-                                  "onLoad": [
-                                      {
-                                          "actions": [
-                                              {
-                                                  "action": "changeFieldValue",
-                                                  "checkCondition": [
-                                                      {
-                                                          "source": "Books Available",
-                                                          "sourceType": "column",
-                                                          "operation": "EQ",
-                                                          "valueof": {
-                                                              "text": "0"
-                                                          }
-                                                      }
-                                                  ],
-                                                  "actionDetails": {
-                                                      "targetColumn": [
-                                                          "Availability"
-                                                      ],
-                                                      "setProperty": {
-                                                          "text": "Not Available",
-                                                          "style": "style14",
-                                                          "css": {
-                                                              "backgroundColor": "red",
-                                                              "color": "#fff"
-                                                          },
-                                                          "enabled": false
-                                                      }
-                                                  }
-                                              },
-                                              {
-                                                  "action": "changeFieldValue",
-                                                  "checkCondition": [
-                                                      {
-                                                          "source": "Books Available",
-                                                          "sourceType": "column",
-                                                          "operation": "NE",
-                                                          "valueof": {
-                                                              "text": "0"
-                                                          }
-                                                      }
-                                                  ],
-                                                  "actionDetails": {
-                                                      "targetColumn": [
-                                                          "Availability"
-                                                      ],
-                                                      "setProperty": {
-                                                          "text": "Available",
-                                                          "style": "style14",
-                                                          "css": {
-                                                              "backgroundColor": "#0b9154",
-                                                              "color": "#fff"
-                                                          },
-                                                          "enabled": true
-                                                      }
-                                                  }
-                                              }
-                                          ]
-                                      }
-                                  ],
-                                  "onClick": [
-                                      {
-                                          "actions": [
-                                              {
-                                                  "sourceColumn": "Availability",
-                                                  "style": "style1",
-                                                  "checkCondition": {
-                                                      "text": "Available",
-                                                      "style": "style14",
-                                                      "enabled": true
-                                                  },
-                                                  "action": "redirect",
-                                                  "actionDetails": {
-                                                      "routerLink": "",
-                                                      "params": {
-                                                          "selectedRows": true,
-                                                          "selectedColumns": [
-                                                              "BookId",
-                                                              "{{inputParams.userName}}"
-                                                          ]
-                                                      }
-                                                  }
-                                              }
-                                          ]
-                                      }
-                                  ]
-                              },
-                              "Borrow": {
-                                  "type": "icon",
-                                  "dbColumnName": null,
-                                  "hidden": false,
-                                  "value": {
-                                      "routerLink": "/page/LibraryUserBorrow",
-                                      "params": {
-                                          "bookId": "{{bookId}}",
-                                          "userName": "{{inputParams.userName}}"
-                                      },
-                                      "enabled": true,
-                                      "eventId": "openItemText",
-                                      "text": "{{bookId}}}"
-                                  },
-                                  "icon": "feather icon-plus"
-                              }
+                            }
                           }
+                        ]
                       }
+                    ]
+                  }
+                ],
+                "tableFilter": {
+                  "dataSourceType": "inline",
+                  "dataSource": [
+                    {
+                      "dataSourceType": "businessView",
+                      "dataSourceName": "LibraryBookListFilter_BV",
+                      "dataSourceDetails": {
+                        "businessView": "LibraryBookListFilter_BV"
+                      }
+                    }
+                  ],
+                  "Filters": [
+                    {
+                      "description": "Author",
+                      "dbColumnName": "authors",
+                      "placeholder": "Author Name",
+                      "dataSourceName": "LibraryBookListFilter_BV",
+                      "filterType": "checkBox"
+                    },
+                    {
+                      "description": "Language",
+                      "placeholder": "Book Language",
+                      "dataSourceName": "LibraryBookListFilter_BV",
+                      "dbColumnName": "language",
+                      "filterType": "checkBox"
+                    }
                   ]
+                }
+              },
+              "tableColumns": {
+                "BookId": {
+                  "type": "text",
+                  "dbColumnName": null,
+                  "value": {
+                    "routerLink": "/page/LibraryBookDetails",
+                    "text": "{{bookId}}",
+                    "params": {
+                      "bookId": "{{bookId}}"
+                    }
+                  }
+                },
+                "Profile": {
+                  "type": "image",
+                  "dbColumnName": "title"
+                },
+                "Book Title": {
+                  "type": "text",
+                  "dbColumnName": "title"
+                },
+                "Publication Date": {
+                  "type": "text",
+                  "dbColumnName": "publicationDate"
+                },
+                "Description": {
+                  "type": "text",
+                  "dbColumnName": "description",
+                  "hidden": true
+                },
+                "Language": {
+                  "type": "text",
+                  "dbColumnName": "language"
+                },
+                "Pages": {
+                  "type": "text",
+                  "dbColumnName": "pages"
+                },
+                "Books Available": {
+                  "type": "text",
+                  "dbColumnName": "totalBooks"
+                },
+                "Author": {
+                  "type": "text",
+                  "dbColumnName": "authors"
+                },
+                "Status": {
+                  "type": "status",
+                  "hidden": false,
+                  "dbColumnName": "FATAction2",
+                  "onLoad": [
+                    {
+                      "actions": [
+                        {
+                          "action": "changeFieldValue",
+                          "checkCondition": [
+                            {
+                              "source": "Books Available",
+                              "sourceType": "column",
+                              "operation": "EQ",
+                              "valueof": {
+                                "text": "0"
+                              }
+                            }
+                          ],
+                          "actionDetails": {
+                            "targetColumn": ["Status"],
+                            "setProperty": {
+                              "text": "Not Available",
+                              "style": "style14",
+                              "css": {
+                                "backgroundColor": "red",
+                                "color": "#fff"
+                              },
+                              "enabled": false
+                            }
+                          }
+                        },
+                        {
+                          "action": "changeFieldValue",
+                          "checkCondition": [
+                            {
+                              "source": "Books Available",
+                              "sourceType": "column",
+                              "operation": "NE",
+                              "valueof": {
+                                "text": "0"
+                              }
+                            }
+                          ],
+                          "actionDetails": {
+                            "targetColumn": ["Status"],
+                            "setProperty": {
+                              "text": "Available",
+                              "style": "style14",
+                              "css": {
+                                "backgroundColor": "#0b9154",
+                                "color": "#fff"
+                              },
+                              "enabled": true
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "Borrow": {
+                  "type": "icon",
+                  "dbColumnName": null,
+                  "hidden": false,
+                  "value": {
+                    "routerLink": "/page/LibraryUserBorrow",
+                    "params": {
+                      "bookId": "{{bookId}}",
+                      "userName": "{{inputParams.userName}}"
+                    },
+                    "enabled": true,
+                    "eventId": "openItemText",
+                    "text": "{{bookId}}}"
+                  },
+                  "icon": "feather icon-plus"
+                },
+                "Availability": {
+                  "type": "button",
+                  "hidden": true,
+                  "dbColumnName": "FATAction2",
+                  "onLoad": [
+                    {
+                      "actions": [
+                        {
+                          "action": "changeFieldValue",
+                          "checkCondition": [
+                            {
+                              "source": "Books Available",
+                              "sourceType": "column",
+                              "operation": "EQ",
+                              "valueof": {
+                                "text": "0"
+                              }
+                            }
+                          ],
+                          "actionDetails": {
+                            "targetColumn": ["Availability"],
+                            "setProperty": {
+                              "text": "Not Available",
+                              "style": "style14",
+                              "background-color": "#ff0000",
+                              "enabled": false
+                            }
+                          }
+                        },
+                        {
+                          "action": "changeFieldValue",
+                          "checkCondition": [
+                            {
+                              "source": "Books Available",
+                              "sourceType": "column",
+                              "operation": "NE",
+                              "valueof": {
+                                "text": "0"
+                              }
+                            }
+                          ],
+                          "actionDetails": {
+                            "targetColumn": ["Availability"],
+                            "setProperty": {
+                              "text": "Available",
+                              "style": "style14",
+                              "enabled": true
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "onClick": [
+                    {
+                      "actions": [
+                        {
+                          "sourceColumn": "Availability",
+                          "style": "style1",
+                          "checkCondition": {
+                            "text": "Available",
+                            "style": "style14",
+                            "enabled": true
+                          },
+                          "action": "redirect",
+                          "actionDetails": {
+                            "routerLink": "/page/LibraryUserBorrow",
+                            "params": {
+                              "selectedRows": true,
+                              "selectedColumns": ["Language"]
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
               }
+            }
           ]
-      }
+        }
+      ]
+    }
   ]
 }
