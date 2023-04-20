@@ -1,0 +1,20 @@
+{
+    "ruleId": "",
+    "businessView": "transcationDataReturnBV",
+    "fieldMapping": {
+        "collectionName": "LibraryTranscationList",
+        "sourceSchema": {},
+        "targetSchema": {}
+    },
+    "match": {
+        "userID": "{{payload.section_1.userID}}",
+        "bookId": "{{payload.section_1.bookId}}"
+   
+    },
+    "set": {
+        "($)set": {
+            "returnedAt": "{{payload.section_1.returnedAt}}"
+        }
+    },
+    "filter": {}
+}

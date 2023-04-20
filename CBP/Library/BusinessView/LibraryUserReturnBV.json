@@ -1,0 +1,25 @@
+{
+  "ruleId": "",
+  "businessView": "LibraryUserReturnBV",
+  "fieldMapping": {
+    "collectionName": "LibraryUsersList",
+    "sourceSchema": {},
+    "targetSchema": {}
+  },
+  "match": {
+    "userID": "{{payload.section_1.userID}}"
+  },
+  "set": {
+    "($)set": {},
+    "($)pull": {
+      "booksList": {
+        "bookId": "{{payload.section_1.bookId}}"
+      }
+    },
+    "($)inc": {
+      "booksCount": 1
+    }
+  },
+  "filter": {}
+}
+

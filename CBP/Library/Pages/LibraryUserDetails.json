@@ -1,129 +1,287 @@
 {
-    "_id": "643cde60f8d37b0b33acb451",
-    "tenant": "100",
-    "systemID": "JTD410",
-    "epic": "SCH-SUPPLIERS",
-    "pageName": "LibraryUserDetails",
-    "version": "Grid",
-    "showWorkflowActions": false,
-    "showPageBanner": true,
-    "businessComponentDesc": "",
-    "businessComponent": "User",
-    "businessComponentInstance": "{{inputParams.userName}}",
-    "pageBanner": {
-      "Business_Comp_Name": "Digital Library",
-      "Title": "SCH Digital Library",
-      "Screen_Name": "Users Page",
-      "Description": " This page is made for users where they can borrow the books"
-    },
-    "dataSource": [
-      {
-        "dataSourceType": "businessView",
-        "dataSourceName": "LibraryUserDetails",
-        "dataSourceDetails": {
-          "businessView": "LibraryUserDetails"
-        }
-      },
-      {
-        "dataSourceType": "businessView",
-        "dataSourceName": "LibraryUserBorrowPageDisplayBV",
-        "dataSourceDetails": {
-          "businessView": "LibraryUserBorrowPageDisplayBV"
-        }
+  "tenant": "100",
+  "systemID": "JTD410",
+  "epic": "SCH-SUPPLIERS",
+  "pageName": "LibraryUserDetails",
+  "version": "Grid",
+  "showWorkflowActions": false,
+  "showPageBanner": true,
+  "businessComponentDesc": "",
+  "businessComponent": "User",
+  "businessComponentInstance": "{{inputParams.userName}}",
+  "pageBanner": {
+    "Business_Comp_Name": "Digital Library",
+    "Title": "SCH Digital Library",
+    "Screen_Name": "Users Page",
+    "Description": " This page is made for users where they can borrow the books"
+  },
+  "dataSource": [
+    {
+      "dataSourceType": "businessView",
+      "dataSourceName": "LibraryUserDetailsBV",
+      "dataSourceDetails": {
+        "businessView": "LibraryUserDetailsBV"
       }
-    ],
-    "rows": [
-      {
-        "columns": [
-          {
-            "components": [
-              {
-                "componentId": 1,
-                "type": "table",
-                "title": "Books List",
-                "description": "Books Details",
-                "dataSourceName": "LibraryUserDetails",
-                "tableConfig": {
-                  "layoutIcon": false,
-                  "downloadIcon": false,
-                  "columnFilterIcon": true,
-                  "rowFilterIcon": true,
-                  "fullscreenIcon": true,
-                  "aggregationFooter": false,
-                  "checkbox": false,
-                 
-                },
-                "tableColumns": {
-                 
-                
-                  "BookId": {
-                    "type": "text",
-                    "dbColumnName": null,
-                    "value": {
-                      "routerLink": "/page/LibraryBookDetails",
-                      "text": "{{bookId}}",
-                      "params": {
-                        "bookId": "{{bookId}}"
-                      }
-                    }
-                  },
-                  "Profile": {
-                    "type": "image",
-                    "dbColumnName": "title"
-                  },
-                  "Book Title": {
-                    "type": "text",
-                    "dbColumnName": "title"
-                  },
-                  "Publication Date": {
-                    "type": "text",
-                    "dbColumnName": "publicationDate"
-                  },
-                  "Description": {
-                    "type": "text",
-                    "dbColumnName": "description",
-                    "hidden": true
-                  },
-                  "Language": {
-                    "type": "text",
-                    "dbColumnName": "language"
-                  },
-                
-                  "Author": {
-                    "type": "text",
-                    "dbColumnName": "authors"
-                  },
-                  "Borrowed Date": {
-                    "type": "text",
-                    "dbColumnName": "borrowDate"
-                  },
-                  "Returning Date": {
-                    "type": "text",
-                    "dbColumnName": "returnDate"
-                  },
-                 
-                  "Return": {
-                    "type": "icon",
-                    "dbColumnName": null,
-                    "hidden": false,
-                    "value": {
-                      "routerLink": "/page/LibraryUserBorrow",
-                      "params": {
-                        "bookId": "{{bookId}}",
-                        "userName": "{{inputParams.userName}}"
-                      },
-                      "enabled": true,
-                      "eventId": "openItemText",
-                      "text": "{{bookId}}}"
-                    },
-                    "icon": "feather icon-plus"
-                  }
+    },
+    {
+      "dataSourceType": "businessView",
+      "dataSourceName": "LibraryUserBorrowPageDisplayBV",
+      "dataSourceDetails": {
+        "businessView": "LibraryUserBorrowPageDisplayBV"
+      }
+    }
+  ],
+  "pageActions": [
+    {
+      "text": "Previous Page",
+      "type": "router",
+      "showLabel": true,
+      "style": "style2",
+      "disableFormValidation": false,
+      "css": {
+        "font-size": "16px",
+        "color": "#52a5fb",
+        "cursor": "pointer"
+      },
+      "onClick": [
+        {
+          "actions": [
+            {
+              "action": "redirect",
+              "actionDetails": {
+                "routerLink": "/page/LibraryBooksListUsers",
+                "params": {
+                  "userName": "{{inputParams.userName}}"
                 }
               }
-            ]
-          }
-        ]
-      }
-    ]
-  }
-  
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "text": "Log Out",
+      "type": "router",
+      "showLabel": true,
+      "style": "style2",
+      "disableFormValidation": false,
+      "css": {
+        "font-size": "16px",
+        "color": "#52a5fb",
+        "cursor": "pointer"
+      },
+      "onClick": [
+        {
+          "actions": [
+            {
+              "action": "redirect",
+              "actionDetails": {
+                "routerLink": "/page/LibraryUserLogin"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+
+  "rows": [
+    {
+      "columns": [
+        {
+          "components": [
+            {
+              "componentId": "1",
+              "type": "section",
+              "title": "User Info",
+              "Description": " User Details ",
+              "icon": "Login",
+              "headerComponents": [],
+              "sectionBody": {
+                "style": "style1",
+                "rows": [
+                  {
+                    "columns": [
+                      {
+                        "width": "18%",
+                        "components": [
+                          {
+                            "type": "image",
+                            "dbColumnName": "name",
+                            "label": "Profile",
+                            "dataSourceName": "LibraryUserBorrowPageDisplayBV",
+                            "url": null,
+                            "css": {
+                              "grid-row": "1/-3",
+                              "grid-column": "1/1"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "width": "18%",
+                        "components": [
+                          {
+                            "label": "User Name",
+                            "type": "text",
+                            "mandatory": false,
+                            "dbColumnName": "name",
+                            "dataSourceName": "LibraryUserBorrowPageDisplayBV",
+                            "displayStyle": "verticalKeyValue",
+                            "formcontrol": "name",
+                            "componentId": "name",
+                            "readOnly": true
+                          },
+                          {
+                            "label": "UserId",
+                            "type": "text",
+                            "mandatory": false,
+                            "dbColumnName": "userID",
+                            "dataSourceName": "LibraryUserBorrowPageDisplayBV",
+                            "displayStyle": "verticalKeyValue",
+                            "formcontrol": "userID",
+                            "componentId": "userID",
+                            "readOnly": true
+                          },
+                          {
+                            "label": "Total Books Borrowed",
+                            "type": "text",
+                            "mandatory": false,
+                            "dbColumnName": "booksListCount",
+                            "dataSourceName": "LibraryUserBorrowPageDisplayBV",
+                            "displayStyle": "verticalKeyValue",
+                            "formcontrol": "booksListCount",
+                            "componentId": "booksListCount",
+                            "readOnly": true
+                          }
+                        ]
+                      },
+                      {
+                        "width": "18%",
+                        "components": [
+                          {
+                            "label": "User Name",
+                            "type": "text",
+                            "hidden": true,
+                            "mandatory": false,
+                            "dbColumnName": "name",
+                            "dataSourceName": "LibraryUserBorrowPageDisplayBV",
+                            "displayStyle": "verticalKeyValue",
+                            "formcontrol": "name",
+                            "componentId": "name",
+                            "readOnly": true
+                          },
+                          {
+                            "label": "UserId",
+                            "type": "text",
+                            "hidden": true,
+                            "mandatory": false,
+                            "dbColumnName": "userID",
+                            "dataSourceName": "LibraryUserBorrowPageDisplayBV",
+                            "displayStyle": "verticalKeyValue",
+                            "formcontrol": "userID",
+                            "componentId": "userID",
+                            "readOnly": true
+                          },
+                          {
+                            "label": "Total Books Borrowed",
+                            "type": "text",
+                            "mandatory": false,
+                            "hidden": true,
+                            "dbColumnName": "booksListCount",
+                            "dataSourceName": "LibraryUserBorrowPageDisplayBV",
+                            "displayStyle": "verticalKeyValue",
+                            "formcontrol": "booksListCount",
+                            "componentId": "booksListCount",
+                            "readOnly": true
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "columns": [
+        {
+          "components": [
+            {
+              "componentId": 3,
+              "type": "table",
+              "title": "Books Borrowed",
+              "description": "Books Details",
+              "dataSourceName": "LibraryUserDetailsBV",
+              "tableConfig": {
+                "layoutIcon": false,
+                "downloadIcon": false,
+                "columnFilterIcon": true,
+                "rowFilterIcon": true,
+                "fullscreenIcon": true,
+                "aggregationFooter": false,
+                "checkbox": false
+              },
+              "tableColumns": {
+                "BookId": {
+                  "type": "text",
+                  "dbColumnName": null,
+                  "value": {
+                    "routerLink": "/page/LibraryBookDetails",
+                    "text": "{{bookId}}",
+                    "params": {
+                      "bookId": "{{bookId}}"
+                    }
+                  }
+                },
+                "Profile": {
+                  "type": "image",
+                  "dbColumnName": "title"
+                },
+                "Book Title": {
+                  "type": "text",
+                  "dbColumnName": "title"
+                },
+
+                "Author": {
+                  "type": "text",
+                  "dbColumnName": "author"
+                },
+                "Borrowed Date": {
+                  "type": "text",
+                  "dbColumnName": "borrowingDate"
+                },
+                "Returning Date": {
+                  "type": "text",
+                  "dbColumnName": "returningData"
+                },
+
+                "Return": {
+                  "type": "icon",
+                  "dbColumnName": null,
+                  "hidden": false,
+                  "value": {
+                    "routerLink": "/page/LibraryUserBorrow",
+                    "params": {
+                      "bookId": "{{bookId}}",
+                      "userName": "{{inputParams.userName}}"
+                    },
+                    "enabled": true,
+                    "eventId": "openItemText",
+                    "text": "{{bookId}}}"
+                  },
+                  "icon": "feather icon-minus-square"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

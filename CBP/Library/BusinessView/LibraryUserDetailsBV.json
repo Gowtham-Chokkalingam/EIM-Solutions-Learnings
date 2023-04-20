@@ -1,0 +1,54 @@
+{
+  "ruleId": "",
+  "businessView": "LibraryUserDetailsBV",
+  "defaultSortSetting": {
+    "sortField": "bookId",
+    "sortDirection": 1
+  },
+  "collection": "LibraryUsersList",
+  "aggregation": [
+    {
+      "($)facet": {
+        "paginatedResults": [
+          {
+            "($)match": {
+              "name": "Gowtham"
+            }
+          },
+          { "($)unwind": "$booksList" },
+          {
+            "($)project": {
+              "bookId": "($)booksList.bookId",
+              "title": "($)$booksList.title",
+              "publicationDate": "($)booksList.publicationDate",
+
+              "borrowingDate": "($)booksList.borrowingDate",
+              "returningData": "($)booksList.returningData",
+
+              "authors": "($)$booksList.authors"
+            }
+          },
+          {
+            "($)match": "{{componentSetting.rowFilter}}"
+          },
+          {
+            "($)sort": {
+              "{{componentSetting.matSortActive}}": "{{componentSetting.matSortDirection}}"
+            }
+          },
+          {
+            "($)skip": "{{componentSetting.page}}"
+          },
+          {
+            "($)limit": "{{componentSetting.limit}}"
+          }
+        ],
+        "totalCount": [
+          {
+            "($)count": "count"
+          }
+        ]
+      }
+    }
+  ]
+}

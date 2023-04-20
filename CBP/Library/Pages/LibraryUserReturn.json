@@ -1,0 +1,248 @@
+{
+"tenant": "100",
+"systemID": "JTD410",
+"epic": "SCH-SUPPLIER",
+"pageName": "LibraryUserReturn",
+"version": "Grid",
+"showWorkflowActions": false,
+"showPageBanner": false,
+"businessComponentDesc": "",
+"businessComponent": "Library",
+"businessComponentInstance": "Digital Library Management",
+"dataSource": [
+  {
+    "dataSourceType": "businessView",
+    "dataSourceName": "LibraryBooksListAdminUpdate_BV",
+    "dataSourceDetails": {
+      "businessView": "LibraryBooksListAdminUpdate_BV"
+    }
+  },
+  {
+    "dataSourceType": "businessView",
+    "dataSourceName": "LibraryUserBorrowPageDisplayBV",
+    "dataSourceDetails": {
+      "businessView": "LibraryUserBorrowPageDisplayBV"
+    }
+  }
+],
+"pageActions": [
+  {
+    "text": "Return",
+    "type": "submit",
+    "showLabel": true,
+    "style": "style2",
+    "disableFormValidation": false,
+    "css": {
+      "font-size": "16px",
+      "color": "#52a5fb",
+      "cursor": "pointer"
+    },
+    "onClick": [
+      {
+        "actions": [
+          {
+            "action": "executePageAction",
+            "actionPerformed": "submit"
+          }
+        ]
+      }
+    ]
+  }
+],
+"executePageActions": [
+  {
+    "ID": 1,
+    "Rule": "pageAction",
+    "RuleGroup": "",
+    "WHEN": "'{{payload.pageActionPerformed}}' == 'submit'",
+    "THEN": ["performAction"],
+    "enableLogs":true,
+    "Actions": [
+   
+     {
+        "id": 1,
+        "actionName": "updateUserReturn",
+        "actionType": "updateBusinessView",
+        "actionDetails": {
+          "businessView": "LibraryUserReturnBV",
+          "database": "{{payload.headers.dbName}}",
+          "targetSchema": {},
+          "sourceSchema": {}
+        }
+      },
+     {
+        "id": 2,
+        "actionName": "updateBookReturn",
+        "actionType": "updateBusinessView",
+        "actionDetails": {
+          "businessView": "LibraryBookReturnBV",
+          "database": "{{payload.headers.dbName}}",
+          "targetSchema": {},
+          "sourceSchema": {}
+        }
+      },
+      {
+        "id": 3,
+        "actionName": "transcationDataUpdate",
+        "actionType": "updateBusinessView",
+        "actionDetails": {
+          "businessView": "transcationDataReturnBV",
+          "database": "{{payload.headers.dbName}}",
+          "targetSchema": {},
+          "sourceSchema": {}
+        }
+      }
+     
+    ],
+    "Output": {
+      "message": "Book Returned Successfully",
+      "routerLink": "/page/LibraryUserDetails",
+      "redirect": {
+        "routerLink": "/page/LibraryUserDetails",
+        "text": "{{payload.formData.name}}",
+        "params": {
+          "userName": "{{payload.section_1.name}}"
+        }
+      }
+    }
+  }
+],
+"pageBanner": {
+  "Business_Comp_Name": "Digital Library",
+  "Title": "SCH Digital Library",
+  "Screen_Name": "Book Borrow Page",
+  "Description": " This page is managed by library admin to Update and update the books "
+},
+"rows": [
+  {
+    "columns": [
+      {
+        "components": [
+          {
+            "componentId": "1",
+            "type": "section",
+            "title": "Book Borrow Page",
+            "Description": " Books Borrow Page ",
+            "icon": "Book borrow page",
+            "dataSourceName": "LibraryBooksListAdminUpdate_BV",
+            "headerComponents": [],
+            "sectionBody": {
+              "style": "style1",
+              "rows": [
+                {
+                  "columns": [
+                    {
+                      "width": "18%",
+                      "components": [
+                        {
+                          "label": "BookId",
+                          "type": "text",
+                          "mandatory": false,
+                          "dataSourceName": "LibraryBooksListAdminUpdate_BV",
+                          "dbColumnName": "bookId",
+                          "displayStyle": "verticalKeyValue",
+                          "formcontrol": "bookId",
+                          "componentId": "bookId",
+                          "readOnly": true,
+                          "icon": "https://image"
+                        },
+                        {
+                          "label": "Book Title",
+                          "type": "text",
+                          "mandatory": false,
+                          "dataSourceName": "LibraryBooksListAdminUpdate_BV",
+                          "dbColumnName": "title",
+                          "displayStyle": "verticalKeyValue",
+                          "formcontrol": "title",
+                          "componentId": "title",
+                          "readOnly": true,
+                          "icon": "https://image"
+                        },
+                        {
+                          "label": "Language",
+                          "type": "text",
+                          "mandatory": false,
+                          "dataSourceName": "LibraryBooksListAdminUpdate_BV",
+                          "dbColumnName": "language",
+                          "displayStyle": "verticalKeyValue",
+                          "formcontrol": "language",
+                          "componentId": "language",
+                          "readOnly": true,
+                          "icon": "https://image"
+                        },
+                        {
+                          "label": "Author",
+                          "type": "text",
+                          "mandatory": false,
+                          "dataSourceName": "LibraryBooksListAdminUpdate_BV",
+                          "dbColumnName": "authors",
+                          "displayStyle": "verticalKeyValue",
+                          "formcontrol": "authors",
+                          "componentId": "authors",
+                          "readOnly": true,
+                          "icon": "https://image"
+                        }
+                      ]
+                    },
+                    {
+                      "width": "20%",
+                      "components": [
+                        {
+                          "label": "UserId",
+                          "type": "text",
+                          "mandatory": false,
+                          "dbColumnName": "userID",
+                          "dataSourceName": "LibraryUserBorrowPageDisplayBV",
+                          "displayStyle": "verticalKeyValue",
+                          "formcontrol": "userID",
+                          "componentId": "userID",
+                          "readOnly": true,
+                          "icon": "https://image"
+                        },
+                        {
+                          "label": "User Name",
+                          "type": "text",
+                          "mandatory": false,
+                          "dbColumnName": "name",
+                          "dataSourceName": "LibraryUserBorrowPageDisplayBV",
+                          "displayStyle": "verticalKeyValue",
+                          "formcontrol": "name",
+                          "componentId": "name",
+                          "readOnly": true,
+                          "icon": "https://image"
+                        }
+                      ]
+                    },
+                    {
+                      "components": [
+                        {
+                          "type": "datetime-local",
+                          "label": "Please Select Returing Time",
+                          "dataSourceName": "SelectedPR",
+                          "dbColumnName": "returnedAt",
+                          "mandatory": true,
+                          "style": "style1",
+                          "validation": {
+                            "min": {
+                              "valueof": {
+                                "componentId": "section_RFQBiddingDetails.OpeningDate",
+                                "property": "value"
+                              }
+                            }
+                          },
+                          "formcontrol": "returnedAt",
+                          "hidden": false
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  }
+]
+}

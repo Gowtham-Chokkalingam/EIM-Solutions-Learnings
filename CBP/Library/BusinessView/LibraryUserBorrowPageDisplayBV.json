@@ -18,7 +18,10 @@
             "($)project": {
               "userID": "($)userID",
               "name": "($)name",
-              "booksCount": "($)booksCount"
+              "booksCount": "($)booksCount",
+              "booksListCount": {
+                "($)size": "($)booksList"
+              }
             }
           },
           {
