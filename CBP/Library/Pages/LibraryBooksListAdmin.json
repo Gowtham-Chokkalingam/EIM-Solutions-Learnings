@@ -1,5 +1,4 @@
 {
-  "_id": "643654c8d9379f0af139ecf9",
   "tenant": "100",
   "systemID": "JTD410",
   "epic": "SCH-SUPPLIERS",
@@ -43,6 +42,33 @@
             {
               "action": "executePageAction",
               "actionPerformed": "submit"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Books Log",
+      "type": "router",
+      "showLabel": true,
+      "style": "style2",
+      "disableFormValidation": false,
+      "css": {
+        "font-size": "16px",
+        "color": "#52a5fb",
+        "cursor": "pointer"
+      },
+      "onClick": [
+        {
+          "actions": [
+            {
+              "action": "redirect",
+              "actionDetails": {
+                "routerLink": "/page/LibraryTranscationLog",
+                "params": {
+                  "userName": "{{inputParams.userName}}"
+                }
+              }
             }
           ]
         }

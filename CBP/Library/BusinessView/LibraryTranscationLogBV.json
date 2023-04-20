@@ -1,0 +1,58 @@
+{
+    "ruleId": "",
+    "businessView": "LibraryTranscationLogBV",
+    "defaultSortSetting": {
+        "sortField": "createdAt",
+        "sortDirection": -1
+    },
+    "collection": "LibraryTranscationList",
+
+    "aggregation": [
+        {
+          "($)facet": {
+            "paginatedResults": [
+              {
+                "($)match": {}
+              },
+            
+              {
+                "($)project": {
+                  "bookId": "($)bookId",
+                  "userID": "($)userID",
+                  "title": "($)title",
+                  "publicationDate": "($)publicationDate",
+                  "description": "($)description", 
+                  "language": "($)language",
+                  "name": "($)name",
+                  "authors": "($)authors",
+                  "borrowDate": "($)borrowDate",
+                  "returnDate": "($)returnDate",
+                  "returnedAt": "($)returnedAt",
+                  "createdAt": "($)createdAt"
+
+                }
+              },
+              {
+                "($)match": "{{componentSetting.rowFilter}}"
+              },
+              {
+                "($)sort": {
+                  "{{componentSetting.matSortActive}}": "{{componentSetting.matSortDirection}}"
+                }
+              },
+              {
+                "($)skip": "{{componentSetting.page}}"
+              },
+              {
+                "($)limit": "{{componentSetting.limit}}"
+              }
+            ],
+            "totalCount": [
+              {
+                "($)count": "count"
+              }
+            ]
+          }
+        }
+      ]
+}
