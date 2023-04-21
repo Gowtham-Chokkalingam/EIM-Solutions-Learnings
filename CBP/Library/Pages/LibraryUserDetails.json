@@ -266,7 +266,7 @@
                   "dbColumnName": null,
                   "hidden": false,
                   "value": {
-                    "routerLink": "/page/LibraryUserBorrow",
+                    "routerLink": "/page/LibraryUserReturn",
                     "params": {
                       "bookId": "{{bookId}}",
                       "userName": "{{inputParams.userName}}"

@@ -1,151 +1,158 @@
 {
-  "tenant": "100",
-  "systemID": "JTD410",
-  "epic": "SCH-SUPPLIERS",
-  "pageName": "LibraryTranscationLog",
-  "version": "Grid",
-  "showWorkflowActions": false,
-  "showPageBanner": true,
-  "businessComponentDesc": "",
-  "businessComponent": "Library",
-  "businessComponentInstance": "Admin Library Management",
-  "pageBanner": {
-    "Business_Comp_Name": "Digital Library",
-    "Title": "SCH Digital Library",
-    "Screen_Name": "Admin Page",
-    "Description": " This page is managed by library admin to add and update the books "
-  },
-  "dataSource": [
-    {
-      "dataSourceType": "businessView",
-      "dataSourceName": "LibraryTranscationLogBV",
-      "dataSourceDetails": {
-        "businessView": "LibraryTranscationLogBV"
+  "_id": ObjectId("64421aebcfc5ce0ad39f93ec"),
+
+"tenant": "100",
+"systemID": "JTD410",
+"epic": "SCH-SUPPLIERS",
+"pageName": "LibraryTranscationLog",
+"version": "Grid",
+"showWorkflowActions": false,
+"showPageBanner": true,
+"businessComponentDesc": "",
+"businessComponent": "Library",
+"businessComponentInstance": "User Transcation Logs",
+"pageBanner": {
+  "Business_Comp_Name": "Digital Library",
+  "Title": "SCH Digital Library",
+  "Screen_Name": "Book Log Page",
+  "Description": " This page is managed by library admin to add and update the books "
+},
+"dataSource": [
+  {
+    "dataSourceType": "businessView",
+    "dataSourceName": "LibraryTranscationLogBV",
+    "dataSourceDetails": {
+      "businessView": "LibraryTranscationLogBV"
+    }
+  }
+],
+"pageActions": [
+  {
+    "text": "Admin Page",
+    "type": "router",
+    "showLabel": true,
+    "style": "style2",
+    "disableFormValidation": false,
+    "css": {
+      "font-size": "16px",
+      "color": "#52a5fb",
+      "cursor": "pointer"
+    },
+    "onClick": [
+      {
+        "actions": [
+          {
+            "action": "redirect",
+            "actionDetails": {
+              "routerLink": "/page/LibraryBooksListAdmin"
+            }
+          }
+        ]
       }
-    }
-  ],
-  "pageActions": [
-    {
-      "text": "Admin Page",
-      "type": "router",
-      "showLabel": true,
-      "style": "style2",
-      "disableFormValidation": false,
-      "css": {
-        "font-size": "16px",
-        "color": "#52a5fb",
-        "cursor": "pointer"
-      },
-      "onClick": [
-        {
-          "actions": [
-            {
-              "action": "redirect",
-              "actionDetails": {
-                "routerLink": "/page/LibraryBooksListAdmin"
-              }
-            }
-          ]
-        }
-      ]
-    }
-  ],
+    ]
+  }
+],
 
-  "rows": [
-    {
-      "columns": [
-        {
-          "components": [
-            {
-              "componentId": 1,
-              "type": "table",
-              "title": "Books List",
-              "description": "Books Details",
-              "dataSourceName": "LibraryBooksList_BV",
-              "tableConfig": {
-                "layoutIcon": false,
-                "downloadIcon": false,
-                "columnFilterIcon": true,
-                "rowFilterIcon": true,
-                "fullscreenIcon": true,
-                "aggregationFooter": false,
-                "checkbox": false,
+"rows": [
+  {
+    "columns": [
+      {
+        "components": [
+          {
+            "componentId": 1,
+            "type": "table",
+            "title": "Users Log List",
+            "description": "Books Transcation Details",
+            "dataSourceName": "LibraryTranscationLogBV",
+            "tableConfig": {
+              "layoutIcon": false,
+              "downloadIcon": false,
+              "columnFilterIcon": true,
+              "rowFilterIcon": true,
+              "fullscreenIcon": true,
+              "aggregationFooter": false,
+              "checkbox": false,
 
-                "tableFilter": {
-                  "dataSourceType": "inline",
-                  "dataSource": [
-                    {
-                      "dataSourceType": "businessView",
-                      "dataSourceName": "LibraryBookListFilter_BV",
-                      "dataSourceDetails": {
-                        "businessView": "LibraryBookListFilter_BV"
-                      }
+              "tableFilter": {
+                "dataSourceType": "inline",
+                "dataSource": [
+                  {
+                    "dataSourceType": "businessView",
+                    "dataSourceName": "LibraryBookListFilter_BV",
+                    "dataSourceDetails": {
+                      "businessView": "LibraryBookListFilter_BV"
                     }
-                  ],
-                  "Filters": [
-                    {
-                      "description": "Author",
-                      "dbColumnName": "authors",
-                      "placeholder": "Author Name",
-                      "dataSourceName": "LibraryBookListFilter_BV",
-                      "filterType": "checkBox"
-                    },
-                    {
-                      "description": "Language",
-                      "placeholder": "Book Language",
-                      "dataSourceName": "LibraryBookListFilter_BV",
-                      "dbColumnName": "language",
-                      "filterType": "checkBox"
-                    }
-                  ]
-                }
-              },
-              "tableColumns": {
-                "User Id": {
-                  "type": "text",
-                  "dbColumnName": "userID"
-                },
-                "User Name": {
-                  "type": "text",
-                  "dbColumnName": "name"
-                },
-                "BookId": {
-                  "type": "text",
-                  "dbColumnName": "bookId"
-                },
-
-                "Book Title": {
-                  "type": "text",
-                  "dbColumnName": "title"
-                },
-
-                "Language": {
-                  "type": "text",
-                  "dbColumnName": "language"
-                },
-
-                "Author": {
-                  "type": "text",
-                  "dbColumnName": "authors"
-                }
-              },
-
-              "Borrow date": {
-                "type": "text",
-                "dbColumnName": "borrowDate"
-              },
-              "Expected Return Date": {
-                "type": "text",
-                "dbColumnName": "returnDate"
-              },
-              "Actual Return date": {
-                "type": "text",
-                "dbColumnName": "returnedAt"
+                  }
+                ],
+                "Filters": [
+                  {
+                    "description": "Book Name",
+                    "dbColumnName": "title",
+                    "placeholder": "Author Name",
+                    "dataSourceName": "LibraryBookListFilter_BV",
+                    "filterType": "checkBox"
+                  },
+                  {
+                    "description": "User Name",
+                    "placeholder": "User Name",
+                    "dataSourceName": "LibraryBookListFilter_BV",
+                    "dbColumnName": "name",
+                    "filterType": "checkBox"
+                  }
+                ]
               }
-            }
-          ]
-        }
-      ]
-    }
-  ]
+            },
+            "tableColumns": {
+              "User Id": {
+                "type": "text",
+                "dbColumnName": "userID"
+              },
+              "User Name": {
+                "type": "text",
+                "dbColumnName": "name",
+                "emphasize":true
+          
+              },
+              "BookId": {
+                "type": "text",
+                "dbColumnName": "bookId"
+              },
+
+              "Book Title": {
+                "type": "text",
+                "dbColumnName": "title","emphasize":true
+              },
+
+              "Language": {
+                "type": "text",
+                "dbColumnName": "language"
+              },
+
+              "Author": {
+                "type": "text",
+                "dbColumnName": "authors"
+              }
+            ,
+
+            "Borrow date": {
+              "type": "text",
+              "dbColumnName": "borrowDate",
+              "emphasize":true
+            },
+            "Expected Return Date": {
+              "type": "text",
+              "dbColumnName": "returnDate",
+              "emphasize":true
+            },
+            "Actual Return date": {
+              "type": "text",
+              "dbColumnName": "returnedAt",
+              "emphasize":true
+            }}
+          }
+        ]
+      }
+    ]
+  }
+]
 }

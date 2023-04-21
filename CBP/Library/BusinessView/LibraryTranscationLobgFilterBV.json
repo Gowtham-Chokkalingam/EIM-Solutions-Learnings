@@ -1,0 +1,76 @@
+{
+  "ruleId": "",
+  "businessView": "LibraryTranscationLobgFilterBV",
+  "defaultSortSetting": {
+    "sortField": "createdAt",
+    "sortDirection": -1
+  },
+  "collection": "LibraryTranscationList",
+  "aggregation": [
+    {
+      "($)match": {}
+    },
+    {
+      "($)group": {
+        "_id": null,
+        "bookId": {
+          "($)addToSet": "($)bookId"
+        },
+        "title": {
+          "($)addToSet": "($)title"
+        },
+        "name": {
+          "($)addToSet": "($)name"
+        },
+
+        "language": {
+          "($)addToSet": "($)language"
+        },
+
+        "authors": {
+          "($)addToSet": "($)authors"
+        },
+        "createdAt": {
+          "($)addToSet": "($)createdAt"
+        }
+      }
+    },
+    {
+      "($)facet": {
+        "paginatedResults": [
+          {
+            "($)project": {
+              "bookId": "($)bookId",
+              "title": "($)title",
+              "publicationDate": "($)publicationDate",
+              "language": "($)language",
+
+              "name": "($)name",
+              "authors": "($)authors",
+              "createdAt": "($)createdAt"
+            }
+          },
+          {
+            "($)match": "{{componentSetting.rowFilter}}"
+          },
+          {
+            "($)sort": {
+              "{{componentSetting.matSortActive}}": "{{componentSetting.matSortDirection}}"
+            }
+          },
+          {
+            "($)skip": "{{componentSetting.page}}"
+          },
+          {
+            "($)limit": "{{componentSetting.limit}}"
+          }
+        ],
+        "totalCount": [
+          {
+            "($)count": "count"
+          }
+        ]
+      }
+    }
+  ]
+}

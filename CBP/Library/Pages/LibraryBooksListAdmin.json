@@ -65,9 +65,7 @@
               "action": "redirect",
               "actionDetails": {
                 "routerLink": "/page/LibraryTranscationLog",
-                "params": {
-                  "userName": "{{inputParams.userName}}"
-                }
+          
               }
             }
           ]
