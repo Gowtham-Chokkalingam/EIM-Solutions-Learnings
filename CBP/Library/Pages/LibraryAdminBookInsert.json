@@ -1,218 +1,241 @@
 {
-    "_id": "6436934bd9379f0af139ecfc",
-    "tenant": "100",
-    "systemID": "JTD410",
-    "epic": "SCH-SUPPLIER",
-    "pageName": "LibraryBooksListAdminUpdate",
-    "version": "Grid",
-    "showWorkflowActions": false,
-    "showPageBanner": false,
-    "businessComponentDesc": "",
-    "businessComponent": "Library",
-    "businessComponentInstance": "Digital Library Management",
-    "dataSource": [
+  "tenant": "100",
+  "systemID": "JTD410",
+  "epic": "SCH-SUPPLIER",
+  "pageName": "LibraryAdminBookInsert",
+  "version": "Grid",
+  "showWorkflowActions": false,
+  "showPageBanner": false,
+  "businessComponentDesc": "",
+  "businessComponent": "Library",
+  "businessComponentInstance": "Digital Library Management",
+  "pageActions": [
+    {
+      "text": "Home",
+      "icon": "ficon feather icon-home",
+      "type": "router",
+      "showLabel": true,
+      "style": "style2",
+      "disableFormValidation": false,
+      "css": {
+        "font-size": "16px",
+        "color": "#52a5fb",
+        "cursor": "pointer"
+      },
+      "onClick": [
         {
-            "dataSourceType": "businessView",
-            "dataSourceName": "LibraryBooksListAdminUpdate_BV",
-            "dataSourceDetails": {
-                "businessView": "LibraryBooksListAdminUpdate_BV"
+          "actions": [
+            {
+              "action": "redirect",
+              "actionDetails": {
+                "routerLink": "/page/LibraryBooksListAdmin"
+              }
             }
+          ]
         }
-    ],
-    "pageActions": [
-        {
-            "text": "Update",
-            "type": "submit",
-            "showLabel": true,
-            "style": "style2",
-            "disableFormValidation": false,
-            "css": {
-                "font-size": "16px",
-                "color": "#52a5fb",
-                "cursor": "pointer"
-            },
-            "onClick": [
-                {
-                    "actions": [
-                        {
-                            "action": "executePageAction",
-                            "actionPerformed": "submit"
-                        }
-                    ]
-                }
-            ]
-        }
-    ],
-    "executePageActions": [
-        {
-            "ID": 1,
-            "Rule": "pageAction",
-            "RuleGroup": "",
-            "WHEN": "'{{payload.pageActionPerformed}}' == 'submit'",
-            "THEN": [
-                "performAction"
-            ],
-            "Actions": [
-                {
-                    "id": 1,
-                    "actionName": "updateEmployee",
-                    "actionType": "updateBusinessView",
-                    "actionDetails": {
-                        "businessView": "LibraryBooksListAdminUpdate_BV2",
-                        "database": "sch_core_abg",
-                        "targetSchema": {},
-                        "sourceSchema": {}
-                    }
-                }
-            ],
-            "Output": {
-                "message": "Updated Successfully",
-                "routerLink": "/page/LibraryBooksListAdmin",
-                "redirect": {
-                    "routerLink": "/page/LibraryBooksListAdmin",
-                    "params": {}
-                }
-            }
-        }
-    ],
-    "pageBanner": {
-        "Business_Comp_Name": "Digital Library",
-        "Title": "SCH Digital Library",
-        "Screen_Name": "Update Page",
-        "Description": " This page is managed by library admin to Update and update the books "
+      ]
     },
-    "rows": [
+    {
+      "text": "Insert",
+      "type": "submit",
+      "icon": "ficon feather icon-plus",
+      "showLabel": true,
+      "style": "style2",
+      "disableFormValidation": false,
+      "css": {
+        "font-size": "16px",
+        "color": "#52a5fb",
+        "cursor": "pointer"
+      },
+      "onClick": [
         {
-            "columns": [
-                {
-                    "components": [
-                        {
-                            "componentId": "1",
-                            "type": "section",
-                            "title": "Book Update Page",
-                            "Description": " Books Edit Page ",
-                            "icon": "Book update page",
-                            "dataSourceName": "LibraryBooksListAdminUpdate_BV",
-                            "headerComponents": [],
-                            "sectionBody": {
-                                "style": "style1",
-                                "rows": [
-                                    {
-                                        "columns": [
-                                            {
-                                                "width": "18%",
-                                                "components": [
-                                                    {
-                                                        "label": "BookId",
-                                                        "type": "text",
-                                                        "mandatory": false,
-                                                        "dbColumnName": "bookId",
-                                                        "dataSourceName": "LibraryBooksListAdminUpdate_BV",
-                                                        "displayStyle": "verticalKeyValue",
-                                                        "formcontrol": "bookId",
-                                                        "componentId": "bookId",
-                                                        "icon": "https://image"
-                                                    },
-                                                    {
-                                                        "label": "Book Title",
-                                                        "type": "text",
-                                                        "dataSourceName": "LibraryBooksListAdminUpdate_BV",
-                                                        "displayStyle": "verticalKeyValue",
-                                                        "dbColumnName": "title",
-                                                        "mandatory": false,
-                                                        "formcontrol": "title",
-                                                        "componentId": "title",
-                                                        "icon": "https://image"
-                                                    },
-                                                    {
-                                                        "label": "Publication Date",
-                                                        "type": "text",
-                                                        "dbColumnName": "publicationDate",
-                                                        "readOnly": false,
-                                                        "componentId": "publicationDate",
-                                                        "dataSourceName": "LibraryBooksListAdminUpdate_BV",
-                                                        "formcontrol": "publicationDate",
-                                                        "displayStyle": "verticalKeyValue",
-                                                        "icon": "https://image"
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "width": "15%",
-                                                "components": [
-                                                    {
-                                                        "label": "Description",
-                                                        "type": "text",
-                                                        "mandatory": false,
-                                                        "dbColumnName": "description",
-                                                        "dataSourceName": "LibraryBooksListAdminUpdate_BV",
-                                                        "displayStyle": "verticalKeyValue",
-                                                        "readOnly": false,
-                                                        "uniqueInDb": false,
-                                                        "formcontrol": "description",
-                                                        "componentId": "description",
-                                                        "value": "",
-                                                        "icon": "https://image"
-                                                    },
-                                                    {
-                                                        "label": "Language",
-                                                        "type": "text",
-                                                        "dbColumnName": "language",
-                                                        "dataSourceName": "LibraryBooksListAdminUpdate_BV",
-                                                        "displayStyle": "verticalKeyValue",
-                                                        "readOnly": false,
-                                                        "formcontrol": "language",
-                                                        "componentId": "language",
-                                                        "icon": "https://image"
-                                                    },
-                                                    {
-                                                        "label": "Pages",
-                                                        "type": "number",
-                                                        "closeOnSelect": true,
-                                                        "readOnly": false,
-                                                        "formcontrol": "pages",
-                                                        "dbColumnName": "pages",
-                                                        "multiple": true,
-                                                        "dataSourceName": "LibraryBooksListAdminUpdate_BV",
-                                                        "displayStyle": "verticalKeyValue",
-                                                        "componentId": "pages"
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "width": "15%",
-                                                "components": [
-                                                    {
-                                                        "label": "Total Books",
-                                                        "type": "number",
-                                                        "dbColumnName": "totalBooks",
-                                                        "dataSourceName": "LibraryBooksListAdminUpdate_BV",
-                                                        "displayStyle": "verticalKeyValue",
-                                                        "formcontrol": "totalBooks",
-                                                        "componentId": "totalBooks"
-                                                    },
-                                                    {
-                                                        "label": "Author",
-                                                        "type": "text",
-                                                        "dbColumnName": "authors",
-                                                        "dataSourceName": "LibraryBooksListAdminUpdate_BV",
-                                                        "displayStyle": "verticalKeyValue",
-                                                        "readOnly": false,
-                                                        "formcontrol": "authors",
-                                                        "componentId": "authors",
-                                                        "hidden": false,
-                                                        "icon": "https://image"
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
-                        }
-                    ]
-                }
-            ]
+          "actions": [
+            {
+              "action": "executePageAction",
+              "actionPerformed": "submit"
+            }
+          ]
         }
-    ]
+      ]
+    }
+  ],
+  "executePageActions": [
+    {
+      "ID": 1,
+      "Rule": "pageAction",
+      "RuleGroup": "",
+      "WHEN": "'{{payload.pageActionPerformed}}' == 'submit'",
+      "THEN": ["performAction"],
+      "Actions": [
+        {
+          "id": 1,
+          "actionName": "collectionListInsert",
+          "actionType": "insertData",
+          "actionDetails": {
+            "database_details": {
+              "database": "{{payload.headers.dbName}}",
+              "collection": "LibraryBooksList"
+            },
+            "payload": {
+              "bookId": "{{payload.section_1.bookId}}",
+              "title": "{{payload.section_1.title}}",
+              "publicationDate": "{{payload.section_1.publicationDate}}",
+              "description": "{{payload.section_1.description}}",
+              "language": "{{payload.section_1.language}}",
+              "pages": "{{payload.section_1.pages}}",
+              "totalBooks": "{{payload.section_1.totalBooks}}",
+              "authors": "{{payload.section_1.authors}}"
+            }
+          }
+        }
+      ],
+      "Output": {
+        "message": "New Book has been added to the Library",
+        "routerLink": "/page/LibraryBooksListAdmin",
+        "redirect": {
+          "routerLink": "/page/LibraryBooksListAdmin"
+        }
+      }
+    }
+  ],
+  "pageBanner": {
+    "Business_Comp_Name": "Digital Library",
+    "Title": "SCH Digital Library",
+    "Screen_Name": "Insert Page",
+    "Description": "This page is managed by library admin to Insert"
+  },
+  "rows": [
+    {
+      "columns": [
+        {
+          "components": [
+            {
+              "componentId": "1",
+              "type": "section",
+              "title": "Book Insert Page",
+              "Description": " Books Edit Page ",
+              "icon": "Book update page",
+              "dataSourceName": "",
+              "headerComponents": [],
+              "sectionBody": {
+                "style": "style1",
+                "rows": [
+                  {
+                    "columns": [
+                      {
+                        "width": "18%",
+                        "components": [
+                          {
+                            "label": "BookId",
+                            "type": "text",
+                            "mandatory": false,
+                            "dbColumnName": "bookId",
+                            "dataSourceName": "",
+                            "displayStyle": "verticalKeyValue",
+                            "formcontrol": "bookId",
+                            "componentId": "bookId",
+                            "icon": "https://image"
+                          },
+                          {
+                            "label": "Book Title",
+                            "type": "text",
+                            "dataSourceName": "",
+                            "displayStyle": "verticalKeyValue",
+                            "dbColumnName": "title",
+                            "mandatory": false,
+                            "formcontrol": "title",
+                            "componentId": "title",
+                            "icon": "https://image"
+                          },
+                          {
+                            "label": "Publication Date",
+                            "type": "text",
+                            "dbColumnName": "publicationDate",
+                            "readOnly": false,
+                            "componentId": "publicationDate",
+                            "dataSourceName": "",
+                            "formcontrol": "publicationDate",
+                            "displayStyle": "verticalKeyValue",
+                            "icon": "https://image"
+                          }
+                        ]
+                      },
+                      {
+                        "width": "15%",
+                        "components": [
+                          {
+                            "label": "Description",
+                            "type": "text",
+                            "mandatory": false,
+                            "dbColumnName": "description",
+                            "dataSourceName": "",
+                            "displayStyle": "verticalKeyValue",
+                            "readOnly": false,
+                            "uniqueInDb": false,
+                            "formcontrol": "description",
+                            "componentId": "description",
+                            "value": "",
+                            "icon": "https://image"
+                          },
+                          {
+                            "label": "Language",
+                            "type": "text",
+                            "dbColumnName": "language",
+                            "dataSourceName": "",
+                            "displayStyle": "verticalKeyValue",
+                            "readOnly": false,
+                            "formcontrol": "language",
+                            "componentId": "language",
+                            "icon": "https://image"
+                          },
+                          {
+                            "label": "Pages",
+                            "type": "number",
+                            "closeOnSelect": true,
+                            "readOnly": false,
+                            "formcontrol": "pages",
+                            "dbColumnName": "pages",
+                            "multiple": true,
+                            "dataSourceName": "",
+                            "displayStyle": "verticalKeyValue",
+                            "componentId": "pages"
+                          }
+                        ]
+                      },
+                      {
+                        "width": "15%",
+                        "components": [
+                          {
+                            "label": "Total Books",
+                            "type": "number",
+                            "dbColumnName": "totalBooks",
+                            "dataSourceName": "",
+                            "displayStyle": "verticalKeyValue",
+                            "formcontrol": "totalBooks",
+                            "componentId": "totalBooks"
+                          },
+                          {
+                            "label": "Author",
+                            "type": "text",
+                            "dbColumnName": "authors",
+                            "dataSourceName": "",
+                            "displayStyle": "verticalKeyValue",
+                            "readOnly": false,
+                            "formcontrol": "authors",
+                            "componentId": "authors",
+                            "hidden": false,
+                            "icon": "https://image"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

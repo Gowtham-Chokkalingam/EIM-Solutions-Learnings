@@ -1,6 +1,5 @@
 {
-  "_id": "643e29283b7eda0a7e9ed3bd",
-  "businessView": "LibraryUserBorrowPageDisplayBV",
+  "businessView": "LibrPopUpTime",
   "defaultSortSetting": {
     "sortField": "createdAt",
     "sortDirection": -1
@@ -12,9 +11,10 @@
         "paginatedResults": [
           {
             "($)match": {
-              "name": "{{inputParams.userName}}"
+              "userID": "S001"
             }
           },
+
           {
             "($)addFields": {
               "CompletionPeriodmultiple1": {
@@ -29,23 +29,27 @@
               }
             }
           },
+         
+          {
+            "($)addFields": {
+              "daysBetween": {
+                "($)divide": [{ "($)subtract": [ {
+                    "($)toDate": "2022-09-08"
+                }, "($)($)NOW"] }, 86400000]
+              }
+            }
+          },
           {
             "($)project": {
               "currentDate": "{{timeStamp YYYY-MM-DDTHH:mm}}",
+              "daysBetween": "($)daysBetween",
+              "CompletionPeriodmultiple1": "($)CompletionPeriodmultiple1",
               "returnDate": {
                 "($)rtrim": {
                   "input": {
                     "($)toString": "($)closing"
                   },
                   "chars": "Z"
-                }
-              },
-              "userID": "($)userID",
-              "name": "($)name",
-              "booksCount": "($)booksCount",
-              "booksListCount": {
-                "($)toString": {
-                  "($)size": "($)booksList"
                 }
               }
             }

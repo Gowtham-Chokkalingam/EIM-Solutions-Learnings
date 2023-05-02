@@ -1,0 +1,309 @@
+{
+    "_id": "63ca71bbdb40c50a6f9e93d4",
+    "ruleId": "",
+    "businessView": "crescentManualcreateRFQBV",
+    "collection": "user",
+    "defaultSortSetting": {
+        "sortField": "userId",
+        "sortDirection": 1
+    },
+    "executeRulesOnLoad": [],
+    "aggregation": [
+        {
+            "($)match": {
+                "userId": "{{headers.userid}}"
+            }
+        },
+        {
+            "($)sort": {
+                "{{componentSetting.matSortActive}}": "{{componentSetting.matSortDirection}}"
+            }
+        },
+        {
+            "($)unwind": {
+                "path": "($)item",
+                "preserveNullAndEmptyArrays": true
+            }
+        },
+        {
+            "($)addFields": {
+                "userId": "{{headers.userid}}"
+            }
+        },
+        {
+            "($)lookup": {
+                "from": "user",
+                "localField": "userId",
+                "foreignField": "userId",
+                "as": "user"
+            }
+        },
+        {
+            "($)unwind": {
+                "path": "($)user",
+                "preserveNullAndEmptyArrays": true
+            }
+        },
+        {
+            "($)lookup": {
+                "from": "vendors",
+                "localField": "userId",
+                "foreignField": "userId",
+                "as": "vendor"
+            }
+        },
+        {
+            "($)unwind": {
+                "path": "($)vendor",
+                "preserveNullAndEmptyArrays": true
+            }
+        },
+        {
+            "($)facet": {
+                "paginatedResults": [
+                    {
+                        "($)lookup": {
+                            "from": "code",
+                            "let": {
+                                "code": "USD",
+                                "codeType": "currency"
+                            },
+                            "pipeline": [
+                                {
+                                    "($)match": {
+                                        "($)expr": {
+                                            "($)and": [
+                                                {
+                                                    "($)eq": [
+                                                        "($)codeType",
+                                                        "($)($)codeType"
+                                                    ]
+                                                },
+                                                {
+                                                    "($)eq": [
+                                                        "($)code",
+                                                        "($)($)code"
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            ],
+                            "as": "currency1"
+                        }
+                    },
+                    {
+                        "($)unwind": {
+                            "path": "($)currency1",
+                            "preserveNullAndEmptyArrays": true
+                        }
+                    },
+                    {
+                        "($)addFields": {
+                            "currencyCode": {
+                                "($)arrayElemAt": [
+                                    "($)currency1.codeDescription",
+                                    0
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "($)lookup": {
+                            "from": "rfxControlData",
+                            "let": {
+                                "codeType": "evaluation"
+                            },
+                            "pipeline": [
+                                {
+                                    "($)match": {
+                                        "($)expr": {
+                                            "($)and": [
+                                                {
+                                                    "($)eq": [
+                                                        "($)codeType",
+                                                        "($)($)codeType"
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            ],
+                            "as": "evaluationType"
+                        }
+                    },
+                    {
+                        "($)unwind": {
+                            "path": "($)evaluationType",
+                            "preserveNullAndEmptyArrays": true
+                        }
+                    },
+                    {
+                        "($)unwind": {
+                            "path": "($)evaluationType.codeDescription",
+                            "preserveNullAndEmptyArrays": true
+                        }
+                    },
+                    {
+                        "($)unwind": {
+                            "path": "($)evaluationType.levels",
+                            "preserveNullAndEmptyArrays": true
+                        }
+                    },
+                    {
+                        "($)lookup": {
+                            "from": "code",
+                            "let": {
+                                "code": "($)item.procurementTeam",
+                                "codeType": "purchaseGroup"
+                            },
+                            "pipeline": [
+                                {
+                                    "($)match": {
+                                        "($)expr": {
+                                            "($)and": [
+                                                {
+                                                    "($)eq": [
+                                                        "($)codeType",
+                                                        "($)($)codeType"
+                                                    ]
+                                                },
+                                                {
+                                                    "($)eq": [
+                                                        "($)code",
+                                                        "($)($)code"
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            ],
+                            "as": "procurItem"
+                        }
+                    },
+                    {
+                        "($)unwind": {
+                            "path": "($)procurItem",
+                            "preserveNullAndEmptyArrays": true
+                        }
+                    },
+                    {
+                        "($)addFields": {
+                            "purchaseGroup": {
+                                "($)arrayElemAt": [
+                                    "($)procurItem.codeDescription",
+                                    0
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "($)addFields": {
+                            "CompletionPeriodmultiple1": {
+                                "($)multiply": [
+                                    75,
+                                    24,
+                                    60,
+                                    60000
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "($)addFields": {
+                            "closing": {
+                                "($)add": [
+                                    "($)($)NOW",
+                                    "($)CompletionPeriodmultiple1"
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "($)project": {
+                            "levelss": "($)evaluationType.levels.level",
+                            "descriptions": "($)evaluationType.levels.description",
+                            "evaluationss": "($)evaluationType.codeDescription.evaluations",
+                            "workflow": "($)evaluationType.codeDescription.workflowId",
+                            "billingAddressCode": "($)billingAddressCode",
+                            "legalEntity": "($)legalEntity",
+                            "allowPartialQuote": "($)allowPartialQuote",
+                            "deliveryAddressCode": "($)deliveryAddressCode",
+                            "buyerResponsible": "($)buyerResponsible",
+                            "userProfile": "($)statusHdr",
+                            "purchaseReqNumber": "($)purchaseReqNumber",
+                            "purchaseReqRelDate": "($)purchaseReqRelDate",
+                            "statusHdr": "($)statusHdr",
+                            "SAPAssignBuyer": "($)SAPAssignBuyer",
+                            "material": "($)item.material",
+                            "briefDescription": "($)item.briefDescription",
+                            "requestedQuantity": "($)item.requestedQuantity",
+                            "quantityUnit": "($)item.quantityUnit",
+                            "procurementTeam": "($)item.procurementTeam",
+                            "businessLocation": "($)item.businessLocation",
+                            "nameOfRequisitioner": "($)item.nameOfRequisitioner",
+                            "expectedDeliveryDate": "($)item.expectedDeliveryDate",
+                            "purchaseReqItem": "($)item.purchaseReqItem",
+                            "createdAt": "($)createdAt",
+                            "activeGroup": "($)activeGroup",
+                            "requestedOn": "($)requestedOn",
+                            "requestedBy": "($)requestedBy",
+                            "statusItem": "($)item.statusItem",
+                            "currency": "USD",
+                            "closing": {
+                                "($)rtrim": {
+                                    "input": {
+                                        "($)toString": "($)closing"
+                                    },
+                                    "chars": "Z"
+                                }
+                            },
+                            "currency1": "($)currencyCode.description",
+                            "language": "EN",
+                            "timeZone": "India Standard Time",
+                            "bidType": "Open",
+                            "createdBy": "($)createdBy",
+                            "extentionRemark": "extension tested",
+                            "PRRate": "($)item.priceUnit",
+                            "prPriority": "($)prPriority",
+                            "userId": "{{headers.userid}}",
+                            "buyerGroup": {
+                                "($)arrayElemAt": [
+                                    "($)user.userGroup",
+                                    0
+                                ]
+                            },
+                            "buyerName": "($)user.firstName",
+                            "buyerEmail": "($)user.email",
+                            "oscReference": "($)vendor.customerSpecificData.oscReference",
+                            "mnrRegistrationExpriy": "($)vendor.customerSpecificData.mnrRegistrationExpriy",
+                            "prItems": "{{toLength inputParams.selectedRows}}",
+                            "purchaseReqDocumentType": "($)purchaseReqDocumentType",
+                            "procurementOffice": "($)item.procurementOffice",
+                            "rfxPurchaseGroupDescription": "($)purchaseGroup.description",
+                            "rfxPurchaseGroup": "($)item.procurementTeam",
+                            "itemStatus": "New",
+                            "currentDate": "{{timeStamp YYYY-MM-DDTHH:mm}}",
+                            "codeDescript": "($)procurItem.codeDescription.description",
+                            "productType": "($)item.productType"
+                        }
+                    },
+                    {
+                        "($)skip": "{{componentSetting.page}}"
+                    },
+                    {
+                        "($)limit": "{{componentSetting.limit}}"
+                    }
+                ],
+                "totalCount": [
+                    {
+                        "($)count": "count"
+                    }
+                ]
+            }
+        }
+    ]
+}

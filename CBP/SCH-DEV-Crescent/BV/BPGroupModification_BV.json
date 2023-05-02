@@ -1,0 +1,118 @@
+{
+  "ruleId": "",
+  "businessView": "BPGroupModification_BV",
+  "collection": "VendorGrouping",
+  "defaultSortSetting": {
+    "sortField": "groupId",
+    "sortDirection": -1
+  },
+  "aggregation": [
+    {
+      "($)match": {
+        "($)or": [
+          {
+            "groupId": "{{groupId}}"
+          },
+          {
+            "groupId": "{{inputParams.groupId}}"
+          }
+        ]
+      }
+    },
+    {
+      "($)sort": {
+        "{{componentSetting.matSortActive}}": "{{componentSetting.matSortDirection}}"
+      }
+    },
+    {
+      "($)facet": {
+        "paginatedResults": [
+          {
+            "($)unwind": {
+              "path": "($)vendorDetails",
+              "preserveNullAndEmptyArrays": true
+            }
+          },
+          {
+            "($)lookup": {
+              "from": "vendors",
+              "localField": "vendorDetails.BPId",
+              "foreignField": "schAssociateNumber",
+              "as": "vendor"
+            }
+          },
+          {
+            "($)unwind": {
+              "path": "($)vendor",
+              "preserveNullAndEmptyArrays": true
+            }
+          },
+          {
+            "($)lookup": {
+              "from": "code",
+              "let": {
+                "country": "($)vendor.country",
+                "codeType": "country"
+              },
+              "pipeline": [
+                {
+                  "($)match": {
+                    "($)expr": {
+                      "($)and": [
+                        {
+                          "($)eq": ["($)code", "($)($)country"]
+                        },
+                        {
+                          "($)eq": ["($)codeType", "($)($)codeType"]
+                        }
+                      ]
+                    }
+                  }
+                }
+              ],
+              "as": "Countrycodee"
+            }
+          },
+          {
+            "($)unwind": {
+              "path": "($)Countrycodee",
+              "preserveNullAndEmptyArrays": true
+            }
+          },
+          {
+            "($)unwind": {
+              "path": "($)Countrycodee.codeDescription",
+              "preserveNullAndEmptyArrays": true
+            }
+          },
+          {
+            "($)project": {
+              "_id": 0,
+              "materialCode": "($)materialCode",
+              "groupName": "($)groupName",
+              "schAssociateNumber": "($)vendorDetails.BPId",
+              "name": "($)vendor.name",
+              "contactNumber": "($)vendor.contactNumber",
+              "emailAddress": "($)vendor.emailAddress",
+              "country": "($)Countrycodee.codeDescription.description",
+              "createdAt": "($)createdAt",
+              "oscReference": "($)vendor.customerSpecificData.oscReference",
+              "mnrRegistrationExpriy": "($)vendor.customerSpecificData.mnrRegistrationExpriy",
+              "userId": "($)vendor.userId",
+              "modifyAt": "{{timeStamp YYYY-MM-DDTHH:mm}}",
+              "modifyBy": "{{headers.userid}}",
+              "groupId": "{{inputParams.groupId}}",
+              "createdBy": "($)createdBy",
+              "activeGroup": "($)isActive"
+            }
+          }
+        ],
+        "totalCount": [
+          {
+            "($)count": "count"
+          }
+        ]
+      }
+    }
+  ]
+}

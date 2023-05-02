@@ -27,8 +27,8 @@
   ],
   "pageActions": [
     {
-      "text": "Borrow",
-      "type": "submit",
+      "text": "Previous Page",
+      "type": "router",
       "showLabel": true,
       "style": "style2",
       "disableFormValidation": false,
@@ -41,8 +41,86 @@
         {
           "actions": [
             {
+              "action": "redirect",
+              "actionDetails": {
+                "routerLink": "/page/LibraryBooksListUsers",
+                "params": {
+                  "userName": "{{inputParams.userName}}"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Borrow",
+      "type": "submit",
+      "showLabel": true,
+      "style": "style2",
+      "disableFormValidation": false,
+      "css": {
+        "font-size": "16px",
+        "color": "#52a5fb",
+        "cursor": "pointer"
+      },
+      "checkCondition": [
+        {
+          "source": "Remaining Number Of Borrows",
+          "sourceComponentId": "booksCount",
+          "sourceType": "sectionComponent",
+          "sourceSectionComponentId": "BorrowPage",
+          "operation": "ET",
+          "valueOf": {
+            "value": "0"
+          },
+          "setValue": {
+            "hidden": true
+          }
+        }
+      ],
+      "onClick": [
+        {
+          "actions": [
+            {
               "action": "executePageAction",
               "actionPerformed": "submit"
+            }
+          ],
+          "checkCondition": [
+            {
+              "failureMessage": "Your Borrow Limit Is Exceeded",
+              "source": "Remaining Number Of Borrows",
+              "sourceType": "sectionComponent",
+              "operation": "ET",
+              "valueof": {
+                "value": "0"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Log Out",
+      "type": "router",
+      "showLabel": true,
+      "style": "style2",
+      "disableFormValidation": false,
+      "css": {
+        "font-size": "16px",
+        "color": "#52a5fb",
+        "cursor": "pointer"
+      },
+
+      "onClick": [
+        {
+          "actions": [
+            {
+              "action": "redirect",
+              "actionDetails": {
+                "routerLink": "/page/LibraryUserLogin"
+              }
             }
           ]
         }
@@ -92,7 +170,6 @@
               "bookId": "{{payload.section_1.bookId}}",
               "userID": "{{payload.section_1.userID}}",
               "title": "{{payload.section_1.title}}",
-
               "authors": "{{payload.section_1.authors}}",
               "language": "{{payload.section_1.language}}",
               "name": "{{payload.section_1.name}}",
@@ -127,7 +204,7 @@
         {
           "components": [
             {
-              "componentId": "1",
+              "componentId": "BorrowPage",
               "type": "section",
               "title": "Book Borrow Page",
               "Description": " Books Borrow Page ",
@@ -250,10 +327,11 @@
                           {
                             "type": "datetime-local",
                             "label": "Borrowing Date",
-                            "dataSourceName": "SelectedPR",
-                            "dbColumnName": "borrowDate",
+                            "dataSourceName": "LibraryUserBorrowPageDisplayBV",
+                            "dbColumnName": "currentDate",
                             "mandatory": true,
                             "style": "style1",
+                            "closeOnSelect": true,
                             "validation": {
                               "min": {
                                 "valueof": {
@@ -267,11 +345,12 @@
                           },
                           {
                             "type": "datetime-local",
-                            "dataSourceName": "SelectedPR",
+                            "dataSourceName": "LibraryUserBorrowPageDisplayBV",
                             "dbColumnName": "returnDate",
                             "label": "Returning Date",
                             "mandatory": true,
                             "style": "style1",
+                            "closeOnSelect": true,
                             "validation": {
                               "min": {
                                 "valueof": {

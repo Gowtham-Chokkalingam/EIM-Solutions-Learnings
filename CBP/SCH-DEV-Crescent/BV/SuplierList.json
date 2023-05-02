@@ -1,0 +1,4842 @@
+{
+  "tenant": "100",
+  "systemID": "RD4500",
+  "epic": "SCH-SUPPLIER",
+  "pageName": "supplierList",
+  "businessComponent": "Supplier",
+  "version": "Grid",
+  "showWorkflowActions": false,
+  "dataSource": [
+    {
+      "dataSourceType": "businessView",
+      "dataSourceName": "supplierListBV-V1",
+      "dataSourceDetails": {
+        "businessView": "supplierListBV-V1"
+      }
+    },
+    {
+      "dataSourceType": "businessView",
+      "dataSourceName": "embeddedTableLogforVC",
+      "dataSourceDetails": {
+        "businessView": "embeddedTableLogforVC"
+      }
+    },
+    {
+      "dataSourceType": "businessView",
+      "dataSourceName": "certificationTable",
+      "dataSourceDetails": {
+        "businessView": "certificationTable"
+      }
+    },
+    {
+      "dataSourceType": "businessView",
+      "dataSourceName": "notificationTable",
+      "dataSourceDetails": {
+        "businessView": "notificationTable"
+      }
+    }
+  ],
+  "showPageBanner": true,
+  "replicationMDM": false,
+  "pageActions": [
+    {
+      "text": "Mass Initiate",
+      "type": "submit",
+      "showLabel": true,
+      "checkRole": {
+        "disabled": [
+          {
+            "value": true,
+            "roles": [
+              "TemporaryVendor",
+              "portalOneTimeVendor",
+              "portalVendor",
+              "portalPRBuyer",
+              "portalBuyer",
+              "ES-PROC-CATG-MNGR-SPROPRMAINT",
+              "ES-PROC-CATG-MNGR-RM",
+              "ES-PROC-CATG-MNGR-INDIRECT",
+              "ES-PROC-CATG-MNGR-OPRPROC",
+              "ES-PROC-CATG-MNGR-MAINTOPRSER",
+              "ARK-PROC-CATG-MNGR-BLOCK",
+              "ARK-PROC-CATG-MNGR-ALAINCEM",
+              "ARK-PROC-CATG-MNGR-ANABEEB",
+              "ES-MNGR-QA",
+              "ES-MNGR-HCC",
+              "ES-PROC-CATG-BUYR-SPROPRMAINT",
+              "ES-PROC-CATG-BUYR-RM",
+              "ES-PROC-CATG-BUYR-INDIRECT",
+              "ES-PROC-CATG-BUYR-INDIRECT-CAPEX",
+              "ES-PROC-CATG-BUYR-INDIRECT-COSRSER",
+              "ES-PROC-CATG-BUYR-INDIRECT-IT",
+              "ES-PROC-CATG-BUYR-INDIRECT-SHLOG",
+              "ES-PROC-CATG-BUYR-OPRPROC",
+              "ES-PROC-CATG-BUYR-MAINTOPRSER",
+              "ARK-PROC-CATG-BUYR-BLOCK",
+              "ARK-PROC-CATG-BUYR-ALAINCEM",
+              "ARK-PROC-CATG-BUYR-ANABEEB",
+              "VENDOR-SUPERUSER",
+              "VENDOR-SUBUSER",
+              "ES-MNGR-QA",
+              "ES-MNGR-HCC",
+              "ES-MNGR-COMPLIANCE",
+              "ES-MNGR-VENDOR",
+              "ES-PROC-SNR-MNGR",
+              "ES-PROC-VP-SUPPLYCHAIN",
+              "ES-CCO",
+              "ES-BC-FC-BP-HEAD"
+            ]
+          }
+        ]
+      },
+      "style": "style1",
+      "disableFormValidation": true,
+      "onClick": [
+        {
+          "actions": [
+            {
+              "action": "executePageAction",
+              "actionPerformed": "submit",
+              "uploadAttachment": true
+            },
+            {
+              "action": "refresh"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "text": "Mass Onboard",
+      "type": "submit",
+      "showLabel": true,
+      "checkRole": {
+        "disabled": [
+          {
+            "value": true,
+            "roles": [
+              "TemporaryVendor",
+              "portalOneTimeVendor",
+              "portalVendor",
+              "portalPRBuyer",
+              "portalBuyer",
+              "ES-PROC-CATG-MNGR-SPROPRMAINT",
+              "ES-PROC-CATG-MNGR-RM",
+              "ES-PROC-CATG-MNGR-INDIRECT",
+              "ES-PROC-CATG-MNGR-OPRPROC",
+              "ES-PROC-CATG-MNGR-MAINTOPRSER",
+              "ARK-PROC-CATG-MNGR-BLOCK",
+              "ARK-PROC-CATG-MNGR-ALAINCEM",
+              "ARK-PROC-CATG-MNGR-ANABEEB",
+              "ES-MNGR-QA",
+              "ES-MNGR-HCC",
+              "ES-PROC-CATG-BUYR-SPROPRMAINT",
+              "ES-PROC-CATG-BUYR-RM",
+              "ES-PROC-CATG-BUYR-INDIRECT",
+              "ES-PROC-CATG-BUYR-INDIRECT-CAPEX",
+              "ES-PROC-CATG-BUYR-INDIRECT-COSRSER",
+              "ES-PROC-CATG-BUYR-INDIRECT-IT",
+              "ES-PROC-CATG-BUYR-INDIRECT-SHLOG",
+              "ES-PROC-CATG-BUYR-OPRPROC",
+              "ES-PROC-CATG-BUYR-MAINTOPRSER",
+              "ARK-PROC-CATG-BUYR-BLOCK",
+              "ARK-PROC-CATG-BUYR-ALAINCEM",
+              "ARK-PROC-CATG-BUYR-ANABEEB",
+              "VENDOR-SUPERUSER",
+              "VENDOR-SUBUSER",
+              "ES-MNGR-QA",
+              "ES-MNGR-HCC",
+              "ES-MNGR-COMPLIANCE",
+              "ES-MNGR-VENDOR",
+              "ES-PROC-SNR-MNGR",
+              "ES-PROC-VP-SUPPLYCHAIN",
+              "ES-CCO",
+              "ES-BC-FC-BP-HEAD"
+            ]
+          }
+        ]
+      },
+      "style": "style2",
+      "disableFormValidation": true,
+      "onClick": [
+        {
+          "actions": [
+            {
+              "action": "executePageAction",
+              "actionPerformed": "approve",
+              "uploadAttachment": true
+            },
+            {
+              "action": "refresh"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "executePageActions": [
+    {
+      "ID": 1,
+      "Rule": "test",
+      "RuleGroup": "",
+      "enableLogs": true,
+      "WHEN": "'{{payload.pageActionPerformed}}' == 'submit'",
+      "THEN": ["performAction"],
+      "Actions": [
+        {
+          "id": 1,
+          "actionName": "articleData",
+          "actionType": "getExcelDataFromArticle",
+          "actionDetails": {
+            "articleId": "{{payload.articleId}}"
+          }
+        },
+        {
+          "id": 2,
+          "actionName": "insertVendors",
+          "actionType": "insertData",
+          "runCount": "{{#forEach actionsResponse.articleData}}",
+          "actionDetails": {
+            "database_details": {
+              "database": "{{payload.headers.dbName}}",
+              "collection": "vendors"
+            },
+            "primaryKey": {
+              "fieldName": "schAssociateNumber",
+              "prefix": "S"
+            },
+            "payload": {
+              "customerId": "{{currentLoopObj.customerId}}",
+              "customerName": "{{currentLoopObj.customerName}}",
+              "organisationName": "{{currentLoopObj.organisationName}}",
+              "contactEmail": "{{trim currentLoopObj.contactEmail}}",
+              "Initiator": "{{currentLoopObj.Initiator}}",
+              "initiatedBy": "{{currentLoopObj.initiatedBy}}",
+              "status": "Invited",
+              "createdAt": "{{getIsoDate now}}",
+              "updatedAt": "{{getIsoDate now}}",
+              "version": "v0",
+              "active": true
+            }
+          }
+        },
+        {
+          "id": 3,
+          "actionName": "userPassword",
+          "actionType": "generatePassword",
+          "actionDetails": {
+            "hashPassword": false,
+            "passwordLength": 10,
+            "numericChars": 2,
+            "specialChars": 0
+          }
+        },
+        {
+          "id": 4,
+          "actionName": "userData",
+          "actionType": "insertData",
+          "runCount": "{{#forEach actionsResponse.insertVendors}}",
+          "actionDetails": {
+            "database_details": {
+              "database": "{{payload.headers.dbName}}",
+              "collection": "user"
+            },
+            "primaryKey": {
+              "fieldName": "userId",
+              "prefix": "VEND"
+            },
+            "payload": {
+              "tenant": "{{toInt payload.headers.tenant}}",
+              "systemId": null,
+              "firstName": "{{currentLoopObj.organisationName}}",
+              "email": "{{currentLoopObj.contactEmail}}",
+              "userType": "TempVendor",
+              "userGroup": ["TempVendor"],
+              "category": "Vendor",
+              "onBoardStatus": "Temporary Vendor",
+              "tempPassword": "{{hashValue actionsResponse.userPassword}}",
+              "loginpassword": "{{hashValue actionsResponse.userPassword}}",
+              "schAssociateNumber": "{{currentLoopObj.schAssociateNumber}}",
+              "organisationName": "{{currentLoopObj.organisationName}}",
+              "roles": [
+                {
+                  "roleId": "TemporaryVendor",
+                  "status": "Active",
+                  "validFrom": "2022-12-23",
+                  "validTo": "2032-10-23",
+                  "createdAt": "2022-12-23T12:45:00.000Z",
+                  "updatedAt": "2022-12-23T12:45:00.000Z"
+                }
+              ],
+              "associate": [],
+              "version": "v0",
+              "active": true,
+              "lastPasswordChangeDate": "{{getIsoDate now}}",
+              "resetPassword": true
+            }
+          }
+        },
+        {
+          "id": 5,
+          "actionName": "updateVendorUserId",
+          "actionType": "updateBusinessView",
+          "runCount": "{{#forEach actionsResponse.userData}}",
+          "actionDetails": {
+            "database": "{{payload.headers.dbName}}",
+            "businessView": "updateVendorUserId",
+            "sourceData": {},
+            "targetSchema": {}
+          }
+        },
+        {
+          "id": 6,
+          "actionName": "acceptNotifn",
+          "actionType": "executeApi",
+          "runCount": "{{#forEach actionsResponse.userData}}",
+          "async": false,
+          "actionDetails": {
+            "apiDetails": {
+              "URL": "{{payload.baseUrl}}/eventbus/createEvent",
+              "Method": "Post"
+            },
+            "Body": {
+              "event_id": "massVendorNotification",
+              "tenant": "{{toInt payload.headers.tenant}}",
+              "appId": "Event_1",
+              "module": "Event_Bus",
+              "eventSourceName": "Excel",
+              "eventSourceDescription": "vendorOnboardNotification",
+              "data": {
+                "emailId": "{{currentLoopObj.email}}",
+                "subject": "Supplier Registration - Invitation - {{currentLoopObj.schAssociateNumber}}",
+                "tenant": "{{toInt payload.headers.tenant}}",
+                "templateUrl": "https://sch.s3.ap-south-1.amazonaws.com/templates/Invitation-mail.html",
+                "templateValue": {
+                  "title": "Supplier Registration Invitation - {{currentLoopObj.schAssociateNumber}}",
+                  "company": "Emirates Steel Arkan Supplier Assurance Team",
+                  "pagecaption": "Supplier Invite Notification",
+                  "BPCode": "{{currentLoopObj.schAssociateNumber}}",
+                  "suppliercode": "{{currentLoopObj.userId}}",
+                  "Password": "{{actionsResponse.userPassword}}",
+                  "userName": "Dear Sir/Madam ,",
+                  "bannerImage": "",
+                  "emailBody1": "Emirates Steel Arkan Supplier Management Team has invited you to register to become a supplier with Emirates Steel Arkan. The below set-up is mandatory to include 'Company Name' in Emirates Steel Arkan Online purchasing process, hence you need to initiate at the earliest to allow registration & sourcing enablement: ",
+                  "emailBody2": "1. Setup Online account using the below link and Credential details.",
+                  "emailBody3": "2. Fill in Emirates Steel Arkan Registration questionnaire : Provide company data uploading Trade license/Certificates/Bank details, etc.",
+                  "emailBody4": "3. Submit entire response and status.",
+                  "emailBody5": "ESA will review & you will receive an auto-notification after internal approval.",
+                  "emailBody7": "",
+                  "emailBody6": "Only follow up for registration status updates after completing the Online Portal set-up, any further queries, you may contact ESSupplier@emiratessteel.com",
+                  "emailBody8": "",
+                  "emailBody9": "",
+                  "link": "{{payload.baseUrl}}/page/ESACompleteRegistration",
+                  "remarks": "Sincerely,",
+                  "schlogo": "https://sch-emirate-steels.s3.ap-south-1.amazonaws.com/Login+Images/logo.png",
+                  "footer1": "",
+                  "footer2": "Emirates Steel Arkan Supplier Assurance Team"
+                }
+              }
+            }
+          }
+        },
+        {
+          "id": 7,
+          "actionName": "toTriggerWorkflow",
+          "actionType1": "workflowPublishEvent",
+          "actionType": "executeApi",
+          "runCount": "{{#forEach actionsResponse.userData}}",
+          "async": false,
+          "actionDetails": {
+            "apiDetails": {
+              "URL": "{{payload.baseUrl}}/api/publishEvent",
+              "Method": "Post"
+            },
+            "Body": {
+              "Business_Comp_Id": "Supplier",
+              "Business_Comp_Instance_Id": "{{currentLoopObj.schAssociateNumber}}",
+              "Event_Id": "Vendor_Approval_Emirates",
+              "Initiator": "{{currentLoopObj.schAssociateNumber}}",
+              "Action": "Create",
+              "Work_Item_Id": null,
+              "Workflow_Id": null,
+              "Remarks": "",
+              "Message": null,
+              "User_Agent": null,
+              "Tenant": "{{payload.headers.tenant}}",
+              "Trigger_Date": "{{timeStamp YYYY-MM-DD}}",
+              "Context_Data": {
+                "tenant": "{{payload.headers.tenant}}",
+                "schAssociateNumber": "{{currentLoopObj.schAssociateNumber}}",
+                "emailId": "{{currentLoopObj.email}}",
+                "vendorName": "{{currentLoopObj.organisationName}}",
+                "Initiator": "{{currentLoopObj.schAssociateNumber}}",
+                "role": "",
+                "WF_BASE_URL": "{{payload.baseUrl}}",
+                "category": [],
+                "aribaVendor": true
+              }
+            }
+          }
+        },
+        {
+          "id": 8,
+          "actionName": "checkUpdateVendorMassData",
+          "actionType": "conditional",
+          "actionDetails": {
+            "WHEN": "{{actionsResponse.insertVendors}}.length > 0",
+            "THEN": ["staus={{toLength actionsResponse.insertVendors}}", "nextAction=9"],
+            "ELSE": ["staus= Not Uploaded the Vendors", "nextAction=9"]
+          }
+        },
+        {
+          "id": 9,
+          "actionName": "VendorDataUpsert",
+          "actionType": "completed",
+          "actionDetails": {}
+        }
+      ],
+      "Output": {
+        "message": " {{actionsResponse.checkUpdateVendorMassData.staus}} vendor uploaded successfully",
+        "refresh": true
+      }
+    },
+    {
+      "ID": 1,
+      "Rule": "test",
+      "RuleGroup": "",
+      "enableLogs": true,
+      "WHEN": "'{{payload.pageActionPerformed}}' == 'approve'",
+      "THEN": ["performAction"],
+      "Actions": [
+        {
+          "id": 1,
+          "actionName": "updateVendorMassData",
+          "actionType": "executeApi",
+          "async": false,
+          "actionDetails": {
+            "apiDetails": {
+              "URL": "{{payload.baseUrl}}/associate_service/vendors/update-vendor-from-excel?id={{payload.articleId}}",
+              "Method": "Get"
+            },
+            "Body": {}
+          }
+        },
+        {
+          "id": 2,
+          "actionName": "VendorDataUpsert",
+          "actionType": "completed",
+          "actionDetails": {}
+        }
+      ],
+      "Output": {
+        "message": "{{actionsResponse.updateVendorMassData.status}}",
+        "refresh": true
+      }
+    }
+  ],
+  "pageBanner": {
+    "pageBannerButtons": [],
+    "Business_Comp_Name": "SUPPLIER Management",
+    "Title": "Supplier Management",
+    "Description": "Supplier Management",
+    "Screen_Name": "Supplier Management"
+  },
+  "popups": {
+    "ReprocessVendor": {
+      "type": "inline",
+      "inlineJson": {
+        "type": "form",
+        "header": {
+          "heading": "Vendor Reprocess"
+        },
+        "body": {
+          "style": "style1",
+          "title": "Do you want to reprocess this vendor ?",
+          "components1": [
+            {
+              "label": "Do you want to reprocess this vendor ?",
+              "type": "text",
+              "dbcolumnName": "reprocessLocation",
+              "formcontrol": "reprocessLocation",
+              "placeholder": "Reprocess quotation",
+              "mandatory": false,
+              "readOnly": false
+            }
+          ]
+        },
+        "footer": {
+          "button": [
+            {
+              "text": "Cancel",
+              "type": "button",
+              "action": "close"
+            },
+            {
+              "text": "Yes",
+              "type": "submit",
+              "action": "submit",
+              "onClick": [
+                {
+                  "actions": [
+                    {
+                      "action": "executePopupAction"
+                    },
+                    {
+                      "action": "refresh"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "executePopUpAction": [
+        {
+          "ID": 1,
+          "Rule": "pageAction",
+          "RuleGroup": "",
+          "WHEN": "'{{payload.popupActionPerformed}}' == 'submit'",
+          "THEN": ["performAction"],
+          "Actions": [
+            {
+              "id": 1,
+              "actionName": "checkStatus",
+              "actionType": "conditional",
+              "actionDetails": {
+                "WHEN": "'{{payload.selectedRow['Status']['text']}}'=='SAP Failed'",
+                "THEN": ["nextAction=2"],
+                "ELSE": ["nextAction=12"]
+              }
+            },
+            {
+              "id": 2,
+              "actionName": "collectionData",
+              "actionType": "getDataFromDB",
+              "actionDetails": {
+                "database_details": {
+                  "database": "{{payload.headers.dbName}}",
+                  "collection": "vendors"
+                },
+                "filter": {},
+                "aggregation": [
+                  {
+                    "($)match": {
+                      "schAssociateNumber": "{{payload.selectedRow['Supplier ID']['text']}}"
+                    }
+                  },
+                  {
+                    "($)limit": 1
+                  }
+                ],
+                "projection": {},
+                "pagination": {
+                  "limit": 1,
+                  "pageNumber": 0
+                }
+              }
+            },
+            {
+              "id": 3,
+              "actionName": "vendorMappingFields",
+              "actionType": "mapFields",
+              "actionDetails": {
+                "sourceSchema": "{{actionsResponse.collectionData}}",
+                "targetSchema": {
+                  "TENANT": {
+                    "type": "string",
+                    "relatedField": "",
+                    "default": "100"
+                  },
+                  "SYSTEMID": {
+                    "type": "string",
+                    "relatedField": "",
+                    "default": "EDV110"
+                  },
+                  "SCHASSOCIATENUMBER": {
+                    "type": "string",
+                    "relatedField": "schAssociateNumber"
+                  },
+                  "LANGUAGE": {
+                    "type": "string",
+                    "relatedField": "",
+                    "default": "EN"
+                  },
+                  "LFB1_BUKRS": {
+                    "type": "string",
+                    "relatedField": "LFB1_BUKRS",
+                    "default": "ES10"
+                  },
+                  "LFB1_AKONT": {
+                    "type": "string",
+                    "relatedField": "LFB1_AKONT",
+                    "default": "2121101"
+                  },
+                  "LFM1_EKORG": {
+                    "type": "string",
+                    "relatedField": "LFM1_EKORG",
+                    "default": "ES10"
+                  },
+                  "LFM1_EKGRP": {
+                    "type": "string",
+                    "relatedField": "",
+                    "default": ""
+                  },
+                  "LFA1_KTOKK": {
+                    "type": "string",
+                    "relatedField": "SupplierAccountType",
+                    "default": "LMAT"
+                  },
+                  "VEND_NAME": {
+                    "type": "string",
+                    "relatedField": "organisationName",
+                    "default": ""
+                  },
+                  "LFA1_ANRED": {
+                    "type": "string",
+                    "relatedField": "contactTitle",
+                    "default": ""
+                  },
+                  "LFA1_NAME1": {
+                    "type": "string",
+                    "relatedField": "organisationName",
+                    "default": ""
+                  },
+                  "LFA1_NAME2": {
+                    "type": "string",
+                    "relatedField": "",
+                    "default": ""
+                  },
+                  "LFA1_NAME3": {
+                    "type": "string",
+                    "relatedField": "",
+                    "default": ""
+                  },
+                  "LFA1_NAME4": {
+                    "type": "string",
+                    "relatedField": "",
+                    "default": ""
+                  },
+                  "LFA1_SORTL": {
+                    "type": "string",
+                    "relatedField": "",
+                    "default": ""
+                  },
+                  "LFA1_STRAS": {
+                    "type": "string",
+                    "relatedField": "address",
+                    "default": ""
+                  },
+                  "LFA1_LAND1": {
+                    "type": "string",
+                    "relatedField": "country",
+                    "default": ""
+                  },
+                  "LFA1_REGIO": {
+                    "type": "string",
+                    "relatedField": "state",
+                    "default": ""
+                  },
+                  "LFA1_ORT01": {
+                    "type": "string",
+                    "relatedField": "city",
+                    "default": ""
+                  },
+                  "LFA1_PSTLZ": {
+                    "type": "string",
+                    "relatedField": "cityPostalCode",
+                    "default": ""
+                  },
+                  "LFA1_SPRAS": {
+                    "type": "string",
+                    "relatedField": "LFA1_SPRAS",
+                    "default": "EN"
+                  },
+                  "LFA1_ADRNR": {
+                    "type": "string",
+                    "relatedField": "",
+                    "default": ""
+                  },
+                  "LFA1_TELF1": {
+                    "type": "string",
+                    "relatedField": "mobileNumber.e164Number",
+                    "default": ""
+                  },
+                  "LFA1_TELF2": {
+                    "type": "string",
+                    "relatedField": "mobileNumber.e164Number",
+                    "default": ""
+                  },
+                  "LFA1_STCEG": {
+                    "type": "string",
+                    "relatedField": "",
+                    "default": ""
+                  },
+                  "SMTP_ADDR": {
+                    "type": "string",
+                    "relatedField": "contactEmail"
+                  },
+                  "ADRC_HOUSE_NUM1": {
+                    "type": "string",
+                    "relatedField": "",
+                    "default": ""
+                  },
+                  "ADRC_STREET": {
+                    "type": "string",
+                    "relatedField": "address"
+                  },
+                  "ADRC_STR_SUPPL1": {
+                    "type": "string",
+                    "relatedField": "address2",
+                    "default": ""
+                  },
+                  "ADRC_STR_SUPPL2": {
+                    "type": "string",
+                    "relatedField": "",
+                    "default": ""
+                  },
+                  "ADRC_STR_SUPPL3": {
+                    "type": "string",
+                    "relatedField": "",
+                    "default": ""
+                  },
+                  "ADRC_CITY2": {
+                    "type": "string",
+                    "relatedField": "",
+                    "default": ""
+                  },
+                  "ADRC_CITY1": {
+                    "type": "string",
+                    "relatedField": "city",
+                    "default": ""
+                  },
+                  "ADRC_POST_CODE1": {
+                    "type": "string",
+                    "relatedField": "cityPostalCode"
+                  },
+                  "ADRC_REGION": {
+                    "type": "string",
+                    "relatedField": "state"
+                  },
+                  "ADRC_COUNTRY": {
+                    "type": "string",
+                    "relatedField": "country"
+                  },
+                  "LFB1_ZTERM": {
+                    "type": "string",
+                    "relatedField": "",
+                    "default": "0090"
+                  },
+                  "LFB1_ZWELS": {
+                    "type": "string",
+                    "relatedField": "",
+                    "default": "CT"
+                  },
+                  "LFM1_WAERS": {
+                    "type": "string",
+                    "relatedField": "",
+                    "default": "AED"
+                  },
+                  "LFM1_ZTERM": {
+                    "type": "string",
+                    "relatedField": "",
+                    "default": "0090"
+                  },
+                  "LFM1_INCO1": {
+                    "type": "string",
+                    "relatedField": "",
+                    "default": "DDP"
+                  },
+                  "LFM1_INCO2": {
+                    "type": "string",
+                    "relatedField": "",
+                    "default": "Delivered Duty Paid"
+                  },
+                  "LFM1_VERKF": {
+                    "type": "string",
+                    "relatedField": "firstName",
+                    "default": ""
+                  },
+                  "LFM1_VERKFL": {
+                    "type": "string",
+                    "relatedField": "lastName",
+                    "default": ""
+                  },
+                  "LFM1_TELF1": {
+                    "type": "string",
+                    "relatedField": "mobileNumber.e164Number",
+                    "default": ""
+                  },
+                  "contact_Person": {
+                    "type": "array",
+                    "relatedField": "contactDetails",
+                    "items": [
+                      {
+                        "KNVK_NAMEV": {
+                          "type": "string",
+                          "relatedField": "currentItem['firstName']"
+                        },
+                        "KNVK_NAME1": {
+                          "type": "string",
+                          "relatedField": "currentItem['lastName']"
+                        },
+                        "KNVK_ANRED": {
+                          "type": "string",
+                          "relatedField": "currentItem['contactTitle']"
+                        },
+                        "KNVK_PARAU": {
+                          "type": "string",
+                          "relatedField": "currentItem['contactEmail']"
+                        },
+                        "KNVK_TELF1": {
+                          "type": "string",
+                          "relatedField": "currentItem['contactNumber']['e164Number']",
+                          "default": ""
+                        },
+                        "SMTP_ADDR": {
+                          "type": "string",
+                          "relatedField": "currentItem['contactEmail']"
+                        },
+                        "KNVK_ABTNR": {
+                          "type": "string",
+                          "relatedField": "",
+                          "default": ""
+                        }
+                      }
+                    ]
+                  },
+                  "bank_Details": {
+                    "type": "array",
+                    "relatedField": "bankDetails",
+                    "items": [
+                      {
+                        "IBAN": {
+                          "type": "string",
+                          "relatedField": "currentItem['iban']",
+                          "default": null
+                        },
+                        "LFBK_BANKS": {
+                          "type": "string",
+                          "relatedField": "currentItem['bankCountry']"
+                        },
+                        "LFBK_BANKL": {
+                          "type": "string",
+                          "relatedField": "currentItem['bankKey']",
+                          "default": null
+                        },
+                        "LFBK_BANKL2": {
+                          "type": "string",
+                          "relatedField": "currentItem['bankKey2']",
+                          "default": null
+                        },
+                        "LFBK_BANKN": {
+                          "type": "string",
+                          "relatedField": "currentItem['bankAccountNumber']"
+                        },
+                        "LFBK_KOINH": {
+                          "type": "string",
+                          "relatedField": "currentItem['AccountHolderName']"
+                        },
+                        "LFBK_BVTYP": {
+                          "type": "string",
+                          "relatedField": "currentItem['preferredCurrency']"
+                        },
+                        "LFBK_KOVON": {
+                          "type": "string",
+                          "relatedField": "",
+                          "default": ""
+                        },
+                        "LFBK_KOBIS": {
+                          "type": "string",
+                          "relatedField": "",
+                          "default": ""
+                        },
+                        "BNKA_BANKA": {
+                          "type": "string",
+                          "relatedField": "currentItem['bankName']"
+                        },
+                        "BNKA_STRAS": {
+                          "type": "string",
+                          "relatedField": "currentItem['bankAddress']"
+                        },
+                        "BNKA_PROVZ": {
+                          "type": "string",
+                          "relatedField": "",
+                          "default": ""
+                        },
+                        "BNKA_ORT01": {
+                          "type": "string",
+                          "relatedField": "",
+                          "default": ""
+                        },
+                        "BNKA_SWIFT": {
+                          "type": "string",
+                          "relatedField": "currentItem['swiftIfscCode']",
+                          "default": null
+                        },
+                        "BNKA_BNKLZ": {
+                          "type": "string",
+                          "relatedField": "",
+                          "default": ""
+                        },
+                        "BNKA_BRNCH": {
+                          "type": "string",
+                          "relatedField": "",
+                          "default": ""
+                        }
+                      }
+                    ]
+                  },
+                  "Certificates": {
+                    "type": "array",
+                    "relatedField": "",
+                    "items": [
+                      {
+                        "IDSAU_CRDATA_CERT_ID": {
+                          "type": "string",
+                          "relatedField": "",
+                          "default": ""
+                        },
+                        "IDSAU_CRDATA_CERT_NO": {
+                          "type": "string",
+                          "relatedField": "",
+                          "default": ""
+                        },
+                        "IDSAU_CRDATA_VALID_FROM": {
+                          "type": "string",
+                          "relatedField": "",
+                          "default": ""
+                        },
+                        "IDSAU_CRDATA_VALID_TO": {
+                          "type": "string",
+                          "relatedField": "",
+                          "default": ""
+                        },
+                        "IDSAU_CRDATA_DES1": {
+                          "type": "string",
+                          "relatedField": "",
+                          "default": ""
+                        },
+                        "IDSAU_CRDATA_CREATION_DATE": {
+                          "type": "string",
+                          "relatedField": "",
+                          "default": ""
+                        },
+                        "IDSAU_CRDATA_BUKRS": {
+                          "type": "string",
+                          "relatedField": "",
+                          "default": ""
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+              "nextAction": 4
+            },
+            {
+              "id": 4,
+              "actionName": "pipoSendData",
+              "actionType": "executeApi",
+              "async": false,
+              "actionDetails": {
+                "apiDetails": {
+                  "URL": "http://192.168.52.35:8001/zsap2sch/venreg",
+                  "Method": "Post",
+                  "Authorization": {
+                    "type": "Basic",
+                    "userName": "EIM_SCH1",
+                    "password": "Eims@1234"
+                  }
+                },
+                "Body": "{{actionsResponse.vendorMappingFields}}"
+              }
+            },
+            {
+              "id": 5,
+              "actionName": "check_VEND_FLAG_Status",
+              "actionType": "conditional",
+              "actionDetails": {
+                "WHEN": "'{{actionsResponse.pipoSendData.VEN_OB_FLAG}}'=='true'",
+                "THEN": ["nextAction=6"],
+                "ELSE": ["nextAction=9"]
+              }
+            },
+            {
+              "id": 6,
+              "actionName": "updateVendorStaus",
+              "actionType": "updateBusinessView",
+              "actionDetails": {
+                "businessView": "updateReprocessVendorStatus",
+                "database": "{{payload.headers.dbName}}",
+                "targetSchema": {},
+                "sourceData": {}
+              },
+              "nextAction": 7
+            },
+            {
+              "id": 7,
+              "actionName": "updateUserStaus",
+              "actionType": "updateBusinessView",
+              "actionDetails": {
+                "businessView": "userStatusUpdate",
+                "database": "{{payload.headers.dbName}}",
+                "targetSchema": {},
+                "sourceData": {}
+              },
+              "nextAction": 8
+            },
+            {
+              "id": 8,
+              "actionName": "OnboardNotifn",
+              "actionType": "sendNotification",
+              "async": false,
+              "actionDetails": {
+                "apiDetails": {
+                  "URL": "{{payload.baseUrl}}/notification_engine/send-email-notification",
+                  "Method": "Post"
+                },
+                "Body": {
+                  "emailId": "{{actionsResponse.collectionData[0].contactEmail}}",
+                  "subject": "Re: Supplier Registration Successful - {{actionsResponse.collectionData[0].userId}}",
+                  "tenant": 100,
+                  "templateUrl": "https://sch-emirate-steels.s3.ap-south-1.amazonaws.com/templates/mail-logo.html",
+                  "templateValue": {
+                    "pagetitle": "Supplier Registration Successful - {{actionsResponse.collectionData[0].userId}}",
+                    "pagecaption": "Supplier Registration Notification",
+                    "bannerImage": "",
+                    "userName": "Supplier",
+                    "emailBody1": "Welcome to Emirates Steel Arkan Supplier Management,",
+                    "emailBody2": "Your registration is approved by Supply Chain Management team & you are now a fully registered supplier with Emirates Steel Arkan.",
+                    "schlogo": "https://sch-emirate-steels.s3.ap-south-1.amazonaws.com/Login+Images/logo.png",
+                    "footer1": "Sincerely,",
+                    "footer2": "Emirates Steel Arkan Supplier Assurance Team"
+                  }
+                }
+              },
+              "nextAction": 27
+            },
+            {
+              "id": 9,
+              "actionName": "updateVendorStaus",
+              "actionType": "updateBusinessView",
+              "actionDetails": {
+                "businessView": "updateReprocessSapStatus",
+                "database": "{{payload.headers.dbName}}",
+                "targetSchema": {},
+                "sourceData": {}
+              },
+              "nextAction": 10
+            },
+            {
+              "id": 10,
+              "actionName": "SAPFailedNotifn",
+              "actionType": "sendNotification",
+              "async": false,
+              "actionDetails": {
+                "apiDetails": {
+                  "URL": "{{payload.baseUrl}}/notification_engine/send-email-notification",
+                  "Method": "Post"
+                },
+                "Body": {
+                  "emailId": "gowtham.gk@eimsolutions.com,vijay.r@eimsolutions.com",
+                  "subject": "SAP Supplier Creation Failed -  {{actionsResponse.collectionData[0].userId}}",
+                  "tenant": 100,
+                  "templateUrl": "https://sch-emirate-steels.s3.ap-south-1.amazonaws.com/templates/mail-logo.html",
+                  "templateValue": {
+                    "pagetitle": "SAP Supplier Creation Failed -  {{actionsResponse.collectionData[0].userId}}",
+                    "pagecaption": "Supplier Creation Failed Notification",
+                    "bannerImage": "",
+                    "userName": "Team",
+                    "emailBody1": "Kind Alert to check SAP Failure for -  {{actionsResponse.collectionData[0].userId}},",
+                    "emailBody2": "{{actionsResponse.collectionData[0].organisationName}} - {{actionsResponse.collectionData[0].schAssociateNumber}} - {{actionsResponse.sapSendData.RETURNMESSAGE}}",
+                    "schlogo": "https://sch-emirate-steels.s3.ap-south-1.amazonaws.com/Login+Images/logo.png",
+                    "footer1": "Sincerely,",
+                    "footer2": "Emirates Steel Arkan Supplier Assurance Team"
+                  }
+                }
+              },
+              "nextAction": 27
+            },
+            {
+              "id": 12,
+              "actionName": "modifycollectionData",
+              "actionType": "getDataFromDB",
+              "actionDetails": {
+                "database_details": {
+                  "database": "{{payload.headers.dbName}}",
+                  "collection": "vendors"
+                },
+                "filter": {},
+                "aggregation": [
+                  {
+                    "($)match": {
+                      "schAssociateNumber": "{{payload.selectedRow['Supplier ID']['text']}}"
+                    }
+                  },
+                  {
+                    "($)sort": {
+                      "version": -1
+                    }
+                  },
+                  {
+                    "($)limit": 1
+                  }
+                ]
+              }
+            },
+            {
+              "id": 13,
+              "actionName": "modifyVendorMappingFields",
+              "actionType": "mapFields",
+              "actionDetails": {
+                "sourceSchema": "{{actionsResponse.modifycollectionData}}",
+                "targetSchema": {
+                  "TENANT": {
+                    "type": "string",
+                    "relatedField": "",
+                    "default": "100"
+                  },
+                  "SYSTEMID": {
+                    "type": "string",
+                    "relatedField": "",
+                    "default": "EDV110"
+                  },
+                  "UPD_FLG": {
+                    "type": "string",
+                    "relatedField": "",
+                    "default": "X"
+                  },
+                  "LFA1_LIFNR": {
+                    "type": "string",
+                    "relatedField": "sapAssociateNumber"
+                  },
+                  "SCHASSOCIATENUMBER": {
+                    "type": "string",
+                    "relatedField": "schAssociateNumber"
+                  },
+                  "LANGUAGE": {
+                    "type": "string",
+                    "relatedField": "",
+                    "default": "EN"
+                  },
+                  "LFB1_BUKRS": {
+                    "type": "string",
+                    "relatedField": "LFB1_BUKRS",
+                    "default": "ES10"
+                  },
+                  "LFB1_AKONT": {
+                    "type": "string",
+                    "relatedField": "LFB1_AKONT",
+                    "default": "2121101"
+                  },
+                  "LFM1_EKORG": {
+                    "type": "string",
+                    "relatedField": "LFM1_EKORG",
+                    "default": "ES10"
+                  },
+                  "LFM1_EKGRP": {
+                    "type": "string",
+                    "relatedField": "",
+                    "default": ""
+                  },
+                  "LFA1_KTOKK": {
+                    "type": "string",
+                    "relatedField": "SupplierAccountType",
+                    "default": "LMAT"
+                  },
+                  "VEND_NAME": {
+                    "type": "string",
+                    "relatedField": "organisationName",
+                    "default": ""
+                  },
+                  "LFA1_ANRED": {
+                    "type": "string",
+                    "relatedField": "contactTitle",
+                    "default": ""
+                  },
+                  "LFA1_NAME1": {
+                    "type": "string",
+                    "relatedField": "organisationName",
+                    "default": ""
+                  },
+                  "LFA1_NAME2": {
+                    "type": "string",
+                    "relatedField": "",
+                    "default": ""
+                  },
+                  "LFA1_NAME3": {
+                    "type": "string",
+                    "relatedField": "",
+                    "default": ""
+                  },
+                  "LFA1_NAME4": {
+                    "type": "string",
+                    "relatedField": "",
+                    "default": ""
+                  },
+                  "LFA1_SORTL": {
+                    "type": "string",
+                    "relatedField": "",
+                    "default": ""
+                  },
+                  "LFA1_STRAS": {
+                    "type": "string",
+                    "relatedField": "address",
+                    "default": ""
+                  },
+                  "LFA1_LAND1": {
+                    "type": "string",
+                    "relatedField": "country",
+                    "default": ""
+                  },
+                  "LFA1_REGIO": {
+                    "type": "string",
+                    "relatedField": "state",
+                    "default": ""
+                  },
+                  "LFA1_ORT01": {
+                    "type": "string",
+                    "relatedField": "city",
+                    "default": ""
+                  },
+                  "LFA1_PSTLZ": {
+                    "type": "string",
+                    "relatedField": "cityPostalCode",
+                    "default": ""
+                  },
+                  "LFA1_SPRAS": {
+                    "type": "string",
+                    "relatedField": "LFA1_SPRAS",
+                    "default": "EN"
+                  },
+                  "LFA1_ADRNR": {
+                    "type": "string",
+                    "relatedField": "",
+                    "default": ""
+                  },
+                  "LFA1_TELF1": {
+                    "type": "string",
+                    "relatedField": "mobileNumber.e164Number",
+                    "default": ""
+                  },
+                  "LFA1_TELF2": {
+                    "type": "string",
+                    "relatedField": "mobileNumber.e164Number",
+                    "default": ""
+                  },
+                  "SMTP_ADDR": {
+                    "type": "string",
+                    "relatedField": "contactEmail"
+                  },
+                  "ADRC_HOUSE_NUM1": {
+                    "type": "string",
+                    "relatedField": "",
+                    "default": ""
+                  },
+                  "ADRC_STREET": {
+                    "type": "string",
+                    "relatedField": "address"
+                  },
+                  "ADRC_STR_SUPPL1": {
+                    "type": "string",
+                    "relatedField": "address2",
+                    "default": ""
+                  },
+                  "ADRC_STR_SUPPL2": {
+                    "type": "string",
+                    "relatedField": "",
+                    "default": ""
+                  },
+                  "ADRC_STR_SUPPL3": {
+                    "type": "string",
+                    "relatedField": "",
+                    "default": ""
+                  },
+                  "ADRC_CITY2": {
+                    "type": "string",
+                    "relatedField": "",
+                    "default": ""
+                  },
+                  "ADRC_CITY1": {
+                    "type": "string",
+                    "relatedField": "city",
+                    "default": ""
+                  },
+                  "ADRC_POST_CODE1": {
+                    "type": "string",
+                    "relatedField": "cityPostalCode"
+                  },
+                  "ADRC_REGION": {
+                    "type": "string",
+                    "relatedField": "state"
+                  },
+                  "ADRC_COUNTRY": {
+                    "type": "string",
+                    "relatedField": "country"
+                  },
+                  "LFB1_ZTERM": {
+                    "type": "string",
+                    "relatedField": "",
+                    "default": "0090"
+                  },
+                  "LFB1_ZWELS": {
+                    "type": "string",
+                    "relatedField": "",
+                    "default": "CT"
+                  },
+                  "LFM1_WAERS": {
+                    "type": "string",
+                    "relatedField": "",
+                    "default": "AED"
+                  },
+                  "LFM1_ZTERM": {
+                    "type": "string",
+                    "relatedField": "",
+                    "default": "0090"
+                  },
+                  "LFM1_INCO1": {
+                    "type": "string",
+                    "relatedField": "",
+                    "default": "DDP"
+                  },
+                  "LFM1_INCO2": {
+                    "type": "string",
+                    "relatedField": "",
+                    "default": "Delivered Duty Paid"
+                  },
+                  "LFM1_VERKF": {
+                    "type": "string",
+                    "relatedField": "firstName",
+                    "default": ""
+                  },
+                  "LFM1_VERKFL": {
+                    "type": "string",
+                    "relatedField": "lastName",
+                    "default": ""
+                  },
+                  "LFM1_TELF1": {
+                    "type": "string",
+                    "relatedField": "mobileNumber.e164Number",
+                    "default": ""
+                  },
+                  "contact_Person": {
+                    "type": "array",
+                    "relatedField": "contactDetails",
+                    "items": [
+                      {
+                        "KNVK_NAMEV": {
+                          "type": "string",
+                          "relatedField": "currentItem['firstName']"
+                        },
+                        "KNVK_NAME1": {
+                          "type": "string",
+                          "relatedField": "currentItem['lastName']"
+                        },
+                        "KNVK_ANRED": {
+                          "type": "string",
+                          "relatedField": "currentItem['contactTitle']"
+                        },
+                        "KNVK_PARAU": {
+                          "type": "string",
+                          "relatedField": "currentItem['contactEmail']"
+                        },
+                        "KNVK_TELF1": {
+                          "type": "string",
+                          "relatedField": "currentItem['contactNumber']['e164Number']",
+                          "default": ""
+                        },
+                        "SMTP_ADDR": {
+                          "type": "string",
+                          "relatedField": "currentItem['contactEmail']"
+                        },
+                        "KNVK_ABTNR": {
+                          "type": "string",
+                          "relatedField": "",
+                          "default": ""
+                        },
+                        "UID": {
+                          "type": "string",
+                          "relatedField": "",
+                          "default": ""
+                        }
+                      }
+                    ]
+                  },
+                  "bank_Details": {
+                    "type": "array",
+                    "relatedField": "bankDetails",
+                    "items": [
+                      {
+                        "IBAN": {
+                          "type": "string",
+                          "relatedField": "currentItem['iban']",
+                          "default": null
+                        },
+                        "LFBK_BANKS": {
+                          "type": "string",
+                          "relatedField": "currentItem['bankCountry']"
+                        },
+                        "LFBK_BANKL": {
+                          "type": "string",
+                          "relatedField": "currentItem['bankKey']",
+                          "default": null
+                        },
+                        "LFBK_BANKL2": {
+                          "type": "string",
+                          "relatedField": "currentItem['bankKey2']",
+                          "default": null
+                        },
+                        "LFBK_BANKN": {
+                          "type": "string",
+                          "relatedField": "currentItem['bankAccountNumber']"
+                        },
+                        "LFBK_KOINH": {
+                          "type": "string",
+                          "relatedField": "currentItem['AccountHolderName']"
+                        },
+                        "LFBK_BVTYP": {
+                          "type": "string",
+                          "relatedField": "currentItem['preferredCurrency']"
+                        },
+                        "LFBK_KOVON": {
+                          "type": "string",
+                          "relatedField": "",
+                          "default": ""
+                        },
+                        "LFBK_KOBIS": {
+                          "type": "string",
+                          "relatedField": "",
+                          "default": ""
+                        },
+                        "BNKA_BANKA": {
+                          "type": "string",
+                          "relatedField": "currentItem['bankName']"
+                        },
+                        "BNKA_STRAS": {
+                          "type": "string",
+                          "relatedField": "currentItem['bankAddress']"
+                        },
+                        "BNKA_PROVZ": {
+                          "type": "string",
+                          "relatedField": "",
+                          "default": ""
+                        },
+                        "BNKA_ORT01": {
+                          "type": "string",
+                          "relatedField": "",
+                          "default": ""
+                        },
+                        "BNKA_SWIFT": {
+                          "type": "string",
+                          "relatedField": "currentItem['swiftIfscCode']",
+                          "default": null
+                        },
+                        "BNKA_BNKLZ": {
+                          "type": "string",
+                          "relatedField": "",
+                          "default": ""
+                        },
+                        "BNKA_BRNCH": {
+                          "type": "string",
+                          "relatedField": "",
+                          "default": ""
+                        },
+                        "UID": {
+                          "type": "string",
+                          "relatedField": "",
+                          "default": ""
+                        }
+                      }
+                    ]
+                  },
+                  "Certificates": {
+                    "type": "array",
+                    "relatedField": "",
+                    "items": [
+                      {
+                        "IDSAU_CRDATA_CERT_ID": {
+                          "type": "string",
+                          "relatedField": "",
+                          "default": ""
+                        },
+                        "IDSAU_CRDATA_CERT_NO": {
+                          "type": "string",
+                          "relatedField": "",
+                          "default": ""
+                        },
+                        "IDSAU_CRDATA_VALID_FROM": {
+                          "type": "string",
+                          "relatedField": "",
+                          "default": ""
+                        },
+                        "IDSAU_CRDATA_VALID_TO": {
+                          "type": "string",
+                          "relatedField": "",
+                          "default": ""
+                        },
+                        "IDSAU_CRDATA_DES1": {
+                          "type": "string",
+                          "relatedField": "",
+                          "default": ""
+                        },
+                        "IDSAU_CRDATA_CREATION_DATE": {
+                          "type": "string",
+                          "relatedField": "",
+                          "default": ""
+                        },
+                        "IDSAU_CRDATA_BUKRS": {
+                          "type": "string",
+                          "relatedField": "",
+                          "default": ""
+                        },
+                        "UID": {
+                          "type": "string",
+                          "relatedField": "",
+                          "default": ""
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "id": 14,
+              "actionName": "logData",
+              "actionType": "insertData",
+              "actionDetails": {
+                "database_details": {
+                  "database": "{{payload.headers.dbName}}",
+                  "collection": "ruleSetLog"
+                },
+                "payload": {
+                  "jobName": "vendorModification",
+                  "type": "outBound",
+                  "payloadData": "{{actionsResponse.modifycollectionData}}"
+                }
+              }
+            },
+            {
+              "id": 15,
+              "actionName": "modifySapSendData",
+              "actionType": "executeApi",
+              "async": false,
+              "actionDetails": {
+                "apiDetails": {
+                  "URL": "https://testservice.emiratessteel.com/zsap2sch/venreg",
+                  "Method": "Post",
+                  "Authorization": {
+                    "type": "Basic",
+                    "userName": "EIM_SCH1",
+                    "password": "Eims@1234"
+                  }
+                },
+                "Body": "{{actionsResponse.modifyVendorMappingFields}}"
+              }
+            },
+            {
+              "id": 16,
+              "actionName": "check_VEND_FLAG_Status_Sap",
+              "actionType": "conditional",
+              "actionDetails": {
+                "WHEN": "'{{actionsResponse.modifySapSendData.VEN_OB_FLAG}}'=='true'",
+                "THEN": ["nextAction=20"],
+                "ELSE": ["nextAction=24"]
+              }
+            },
+            {
+              "id": 20,
+              "actionName": "updateModifyVersionData",
+              "actionType": "updateBusinessView",
+              "actionDetails": {
+                "businessView": "updateReprocessVersionStatus",
+                "database": "{{payload.headers.dbName}}",
+                "sourceData": {},
+                "targetSchema": {}
+              },
+              "nextAction": 21
+            },
+            {
+              "id": 21,
+              "actionName": "updateModifyData",
+              "actionType": "updateBusinessView",
+              "actionDetails": {
+                "businessView": "updateReprocessVendorModifyStatus",
+                "database": "{{payload.headers.dbName}}",
+                "sourceData": {},
+                "targetSchema": {}
+              },
+              "nextAction": 22
+            },
+            {
+              "id": 22,
+              "actionName": "updateModificationUserData",
+              "actionType": "updateBusinessView",
+              "actionDetails": {
+                "businessView": "userNameModification",
+                "database": "{{payload.headers.dbName}}",
+                "sourceData": {},
+                "targetSchema": {}
+              },
+              "nextAction": 23
+            },
+            {
+              "id": 23,
+              "actionName": "ApproveNotifn",
+              "actionType": "sendNotification",
+              "async": false,
+              "actionDetails": {
+                "apiDetails": {
+                  "URL": "{{payload.baseUrl}}/notification_engine/send-email-notification",
+                  "Method": "Post"
+                },
+                "Body": {
+                  "emailId": "{{actionsResponse.modifycollectionData[0].contactEmail}}",
+                  "subject": "Supplier Modification Approved - {{payload.selectedRow['Supplier ID']['text']}}",
+                  "tenant": 100,
+                  "templateUrl": "https://sch-emirate-steels.s3.ap-south-1.amazonaws.com/templates/mail-logo.html",
+                  "templateValue": {
+                    "pagetitle": "Supplier Modification Approved - {{payload.selectedRow['Supplier ID']['text']}}",
+                    "pagecaption": "Supplier Modification Notification",
+                    "bannerImage": "",
+                    "userName": "Supplier",
+                    "emailBody1": "Welcome to Emirates Steel Arkan Supplier Management,",
+                    "emailBody2": "Your Modification Request is approved by Supply Chain Management team & the updated profile is available in our portal.",
+                    "schlogo": "https://sch-emirate-steels.s3.ap-south-1.amazonaws.com/Login+Images/logo.png",
+                    "footer1": "Sincerely,",
+                    "footer2": "Emirates Steel Arkan Supplier Assurance Team"
+                  }
+                }
+              },
+              "nextAction": 27
+            },
+            {
+              "id": 24,
+              "actionName": "updVendorStatus",
+              "actionType": "updateBusinessView",
+              "actionDetails": {
+                "businessView": "updateSapModificationStatus",
+                "database": "{{payload.headers.dbName}}",
+                "targetSchema": {},
+                "sourceData": {}
+              },
+              "nextAction": 26
+            },
+            {
+              "id": 26,
+              "actionName": "failedModificationNotifn",
+              "actionType": "sendNotification",
+              "async": false,
+              "actionDetails": {
+                "apiDetails": {
+                  "URL": "{{payload.baseUrl}}/notification_engine/send-email-notification",
+                  "Method": "Post"
+                },
+                "Body": {
+                  "emailId": "{{actionsResponse.modifycollectionData[0].contactEmail}}",
+                  "subject": "Supplier Modification Rejected - {{payload.selectedRow['Supplier ID']['text']}}",
+                  "tenant": 100,
+                  "templateUrl": "https://sch-emirate-steels.s3.ap-south-1.amazonaws.com/templates/mail-logo.html",
+                  "templateValue": {
+                    "pagetitle": "Supplier Modification Rejected - {{payload.selectedRow['Supplier ID']['text']}}",
+                    "pagecaption": "Supplier Modification Notification",
+                    "bannerImage": "",
+                    "userName": "Supplier",
+                    "emailBody1": "Welcome to Emirates Steel Arkan Supplier Management,",
+                    "emailBody2": "Your Modification Request is rejected by Supply Chain Management team.Please review",
+                    "schlogo": "https://sch-emirate-steels.s3.ap-south-1.amazonaws.com/Login+Images/logo.png",
+                    "footer1": "Sincerely,",
+                    "footer2": "Emirates Steel Arkan Supplier Assurance Team"
+                  }
+                }
+              },
+              "nextAction": 27
+            },
+            {
+              "id": 27,
+              "actionName": "vendorReprocessComplete",
+              "actionType": "completed",
+              "actionDetails": {}
+            }
+          ],
+          "Output": {
+            "message": "Vendor reprocessed to SAP",
+            "routerLink": "/page/supplierList",
+            "redirect": {
+              "routerLink": "/page/supplierList",
+              "params": {}
+            }
+          }
+        }
+      ]
+    },
+    "sendInvitation": {
+      "type": "inline",
+      "inlineJson": {
+        "type": "form",
+        "header": {
+          "heading": "Send Invitation"
+        },
+        "body": {
+          "containerCSS": {
+            "flex": "1 1 25%"
+          },
+          "css": {
+            "display": "flex",
+            "flex-wrap": "wrap",
+            "gap": "0 1rem"
+          },
+          "components": [
+            {
+              "label": "Vendor Email",
+              "type": "text",
+              "dbcolumnName": "contactEmail",
+              "formcontrol": "email",
+              "dataSourceName": "supplierListBV-V1",
+              "placeholder": "enter email",
+              "mandatory": true,
+              "readOnly": false,
+              "tableColumnName": "Contact",
+              "tableColumnGroupName": "email"
+            }
+          ]
+        },
+        "footer": {
+          "button": [
+            {
+              "text": "Cancel",
+              "type": "button",
+              "action": "close"
+            },
+            {
+              "text": "Yes",
+              "type": "submit",
+              "action": "submit",
+              "onClick": [
+                {
+                  "actions": [
+                    {
+                      "action": "executePopupAction"
+                    },
+                    {
+                      "action": "2refresh"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "executePopUpAction": [
+        {
+          "ID": 1,
+          "Rule": "pageAction",
+          "enableLogs": true,
+          "RuleGroup": "",
+          "WHEN": "'{{payload.popupActionPerformed}}' == 'submit'",
+          "THEN": ["performAction"],
+          "Actions": [
+            {
+              "id": 1,
+              "actionName": "userPassword",
+              "actionType": "generatePassword",
+              "actionDetails": {
+                "hashPassword": false,
+                "passwordLength": 10,
+                "numericChars": 2,
+                "specialChars": 0
+              }
+            },
+            {
+              "id": 2,
+              "actionName": "check",
+              "actionType": "conditional",
+              "actionDetails": {
+                "WHEN": "'{{payload.selectedRow['Status']['text']}}' == 'Pending Registered'",
+                "THEN": ["nextAction=3"],
+                "ELSE": ["nextAction=6"]
+              }
+            },
+            {
+              "id": 3,
+              "actionName": "manualAcceptNotifn",
+              "actionType": "sendNotification",
+              "async": false,
+              "actionDetails": {
+                "apiDetails": {
+                  "URL": "{{payload.baseUrl}}/notification_engine/send-email-notification",
+                  "Method": "Post"
+                },
+                "Body": {
+                  "emailId": "{{payload.formData.email}}",
+                  "subject": "Supplier OnBoarding Invitation",
+                  "tenant": "{{toInt payload.headers.tenant}}",
+                  "templateUrl": "https://sch-emirate-steels.s3.ap-south-1.amazonaws.com/templates/onboarding.html",
+                  "templateValue": {
+                    "title": "Supplier OnBoarding Invitation",
+                    "company": "Emirates Steel Arkan Supplier Assurance Team",
+                    "pagecaption": "Supplier OnBoarding Notification",
+                    "suppliercode": "{{payload.selectedRow['Supplier Name']['fields']['User Id']}}",
+                    "Password": "{{actionsResponse.userPassword}}",
+                    "userName": "Dear Sir/Madam ,",
+                    "bannerImage": "",
+                    "schlogo": "https://sch-emirate-steels.s3.ap-south-1.amazonaws.com/Login+Images/logo.png",
+                    "emailBody": "Welcome to Emirates Steel Arkan Supplier Management,We are transforming our Supply Chain Management to the new SCH Platform. As a Registered Emirates Steel Arkan Supplier, you are invited to login to your new account and review your profile.",
+                    "emailBody1": "For future login to access ESA RFQ/PO, save credentials & SCH link :  https://sch.emiratessteel.com/",
+                    "link": "{{payload.baseUrl}}/prelogin/ResetPassword?user={{payload.selectedRow['Supplier Name']['fields']['User Id']}}&pass={{actionsResponse.userPassword}}",
+                    "remarks": "Sincerely,",
+                    "footer1": "Emirates Steel Arkan Supplier Assurance Team"
+                  }
+                }
+              },
+              "nextAction": 4
+            },
+            {
+              "id": 4,
+              "actionName": "logData",
+              "actionType": "insertData",
+              "actionDetails": {
+                "database_details": {
+                  "database": "{{payload.headers.dbName}}",
+                  "collection": "ruleSetLog"
+                },
+                "payload": {
+                  "jobName": "manualSentInvitation",
+                  "type": "outBound",
+                  "payloadData": "{{actionsResponse.manualAcceptNotifn}}"
+                }
+              },
+              "nextAction": 8
+            },
+            {
+              "id": 6,
+              "actionName": "manualAcceptNotifn",
+              "actionType": "sendNotification",
+              "async": false,
+              "actionDetails": {
+                "apiDetails": {
+                  "URL": "{{payload.baseUrl}}/notification_engine/send-email-notification",
+                  "Method": "Post"
+                },
+                "Body": {
+                  "emailId": "{{payload.formData.email}}",
+                  "subject": "Supplier Registration - Invitation - {{payload.selectedRow['Supplier ID']['text']}}",
+                  "tenant": "{{toInt payload.headers.tenant}}",
+                  "templateUrl": "https://sch.s3.ap-south-1.amazonaws.com/templates/Invitation-mail.html",
+                  "templateValue": {
+                    "title": "Supplier Registration Invitation - {{payload.selectedRow['Supplier ID']['text']}}",
+                    "company": "Emirates Steel Arkan Supplier Assurance Team",
+                    "pagecaption": "Supplier Invite Notification",
+                    "BPCode": "{{payload.selectedRow['Supplier ID']['text']}}",
+                    "suppliercode": "{{payload.selectedRow['Supplier Name']['fields']['User Id']}}",
+                    "Password": "{{actionsResponse.userPassword}}",
+                    "userName": "Dear Supplier ,",
+                    "bannerImage": "",
+                    "emailBody1": "Emirates Steel Arkan Supplier Management Team has invited you to register to become a supplier with Emirates Steel Arkan. The below set-up is mandatory to include 'Company Name' in Emirates Steel Arkan Online purchasing process, hence you need to initiate at the earliest to allow registration & sourcing enablement: ",
+                    "emailBody2": "1. Setup Online account using the below link and Credential details.",
+                    "emailBody3": "2. Fill in Emirates Steel Arkan Registration questionnaire : Provide company data uploading Trade license/Certificates/Bank details, etc.",
+                    "emailBody4": "3. Submit entire response and status.",
+                    "emailBody5": "ESA will review & you will receive an auto-notification after internal approval.",
+                    "emailBody7": "",
+                    "emailBody6": "Only follow up for registration status updates after completing the Online Portal set-up, any further queries, you may contact ESSupplier@emiratessteel.com",
+                    "emailBody8": "",
+                    "emailBody9": "",
+                    "link": "{{payload.baseUrl}}/page/ESACompleteRegistration",
+                    "remarks": "Sincerely,",
+                    "schlogo": "https://sch-emirate-steels.s3.ap-south-1.amazonaws.com/Login+Images/logo.png",
+                    "footer1": "",
+                    "footer2": "Emirates Steel Arkan Supplier Assurance Team"
+                  }
+                }
+              },
+              "nextAction": 7
+            },
+            {
+              "id": 7,
+              "actionName": "logData",
+              "actionType": "insertData",
+              "actionDetails": {
+                "database_details": {
+                  "database": "{{payload.headers.dbName}}",
+                  "collection": "ruleSetLog"
+                },
+                "payload": {
+                  "jobName": "manualInvitation",
+                  "type": "outBound",
+                  "payloadData": "{{actionsResponse.manualAcceptNotifn}}"
+                }
+              },
+              "nextAction": 8
+            },
+            {
+              "id": 8,
+              "actionName": "userVendorUpdate",
+              "actionType": "updateBusinessView",
+              "actionDetails": {
+                "businessView": "updateUserPassword",
+                "database": "{{payload.headers.dbName}}",
+                "targetSchema": {},
+                "sourceData": {}
+              }
+            },
+            {
+              "id": 9,
+              "actionName": "notificationVendorUpdate",
+              "actionType": "updateBusinessView",
+              "actionDetails": {
+                "businessView": "notificationUpdates",
+                "database": "{{payload.headers.dbName}}",
+                "targetSchema": {},
+                "sourceData": {}
+              }
+            },
+            {
+              "id": 10,
+              "actionName": "sentInvitationComplete",
+              "actionType": "completed",
+              "actionDetails": {}
+            }
+          ],
+          "Output": {
+            "message": "Invitation Sent successful",
+            "routerLink2": "/page/supplierList",
+            "redirect2": {
+              "routerLink": "/page/supplierList",
+              "params": {}
+            },
+            "refreshTable": true
+          }
+        }
+      ]
+    },
+    "temporaryVendorCreationPopup": {
+      "type": "inline",
+      "inlineJson": {
+        "type": "form",
+        "header": {
+          "heading": "Temporary user creation"
+        },
+        "body": {
+          "containerCSS": {
+            "flex": "1 1 25%"
+          },
+          "css": {
+            "display": "flex",
+            "flex-wrap": "wrap",
+            "gap": "0 1rem"
+          },
+          "components": [
+            {
+              "label": "Name",
+              "type": "text",
+              "dbcolumnName": "name",
+              "formcontrol": "name",
+              "placeholder": "enter name",
+              "mandatory": true,
+              "readOnly": false,
+              "tableColumnName": "Profile"
+            },
+            {
+              "label": "Phone Number",
+              "type": "number",
+              "dbcolumnName": "phoneNumber",
+              "formcontrol": "phoneNumber",
+              "placeholder": "enter phoneNumber",
+              "mandatory": true,
+              "readOnly": false,
+              "tableColumnName": "Contact",
+              "tableColumnGroupName": "contactNumber"
+            },
+            {
+              "label": "Company Name",
+              "type": "text",
+              "dbcolumnName": "companyName",
+              "formcontrol": "companyName",
+              "placeholder": "enter companyName",
+              "mandatory": true,
+              "readOnly": false,
+              "tableColumnName": "Vendor",
+              "tableColumnGroupName": "1. Vendor Name"
+            },
+            {
+              "label": "Email",
+              "type": "text",
+              "dbcolumnName": "email",
+              "formcontrol": "email",
+              "placeholder": "enter email",
+              "mandatory": true,
+              "readOnly": false,
+              "tableColumnName": "Contact",
+              "tableColumnGroupName": "emailAddress"
+            },
+            {
+              "label": "Vendor Description",
+              "type": "text",
+              "dbcolumnName": "vendorDescription",
+              "formcontrol": "vendorDescription",
+              "placeholder": "enter vendorDescription",
+              "mandatory": true,
+              "readOnly": false
+            },
+            {
+              "label": "Status",
+              "type": "text",
+              "dbcolumnName": "Status",
+              "formcontrol": "Status",
+              "placeholder": "enter Status",
+              "mandatory": false,
+              "readOnly": true,
+              "tableColumnName": "Status",
+              "value": "Temporary Vendor"
+            },
+            {
+              "label": "userId",
+              "type": "text",
+              "dbcolumnName": "userId",
+              "formcontrol": "userId",
+              "placeholder": "enter userId",
+              "mandatory": false,
+              "readOnly": true,
+              "tableColumnName": "Vendor",
+              "tableColumnGroupName": "2. UserID",
+              "value": "",
+              "hidden": true
+            }
+          ]
+        },
+        "footer": {
+          "button": [
+            {
+              "text": "close",
+              "type": "button",
+              "action": "close"
+            },
+            {
+              "text": "save",
+              "type": "submit",
+              "action": "submit",
+              "onClick": [
+                {
+                  "actions": [
+                    {
+                      "action": "apiCall",
+                      "actionDetails": {
+                        "url": "{{payload.baseUrl}}/associate_service/vendors/createTemporaryVendor",
+                        "method": "POST"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "SendInvite": {
+      "executePopUpAction": [
+        {
+          "WHEN": "'{{payload.popupActionPerformed}}' == 'submit'",
+          "enableLogs": true,
+          "THEN": ["performActions"],
+          "Actions": [
+            {
+              "id": 1,
+              "actionName": "userPassword",
+              "actionType": "generatePassword",
+              "actionDetails": {
+                "hashPassword": false,
+                "passwordLength": 10,
+                "numericChars": 2,
+                "specialChars": 0
+              }
+            },
+            {
+              "id": 2,
+              "actionName": "logData",
+              "actionType": "insertData",
+              "runCount": "{{#forEach payload.selectedRows}}",
+              "actionDetails": {
+                "database_details": {
+                  "database": "{{payload.headers.dbName}}",
+                  "collection": "user"
+                },
+                "primaryKey": {
+                  "fieldName": "userId",
+                  "prefix": "VEND"
+                },
+                "payload": {
+                  "tenant": "{{toInt payload.headers.tenant}}",
+                  "systemId": null,
+                  "firstName": "{{currentLoopObj['Supplier Name']['fields']['Supplier Name']}}",
+                  "email": "{{currentLoopObj['Contact']['fields']['Email Address']}}",
+                  "userType": "",
+                  "userGroup": [],
+                  "onBoardStatus": "Registered",
+                  "category": "Vendor",
+                  "roles": [
+                    {
+                      "roleId": "portalVendor",
+                      "status": "Active",
+                      "validFrom": "2022-12-23",
+                      "validTo": "2032-10-23",
+                      "createdAt": "2022-12-23T12:45:00.000Z",
+                      "updatedAt": "2022-12-23T12:45:00.000Z"
+                    }
+                  ],
+                  "schAssociateNumber": "{{currentLoopObj['Supplier ID']['text']}}",
+                  "tempPassword": "{{hashValue actionsResponse.userPassword}}",
+                  "loginpassword": "{{hashValue actionsResponse.userPassword}}",
+                  "associate": []
+                }
+              }
+            },
+            {
+              "id": 3,
+              "actionName": "vendorCollectionUpdate",
+              "runCount": "{{#forEach actionsResponse.logData}}",
+              "actionType": "updateBusinessView",
+              "actionDetails": {
+                "businessView": "UpdatevendorCollection",
+                "database": "{{payload.headers.dbName}}",
+                "targetSchema": {},
+                "sourceData": {}
+              }
+            },
+            {
+              "id": 4,
+              "actionName": "inviteNotifn",
+              "actionType": "sendNotification",
+              "runCount": "{{#forEach actionsResponse.logData}}",
+              "async": false,
+              "actionDetails": {
+                "apiDetails": {
+                  "URL": "{{payload.baseUrl}}/notification_engine/send-email-notification",
+                  "Method": "Post"
+                },
+                "Body": {
+                  "emailId": "{{currentLoopObj.email}}",
+                  "subject": "Supplier OnBoarding Invitation",
+                  "tenant": "{{toInt payload.headers.tenant}}",
+                  "templateUrl": "https://sch.s3.ap-south-1.amazonaws.com/templates/sendInvite-2.html",
+                  "templateValue": {
+                    "title": "Supplier OnBoarding Invitation",
+                    "company": "Emirates Steel Arkan Supplier Assurance Team",
+                    "pagecaption": "Supplier OnBoarding Notification",
+                    "BPCode": "{{payload.schAssociateNumber}}",
+                    "suppliercode": "{{currentLoopObj.userId}}",
+                    "Password": "{{actionsResponse.userPassword}}",
+                    "userName": "Dear Sir/Madam ,",
+                    "bannerImage": "",
+                    "schlogo": "https://sch-emirate-steels.s3.ap-south-1.amazonaws.com/Login+Images/logo.png",
+                    "emailBody": "Welcome to Emirates Steel Arkan Supplier Management,We are transforming our Supply Chain Management to the new SCH Platform. As a Registered Emirates Steel Arkan Supplier, you are invited to login to your new account and review your profile.",
+                    "link": "{{payload.baseUrl}}/prelogin/ResetPassword?user={{currentLoopObj.userId}}&pass={{actionsResponse.userPassword}}",
+                    "remarks": "Sincerely,",
+                    "footer1": "Emirates Steel Arkan Supplier Assurance Team"
+                  }
+                }
+              },
+              "nextAction": 5
+            },
+            {
+              "id": 5,
+              "actionName": "data",
+              "actionType": "insertData",
+              "actionDetails": {
+                "database_details": {
+                  "database": "{{payload.headers.dbName}}",
+                  "collection": "ruleSetLog"
+                },
+                "payload": {
+                  "jobName": "sendInvitate",
+                  "type": "outBound",
+                  "payloadData": "{{actionsResponse.inviteNotifn}}"
+                }
+              },
+              "nextAction": 6
+            },
+            {
+              "id": 6,
+              "actionName": "vendorCollectionUpdateStatus",
+              "runCount": "{{#forEach actionsResponse.logData}}",
+              "actionType": "updateBusinessView",
+              "actionDetails": {
+                "businessView": "UpdatevendorStatusCollection",
+                "database": "{{payload.headers.dbName}}",
+                "targetSchema": {},
+                "sourceData": {}
+              }
+            },
+            {
+              "id": 7,
+              "actionName": "updateUserStaus",
+              "runCount": "{{#forEach actionsResponse.logData}}",
+              "actionType": "updateBusinessView",
+              "actionDetails": {
+                "businessView": "updateUserGroup",
+                "database": "{{payload.headers.dbName}}",
+                "targetSchema": {},
+                "sourceData": {}
+              },
+              "nextAction": 8
+            },
+            {
+              "id": 8,
+              "actionName": "poAckComplete",
+              "actionType": "completed",
+              "actionDetails": {}
+            }
+          ],
+          "Output": {
+            "message": "Invitation sent successful",
+            "routerLink2": "/page/supplierList",
+            "redirect2": {
+              "routerLink": "/page/supplierList",
+              "params": {}
+            },
+            "refreshTable": true
+          }
+        }
+      ]
+    },
+    "workflowConfirmation": {
+      "type": "inline",
+      "executePopUpAction": [
+        {
+          "WHEN": "'{{payload.popupActionPerformed}}' == 'submit'",
+          "THEN": ["performActions"],
+          "Actions": [
+            {
+              "id": 1,
+              "actionName": "getvendorData",
+              "actionType": "getDataFromDB",
+              "actionDetails": {
+                "database_details": {
+                  "database": "{{payload.headers.dbName}}",
+                  "collection": "vendors"
+                },
+                "filter": {},
+                "aggregation": [
+                  {
+                    "($)match": {
+                      "schAssociateNumber": "{{payload['selectedRow']['BPID']['text']}}"
+                    }
+                  },
+                  {
+                    "($)project": {
+                      "_id": 0,
+                      "identifiers": 1,
+                      "schAssociateNumber": 1,
+                      "userId": 1,
+                      "contactEmail": 1
+                    }
+                  },
+                  {
+                    "($)limit": 1
+                  }
+                ],
+                "projection": {},
+                "sort": {
+                  "createdAt": 1
+                },
+                "pagination": {
+                  "limit": 1,
+                  "pageNumber": 0
+                }
+              }
+            },
+            {
+              "id": 2,
+              "actionName": "pipoSendData",
+              "actionType": "executeApi",
+              "async": false,
+              "actionDetails": {
+                "apiDetails": {
+                  "URL": "https://webhook.site/326a92cf-6398-44b4-b55b-4b2d4c52717b",
+                  "Method": "Post"
+                },
+                "Body": {
+                  "vendorAssociate": "{{actionsResponse.getvendorData[0]}}",
+                  "callbackURL": {
+                    "url": "",
+                    "postData": ""
+                  }
+                }
+              }
+            },
+            {
+              "id": 3,
+              "actionName": "expiredNotifn",
+              "actionType": "sendNotification",
+              "async": false,
+              "actionDetails": {
+                "apiDetails": {
+                  "URL": "{{payload.baseUrl}}/notification_engine/send-email-notification",
+                  "Method": "Post"
+                },
+                "Body": {
+                  "emailId": "{{actionsResponse.getvendorData[0].contactEmail}}",
+                  "subject": "Certification Expiry - Remainder",
+                  "tenant": "{{toInt payload.headers.tenant}}",
+                  "templateUrl": "https://sch.s3.ap-south-1.amazonaws.com/templates/template-certification-remiander-3.html",
+                  "templateValue": {
+                    "pagetitle": "Certification Expiry - Remainder",
+                    "pagecaption": "Certification Expiry Remainder Notification",
+                    "remainderDate": "2022-01-02",
+                    "remainderCount": "1",
+                    "supplierNo": "",
+                    "schId": "",
+                    "registeredName": "",
+                    "certificateType": "",
+                    "certificateName": "",
+                    "expiryDate": "",
+                    "bannerImage": "https://sch-templates.s3.ap-south-1.amazonaws.com/images/supportdesk-logo.png",
+                    "userName": "Supplier",
+                    "emailBody1": "Emirates Steel (ESA) Arkan Supply Assurance team is sending this notification to remind your good company that the following document is going to expire : ",
+                    "emailBody2": "The updated document needs to be uploaded into your XXXX , maintained under section XXXX using Link: XXX,In case you have already submitted please ignore this mail.Failure to keep the Ariba profile updated will result in your Emirates Steel Arkan account being deactivated. If deactivated, your Company will be excluded from any future RFQs and POs.",
+                    "remarks": "Kind Regards,",
+                    "link": "",
+                    "remarks1": "Supply Assurance",
+                    "remarks2": "Emirates Steel Arkan (ESA)"
+                  }
+                }
+              }
+            },
+            {
+              "id": 4,
+              "actionName": "certificationStatusRemainder",
+              "actionType": "updateBusinessView",
+              "actionDetails": {
+                "businessView": "certificationUpdate",
+                "database": "{{payload.headers.dbName}}",
+                "targetSchema": {},
+                "sourceData": {}
+              }
+            }
+          ],
+          "Output": {
+            "message": "Certification Remainder Sent Successfully"
+          }
+        }
+      ],
+      "inlineJson": {
+        "type": "form",
+        "header": {
+          "heading": "Certification Remainder 1"
+        },
+        "body": {
+          "style": "style1",
+          "containerCSS": {
+            "flex": "1 1 25%"
+          },
+          "css": {
+            "display": "flex",
+            "flex-wrap": "wrap",
+            "gap": "0 1rem"
+          },
+          "title": "Do you want to send a Remainder?",
+          "components2": [
+            {
+              "label": "Do you want to send a Reaminder?",
+              "type": "text"
+            }
+          ]
+        },
+        "footer": {
+          "button": [
+            {
+              "text": "No",
+              "type": "button",
+              "action": "close"
+            },
+            {
+              "text": "Yes",
+              "type": "submit",
+              "action": "submit",
+              "onClick": [
+                {
+                  "actions": [
+                    {
+                      "action": "executePopupAction",
+                      "actionDetails": {
+                        "payload": {
+                          "ruleSetId": "certificationNotification"
+                        }
+                      }
+                    },
+                    {
+                      "action": "refresh"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "ReInvite": {
+      "type": "inline",
+      "inlineJson": {
+        "type": "form",
+        "header": {
+          "heading": "Invite Vendor"
+        },
+        "body": {
+          "style": "style1",
+          "title": "Do you want to invite this vendor ?",
+          "components1": [
+            {
+              "label": "Do you want to invite this vendor ?",
+              "type": "text",
+              "dbcolumnName": "reprocessLocation",
+              "formcontrol": "reprocessLocation",
+              "placeholder": "Reprocess quotation",
+              "mandatory": false,
+              "readOnly": false
+            }
+          ]
+        },
+        "footer": {
+          "button": [
+            {
+              "text": "Cancel",
+              "type": "button",
+              "action": "close"
+            },
+            {
+              "text": "Yes",
+              "type": "submit",
+              "action": "submit",
+              "onClick": [
+                {
+                  "actions": [
+                    {
+                      "action": "executePopupAction"
+                    },
+                    {
+                      "action": "2refresh"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "executePopUpAction": [
+        {
+          "ID": 1,
+          "Rule": "pageAction",
+          "RuleGroup": "",
+          "WHEN": "'{{payload.popupActionPerformed}}' == 'submit'",
+          "THEN": ["performAction"],
+          "Actions": [
+            {
+              "id": 1,
+              "actionName": "collectionData",
+              "actionType": "getDataFromDB",
+              "actionDetails": {
+                "database_details": {
+                  "database": "{{payload.headers.dbName}}",
+                  "collection": "vendors"
+                },
+                "filter": {},
+                "aggregation": [
+                  {
+                    "($)match": {
+                      "schAssociateNumber": "{{payload.selectedRow['Supplier ID']['text']}}"
+                    }
+                  },
+                  {
+                    "($)facet": {
+                      "paginatedResults": [
+                        {
+                          "($)unwind": "($)vendorCategory"
+                        },
+                        {
+                          "($)group": {
+                            "_id": null,
+                            "appInfos": {
+                              "($)push": "($)vendorCategory.categoryCode"
+                            }
+                          }
+                        },
+                        {
+                          "($)project": {
+                            "_id": 0,
+                            "appInfos": "($)appInfos"
+                          }
+                        }
+                      ],
+                      "totalCount": [
+                        {
+                          "($)count": "count"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "id": 2,
+              "actionName": "check",
+              "actionType": "conditional",
+              "actionDetails": {
+                "WHEN": "'{{payload.selectedRow['Initiated By']['text']}}' == 'Buyer'",
+                "THEN": ["nextAction=3"],
+                "ELSE": ["nextAction=10"]
+              }
+            },
+            {
+              "id": 3,
+              "actionName": "getUserId",
+              "actionType": "executeApi",
+              "async": false,
+              "actionDetails": {
+                "apiDetails": {
+                  "URL": "{{payload.baseUrl}}/lowcode-service/getWorkflowUser?flatValue=0",
+                  "Method": "Post"
+                },
+                "Body": {
+                  "tenant": "{{payload.headers.tenant}}",
+                  "workflowId": "WF_VO_CREATE_EMR",
+                  "level": "L1",
+                  "initiatorRole": "{{payload.headers.userRole}}",
+                  "category": "{{actionsResponse.collectionData[0].paginatedResults[0].appInfos}}"
+                }
+              }
+            },
+            {
+              "id": 4,
+              "actionName": "buyerDetail",
+              "actionType": "executeApi",
+              "runCount": "{{#forEach actionsResponse.getUserId.output}}",
+              "async": false,
+              "actionDetails": {
+                "apiDetails": {
+                  "URL": "{{payload.baseUrl}}/supplier_service/sch-workflow/getUserDetails/{{currentLoopObj.User}}",
+                  "Method": "Get"
+                },
+                "Body": {}
+              }
+            },
+            {
+              "id": 5,
+              "actionName": "check",
+              "actionType": "conditional",
+              "actionDetails": {
+                "WHEN": "'{{payload.selectedRow['Status']['text']}}' == 'Registration denied'",
+                "THEN": ["nextAction=6"],
+                "ELSE": ["nextAction=7"]
+              }
+            },
+            {
+              "id": 6,
+              "actionName": "toTriggerWorkflow",
+              "actionType": "workflowPublishEvent",
+              "async": false,
+              "actionDetails": {
+                "Body": {
+                  "Business_Comp_Id": "Supplier",
+                  "Business_Comp_Instance_Id": "{{payload.selectedRow['Supplier ID']['text']}}",
+                  "Event_Id": "Vendor_Approval_Emirates",
+                  "Initiator": "{{payload.headers.userId}}",
+                  "Action": "Create",
+                  "Work_Item_Id": null,
+                  "Workflow_Id": null,
+                  "Remarks": "",
+                  "Message": null,
+                  "User_Agent": null,
+                  "Tenant": "{{payload.headers.tenant}}",
+                  "Trigger_Date": "{{timeStamp YYYY-MM-DD}}",
+                  "Context_Data": {
+                    "tenant": "{{payload.headers.tenant}}",
+                    "schAssociateNumber": "{{payload.selectedRow['Supplier ID']['text']}}",
+                    "emailId": "{{payload.selectedRow['Contact']['fields']['Email Address']}}",
+                    "vendorName": "{{payload.selectedRow['Supplier Name']['fields']['Supplier Name']}}",
+                    "Initiator": "{{payload.headers.userId}}",
+                    "Status": "fullRegistration",
+                    "role": "{{payload.headers.userRole}}",
+                    "WF_BASE_URL": "{{payload.baseUrl}}",
+                    "category": "{{actionsResponse.collectionData[0].paginatedResults[0].appInfos}}"
+                  }
+                }
+              },
+              "nextAction": 12
+            },
+            {
+              "id": 7,
+              "actionName": "toTriggerWorkflow",
+              "actionType": "workflowPublishEvent",
+              "async": false,
+              "actionDetails": {
+                "Body": {
+                  "Business_Comp_Id": "Supplier",
+                  "Business_Comp_Instance_Id": "{{payload.selectedRow['Supplier ID']['text']}}",
+                  "Event_Id": "Vendor_Approval_Emirates",
+                  "Initiator": "{{payload.headers.userId}}",
+                  "Action": "Create",
+                  "Work_Item_Id": null,
+                  "Workflow_Id": null,
+                  "Remarks": "",
+                  "Message": null,
+                  "User_Agent": null,
+                  "Tenant": "{{payload.headers.tenant}}",
+                  "Trigger_Date": "{{timeStamp YYYY-MM-DD}}",
+                  "Context_Data": {
+                    "tenant": "{{payload.headers.tenant}}",
+                    "schAssociateNumber": "{{payload.selectedRow['Supplier ID']['text']}}",
+                    "emailId": "{{payload.selectedRow['Contact']['fields']['Email Address']}}",
+                    "vendorName": "{{payload.selectedRow['Supplier Name']['fields']['Supplier Name']}}",
+                    "Initiator": "{{payload.headers.userId}}",
+                    "Status": "reinvite",
+                    "role": "{{payload.headers.userRole}}",
+                    "WF_BASE_URL": "{{payload.baseUrl}}",
+                    "category": "{{actionsResponse.collectionData[0].paginatedResults[0].appInfos}}"
+                  }
+                }
+              },
+              "nextAction": 8
+            },
+            {
+              "id": 8,
+              "actionName": "updateStatus",
+              "actionType": "updateBusinessView",
+              "actionDetails": {
+                "database": "{{payload.headers.dbName}}",
+                "businessView": "updateReinviteInitiationStatus",
+                "sourceData": {},
+                "targetSchema": {}
+              },
+              "nextAction": 9
+            },
+            {
+              "id": 9,
+              "actionName": "ReInviteNotifn",
+              "actionType": "sendNotification",
+              "async": false,
+              "actionDetails": {
+                "apiDetails": {
+                  "URL": "{{payload.baseUrl}}/notification_engine/send-email-notification",
+                  "Method": "Post"
+                },
+                "Body": {
+                  "emailId": "{{payload.selectedRow['Contact']['fields']['Email Address']}}",
+                  "subject": "Supplier Initiation Request {{payload.selectedRow['Supplier ID']['text']}} is Reinvited",
+                  "tenant": 100,
+                  "templateUrl": "https://sch-emirate-steels.s3.ap-south-1.amazonaws.com/templates/mail-logo.html",
+                  "templateValue": {
+                    "pagetitle": "Supplier Initiation Request {{payload.selectedRow['Supplier ID']['text']}} is Reinvited",
+                    "pagecaption": "Supplier Initiation Re-invite Notification",
+                    "bannerImage": "",
+                    "userName": "Buyer",
+                    "emailBody1": "The Supplier initiation request is reinvited  {{payload.selectedRow['Supplier Name']['fields']['Supplier Name']}} - {{payload.selectedRow['Supplier ID']['text']}} ",
+                    "emailBody2": "",
+                    "schlogo": "https://sch-emirate-steels.s3.ap-south-1.amazonaws.com/Login+Images/logo.png",
+                    "footer1": "Sincerely,",
+                    "footer2": "Emirates Steel Arkan Supplier Assurance Team"
+                  }
+                }
+              },
+              "nextAction": 14
+            },
+            {
+              "id": 10,
+              "actionName": "check",
+              "actionType": "conditional",
+              "actionDetails": {
+                "WHEN": "'{{payload.selectedRow['Status']['text']}}' == 'Registration denied'",
+                "THEN": ["nextAction=11"],
+                "ELSE": ["nextAction=14"]
+              }
+            },
+            {
+              "id": 11,
+              "actionName": "toTriggerWorkflow",
+              "actionType": "workflowPublishEvent",
+              "async": false,
+              "actionDetails": {
+                "Body": {
+                  "Business_Comp_Id": "Supplier",
+                  "Business_Comp_Instance_Id": "{{payload.selectedRow['Supplier ID']['text']}}",
+                  "Event_Id": "Vendor_Approval_Emirates1",
+                  "Initiator": "Supplier",
+                  "Action": "Create",
+                  "Work_Item_Id": "",
+                  "Workflow_Id": "",
+                  "Remarks": "",
+                  "Message": "",
+                  "User_Agent": "Supplier",
+                  "Tenant": "{{payload.headers.tenant}}",
+                  "Trigger_Date": "{{timeStamp YYYY-MM-DD}}",
+                  "Context_Data": {
+                    "tenant": "{{payload.headers.tenant}}",
+                    "schAssociateNumber": "{{payload.selectedRow['Supplier ID']['text']}}",
+                    "emailId": "{{payload.selectedRow['Contact']['fields']['Email Address']}}",
+                    "vendorName": "{{payload.selectedRow['Supplier Name']['fields']['Supplier Name']}}",
+                    "Initiator": "Supplier",
+                    "Status": "fullRegistration",
+                    "role": "Vendor",
+                    "WF_BASE_URL": "{{payload.baseUrl}}",
+                    "category": "{{actionsResponse.collectionData[0].paginatedResults[0].appInfos}}"
+                  }
+                }
+              },
+              "nextAction": 12
+            },
+            {
+              "id": 12,
+              "actionName": "updateStatus",
+              "actionType": "updateBusinessView",
+              "actionDetails": {
+                "database": "{{payload.headers.dbName}}",
+                "businessView": "updateReinviteStatus",
+                "sourceData": {},
+                "targetSchema": {}
+              }
+            },
+            {
+              "id": 13,
+              "actionName": "ReInviteNotifn",
+              "actionType": "sendNotification",
+              "async": false,
+              "actionDetails": {
+                "apiDetails": {
+                  "URL": "{{payload.baseUrl}}/notification_engine/send-email-notification",
+                  "Method": "Post"
+                },
+                "Body": {
+                  "emailId": "{{payload.selectedRow['Contact']['fields']['Email Address']}}",
+                  "subject": "Full Registration Re-Submission Request - {{payload.selectedRow['Supplier ID']['text']}}",
+                  "tenant": 100,
+                  "templateUrl": "https://sch-emirate-steels.s3.ap-south-1.amazonaws.com/templates/mail-logo.html",
+                  "templateValue": {
+                    "pagetitle": "Full Registration Re-Submission Request",
+                    "pagecaption": "Full Registration Re-invite Notification",
+                    "bannerImage": "",
+                    "userName": "Supplier",
+                    "emailBody1": "Welcome to Emirates Steel Arkan Supplier Management,",
+                    "emailBody2": "Kindly review and re-submit the full registration for Supply Chain Management Team",
+                    "schlogo": "https://sch-emirate-steels.s3.ap-south-1.amazonaws.com/Login+Images/logo.png",
+                    "footer1": "Sincerely,",
+                    "footer2": "Emirates Steel Arkan Supplier Assurance Team"
+                  }
+                }
+              },
+              "nextAction": 14
+            },
+            {
+              "id": 14,
+              "actionName": "sentInvitationComplete",
+              "actionType": "completed",
+              "actionDetails": {}
+            }
+          ],
+          "Output": {
+            "message": "Re Invite successful",
+            "routerLink2": "/page/supplierList",
+            "redirect2": {
+              "routerLink": "/page/supplierList",
+              "params": {}
+            },
+            "refreshTable": true
+          }
+        }
+      ]
+    },
+    "SendNotification": {
+      "type": "inline",
+      "inlineJson": {
+        "type": "form",
+        "header": {
+          "heading": "Send Notification"
+        },
+        "body": {
+          "style": "style1",
+          "title": "Do you want to Send Notification to this vendor ?",
+          "components1": [
+            {
+              "label": "Do you want to Send Notification to this vendor ?",
+              "type": "text",
+              "dbcolumnName": "reprocessLocation",
+              "formcontrol": "reprocessLocation",
+              "placeholder": "Reprocess quotation",
+              "mandatory": false,
+              "readOnly": false
+            }
+          ]
+        },
+        "footer": {
+          "button": [
+            {
+              "text": "Cancel",
+              "type": "button",
+              "action": "close"
+            },
+            {
+              "text": "Yes",
+              "type": "submit",
+              "action": "submit",
+              "onClick": [
+                {
+                  "actions": [
+                    {
+                      "action": "executePopupAction"
+                    },
+                    {
+                      "action": "2refresh"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "executePopUpAction": [
+        {
+          "ID": 1,
+          "Rule": "pageAction",
+          "RuleGroup": "",
+          "WHEN": "'{{payload.popupActionPerformed}}' == 'submit'",
+          "THEN": ["performAction"],
+          "Actions": [
+            {
+              "id": 1,
+              "actionName": "collectionData",
+              "actionType": "getDataFromDB",
+              "actionDetails": {
+                "database_details": {
+                  "database": "{{payload.headers.dbName}}",
+                  "collection": "vendors"
+                },
+                "filter": {},
+                "aggregation": [
+                  {
+                    "($)match": {
+                      "schAssociateNumber": "{{payload.selectedRow['Supplier ID']['text']}}"
+                    }
+                  },
+                  {
+                    "($)facet": {
+                      "paginatedResults": [
+                        {
+                          "($)unwind": "($)vendorCategory"
+                        },
+                        {
+                          "($)group": {
+                            "_id": null,
+                            "appInfos": {
+                              "($)push": "($)vendorCategory.categoryCode"
+                            }
+                          }
+                        },
+                        {
+                          "($)project": {
+                            "_id": 0,
+                            "appInfos": "($)appInfos"
+                          }
+                        }
+                      ],
+                      "totalCount": [
+                        {
+                          "($)count": "count"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "id": 2,
+              "actionName": "check",
+              "actionType": "conditional",
+              "actionDetails": {
+                "WHEN": "'{{payload.selectedRow['Initiated By']['text']}}' == 'Buyer'",
+                "THEN": ["nextAction=3"],
+                "ELSE": ["nextAction=8"]
+              }
+            },
+            {
+              "id": 3,
+              "actionName": "getUserId",
+              "actionType": "executeApi",
+              "async": false,
+              "actionDetails": {
+                "apiDetails": {
+                  "URL": "{{payload.baseUrl}}/lowcode-service/getWorkflowUser?flatValue=0",
+                  "Method": "Post"
+                },
+                "Body": {
+                  "tenant": "{{payload.headers.tenant}}",
+                  "workflowId": "WF_VO_CREATE_EMR",
+                  "level": "L1",
+                  "initiatorRole": "{{payload.headers.userRole}}",
+                  "category": "{{actionsResponse.collectionData[0].paginatedResults[0].appInfos}}"
+                }
+              }
+            },
+            {
+              "id": 4,
+              "actionName": "buyerDetail",
+              "actionType": "executeApi",
+              "runCount": "{{#forEach actionsResponse.getUserId.output}}",
+              "async": false,
+              "actionDetails": {
+                "apiDetails": {
+                  "URL": "{{payload.baseUrl}}/supplier_service/sch-workflow/getUserDetails/{{currentLoopObj.User}}",
+                  "Method": "Get"
+                },
+                "Body": {}
+              }
+            },
+            {
+              "id": 5,
+              "actionName": "check",
+              "actionType": "conditional",
+              "actionDetails": {
+                "WHEN": "'{{payload.selectedRow['Status']['text']}}' == 'Registration denied'",
+                "THEN": ["nextAction=6"],
+                "ELSE": ["nextAction=7"]
+              }
+            },
+            {
+              "id": 6,
+              "actionName": "toTriggerWorkflow",
+              "actionType": "workflowPublishEvent",
+              "async": false,
+              "actionDetails": {
+                "Body": {
+                  "Business_Comp_Id": "Supplier",
+                  "Business_Comp_Instance_Id": "{{payload.selectedRow['Supplier ID']['text']}}",
+                  "Event_Id": "Vendor_Approval_Emirates",
+                  "Initiator": "{{payload.headers.userId}}",
+                  "Action": "Create",
+                  "Work_Item_Id": null,
+                  "Workflow_Id": null,
+                  "Remarks": "",
+                  "Message": null,
+                  "User_Agent": null,
+                  "Tenant": "{{payload.headers.tenant}}",
+                  "Trigger_Date": "{{timeStamp YYYY-MM-DD}}",
+                  "Context_Data": {
+                    "tenant": "{{payload.headers.tenant}}",
+                    "schAssociateNumber": "{{payload.selectedRow['Supplier ID']['text']}}",
+                    "emailId": "{{payload.selectedRow['Contact']['fields']['Email Address']}}",
+                    "vendorName": "{{payload.selectedRow['Supplier Name']['fields']['Supplier Name']}}",
+                    "Initiator": "{{payload.headers.userId}}",
+                    "Status": "fullRegistration",
+                    "role": "{{payload.headers.userRole}}",
+                    "WF_BASE_URL": "{{payload.baseUrl}}",
+                    "category": "{{actionsResponse.collectionData[0].paginatedResults[0].appInfos}}"
+                  }
+                }
+              },
+              "nextAction": 10
+            },
+            {
+              "id": 7,
+              "actionName": "toTriggerWorkflow",
+              "actionType": "workflowPublishEvent",
+              "async": false,
+              "actionDetails": {
+                "Body": {
+                  "Business_Comp_Id": "Supplier",
+                  "Business_Comp_Instance_Id": "{{payload.selectedRow['Supplier ID']['text']}}",
+                  "Event_Id": "Vendor_Approval_Emirates",
+                  "Initiator": "{{payload.headers.userId}}",
+                  "Action": "Create",
+                  "Work_Item_Id": null,
+                  "Workflow_Id": null,
+                  "Remarks": "",
+                  "Message": null,
+                  "User_Agent": null,
+                  "Tenant": "{{payload.headers.tenant}}",
+                  "Trigger_Date": "{{timeStamp YYYY-MM-DD}}",
+                  "Context_Data": {
+                    "tenant": "{{payload.headers.tenant}}",
+                    "schAssociateNumber": "{{payload.selectedRow['Supplier ID']['text']}}",
+                    "emailId": "{{payload.selectedRow['Contact']['fields']['Email Address']}}",
+                    "vendorName": "{{payload.selectedRow['Supplier Name']['fields']['Supplier Name']}}",
+                    "Initiator": "{{payload.headers.userId}}",
+                    "Status": "reinvite",
+                    "role": "{{payload.headers.userRole}}",
+                    "WF_BASE_URL": "{{payload.baseUrl}}",
+                    "category": "{{actionsResponse.collectionData[0].paginatedResults[0].appInfos}}"
+                  }
+                }
+              },
+              "nextAction": 10
+            },
+            {
+              "id": 8,
+              "actionName": "check",
+              "actionType": "conditional",
+              "actionDetails": {
+                "WHEN": "'{{payload.selectedRow['Status']['text']}}' == 'Registration denied'",
+                "THEN": ["nextAction=9"],
+                "ELSE": ["nextAction=11"]
+              }
+            },
+            {
+              "id": 9,
+              "actionName": "toTriggerWorkflow",
+              "actionType": "workflowPublishEvent",
+              "async": false,
+              "actionDetails": {
+                "Body": {
+                  "Business_Comp_Id": "Supplier",
+                  "Business_Comp_Instance_Id": "{{payload.selectedRow['Supplier ID']['text']}}",
+                  "Event_Id": "Vendor_Approval_Emirates1",
+                  "Initiator": "Supplier",
+                  "Action": "Create",
+                  "Work_Item_Id": "",
+                  "Workflow_Id": "",
+                  "Remarks": "",
+                  "Message": "",
+                  "User_Agent": "Supplier",
+                  "Tenant": "{{payload.headers.tenant}}",
+                  "Trigger_Date": "{{timeStamp YYYY-MM-DD}}",
+                  "Context_Data": {
+                    "tenant": "{{payload.headers.tenant}}",
+                    "schAssociateNumber": "{{payload.selectedRow['Supplier ID']['text']}}",
+                    "emailId": "{{payload.selectedRow['Contact']['fields']['Email Address']}}",
+                    "vendorName": "{{payload.selectedRow['Supplier Name']['fields']['Supplier Name']}}",
+                    "Initiator": "Supplier",
+                    "Status": "fullRegistration",
+                    "role": "Vendor",
+                    "WF_BASE_URL": "{{payload.baseUrl}}",
+                    "category": "{{actionsResponse.collectionData[0].paginatedResults[0].appInfos}}"
+                  }
+                }
+              },
+              "nextAction": 10
+            },
+            {
+              "id": 10,
+              "actionName": "updateStatus",
+              "actionType": "updateBusinessView",
+              "actionDetails": {
+                "database": "{{payload.headers.dbName}}",
+                "businessView": "updateReinviteStatus",
+                "sourceData": {},
+                "targetSchema": {}
+              }
+            },
+            {
+              "id": 11,
+              "actionName": "sentInvitationComplete",
+              "actionType": "completed",
+              "actionDetails": {}
+            }
+          ],
+          "Output": {
+            "message": "Notificattion Sent",
+            "routerLink2": "/page/supplierList",
+            "redirect2": {
+              "routerLink": "/page/supplierList",
+              "params": {}
+            },
+            "refreshTable": true
+          }
+        }
+      ]
+    }
+  },
+  "rows": [
+    {
+      "columns": [
+        {
+          "components": [
+            {
+              "componentId": 1,
+              "type": "table",
+              "title": "Supplier List",
+              "description": "Supplier Details",
+              "icon": "Business Partner",
+              "dataSourceName": "supplierListBV-V1",
+              "tableConfig": {
+                "enableEntityCreation": false,
+                "storeColumnSequence": true,
+                "entityCreationDetails": {
+                  "creationMethod": "collection",
+                  "dbName": "{{payload.headers.dbName}}",
+                  "collectionName": "employees",
+                  "hasAction": true,
+                  "Actions": [],
+                  "executeEntityCreationAPI": "https://webhook.site/d73ab550-f4b4-4050-8acc-73b44913ff1e",
+                  "routerLink": "/page/VendorList"
+                },
+                "headerActions": [
+                  {
+                    "checkRole": {
+                      "hidden": [
+                        {
+                          "value": true,
+                          "roles": ["TemporaryVendor", "portalOneTimeVendor", "portalVendor"]
+                        }
+                      ]
+                    },
+                    "text": "Initiate Supplier Request",
+                    "showLabel": true,
+                    "icon": "ficon feather icon-plus",
+                    "image": "",
+                    "style": "style1",
+                    "onClick": [
+                      {
+                        "actions": [
+                          {
+                            "action": "redirect",
+                            "actionDetails": {
+                              "routerLink": "/page/ESASupplierInitiation"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "checkRole": {
+                      "hidden": [
+                        {
+                          "value": true,
+                          "roles": ["TemporaryVendor", "portalOneTimeVendor", "portalVendor"]
+                        }
+                      ]
+                    },
+                    "text": "Send Invite",
+                    "showLabel": true,
+                    "icon": "ficon feather icon-award",
+                    "image": "",
+                    "css": {},
+                    "style": "style1",
+                    "onClick": [
+                      {
+                        "actions": [
+                          {
+                            "action": "confirmationPopup",
+                            "checkCondition": [
+                              {
+                                "failureMessage": "Please select at least one row to proceed",
+                                "source": "tableCheckbox",
+                                "sourceType": "column",
+                                "operation": "checked",
+                                "valueof": {
+                                  "value": true
+                                }
+                              }
+                            ],
+                            "actionDetails": {
+                              "popupName": "SendInvite",
+                              "formDetails": {
+                                "header": {
+                                  "title": "Send Invite",
+                                  "icon": "feather icon-award"
+                                },
+                                "body": {
+                                  "title2": "Do you want to invite the selected vendors?",
+                                  "components": [
+                                    {
+                                      "label": "Do you want to invite the selected vendors?",
+                                      "type": "textarea",
+                                      "formcontrol": "Remarks",
+                                      "placeholder": "Remarks",
+                                      "mandatory": false,
+                                      "readOnly": false
+                                    }
+                                  ]
+                                },
+                                "footer": {
+                                  "button": [
+                                    {
+                                      "text": "No",
+                                      "type": "button",
+                                      "action": "close"
+                                    },
+                                    {
+                                      "text": "Send Invite",
+                                      "type": "submit",
+                                      "action": "submit",
+                                      "onClick": [
+                                        {
+                                          "actions": [
+                                            {
+                                              "action": "executePopupAction",
+                                              "actionPerformed": "Send Invite"
+                                            },
+                                            {
+                                              "action": "redirect",
+                                              "actionDetails": {
+                                                "routerLink": ""
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "layoutIcon": false,
+                "downloadIcon": true,
+                "columnFilterIcon": true,
+                "rowFilterIcon": false,
+                "fullscreenIcon": true,
+                "aggregationFooter": true,
+                "checkbox": true,
+                "checkboxCondition": [
+                  {
+                    "sourceColumn": "Status",
+                    "checkCondition": {
+                      "text": "Invited"
+                    },
+                    "checkboxDisabled": true
+                  },
+                  {
+                    "sourceColumn": "Status",
+                    "checkCondition": {
+                      "text": "Modification L1 Approved"
+                    },
+                    "checkboxDisabled": true
+                  },
+                  {
+                    "sourceColumn": "Status",
+                    "checkCondition": {
+                      "text": "Modification Failed"
+                    },
+                    "checkboxDisabled": true
+                  },
+                  {
+                    "sourceColumn": "Status",
+                    "checkCondition": {
+                      "text": "Pending Registered"
+                    },
+                    "checkboxDisabled": true
+                  },
+                  {
+                    "sourceColumn": "Status",
+                    "checkCondition": {
+                      "text": "Registered"
+                    },
+                    "checkboxDisabled": true
+                  },
+                  {
+                    "sourceColumn": "Status",
+                    "checkCondition": {
+                      "text": "Modification For Approval"
+                    },
+                    "checkboxDisabled": true
+                  },
+                  {
+                    "sourceColumn": "Status",
+                    "checkCondition": {
+                      "text": "Draft"
+                    },
+                    "checkboxDisabled": true
+                  },
+                  {
+                    "sourceColumn": "Status",
+                    "checkCondition": {
+                      "text": "Not Invited"
+                    },
+                    "checkboxDisabled": true
+                  },
+                  {
+                    "sourceColumn": "Status",
+                    "checkCondition": {
+                      "text": "In Registration"
+                    },
+                    "checkboxDisabled": true
+                  },
+                  {
+                    "sourceColumn": "Status",
+                    "checkCondition": {
+                      "text": "Pending For Approval"
+                    },
+                    "checkboxDisabled": true
+                  },
+                  {
+                    "sourceColumn": "Status",
+                    "checkCondition": {
+                      "text": "Pending Resubmit"
+                    },
+                    "checkboxDisabled": true
+                  },
+                  {
+                    "sourceColumn": "Status",
+                    "checkCondition": {
+                      "text": "Registration Denied"
+                    },
+                    "checkboxDisabled": true
+                  },
+                  {
+                    "sourceColumn": "Status",
+                    "checkCondition": {
+                      "text": "SAP Failed"
+                    },
+                    "checkboxDisabled": true
+                  },
+                  {
+                    "sourceColumn": "Status",
+                    "checkCondition": {
+                      "text": "Pending for Approval"
+                    },
+                    "checkboxDisabled": true
+                  },
+                  {
+                    "sourceColumn": "Status",
+                    "checkCondition": {
+                      "text": "Correction Required"
+                    },
+                    "checkboxDisabled": true
+                  },
+                  {
+                    "sourceColumn": "Status",
+                    "checkCondition": {
+                      "text": "Invite Denied"
+                    },
+                    "checkboxDisabled": true
+                  }
+                ],
+                "showChart": true,
+                "businessComponent": "Supplier",
+                "downloadActions": [
+                  {
+                    "action": "excelDownload"
+                  },
+                  {
+                    "action": "pdfDownload"
+                  }
+                ],
+                "DataDownload": {
+                  "downloadColumnName": [
+                    {
+                      "label": "BP ID",
+                      "property": "BP ID",
+                      "dbColumnName": "schAssociateNumber"
+                    },
+                    {
+                      "label": "SAP Associate Nr",
+                      "property": "SAP Associate Nr",
+                      "dbColumnName": "associate"
+                    },
+                    {
+                      "label": "Vendor Name",
+                      "property": "Vendor Name",
+                      "dbColumnName": "organisationName"
+                    },
+                    {
+                      "label": "Vendor Id",
+                      "property": "Vendor Id",
+                      "dbColumnName": "userId"
+                    },
+                    {
+                      "label": "Status",
+                      "property": "Status",
+                      "dbColumnName": "status"
+                    },
+                    {
+                      "label": "ICV Score %",
+                      "property": "ICV Score %",
+                      "dbColumnName": "icvScore"
+                    },
+                    {
+                      "label": "Initiated By",
+                      "property": "Initiated By",
+                      "dbColumnName": "initiatedBy"
+                    },
+                    {
+                      "label": "Initiator",
+                      "property": "Initiator",
+                      "dbColumnName": "Initiator"
+                    },
+                    {
+                      "label": "Created At",
+                      "property": "Created At",
+                      "dbColumnName": "createdAt1"
+                    },
+                    {
+                      "label": "Email Id",
+                      "property": "Email Id",
+                      "dbColumnName": "contactEmail"
+                    },
+                    {
+                      "label": "ContactNumber",
+                      "property": "ContactNumber",
+                      "dbColumnName": "mobileNumber"
+                    },
+                    {
+                      "label": "Country",
+                      "property": "Country",
+                      "dbColumnName": "country"
+                    }
+                  ]
+                },
+                "tableFilter": {
+                  "dataSourceType": "inline",
+                  "dataSource": [
+                    {
+                      "dataSourceType": "businessView",
+                      "dataSourceName": "vendorListTableFilter",
+                      "dataSourceDetails": {
+                        "businessView": "vendorListTableFilter"
+                      }
+                    }
+                  ],
+                  "Filters": [
+                    {
+                      "description": "Supplier ID",
+                      "dbColumnName": "schAssociateNumber",
+                      "placeholder": "BPID",
+                      "filterType": "search"
+                    },
+                    {
+                      "description": "Status",
+                      "dataSourceName": "vendorListTableFilter",
+                      "dbColumnName": "status",
+                      "filterType": "checkBox"
+                    },
+                    {
+                      "description": "Supplier Name",
+                      "dataSourceName": "vendorListTableFilter",
+                      "dbColumnName": "organisationName",
+                      "filterType": "search"
+                    },
+                    {
+                      "description": "Created On",
+                      "dataSourceName": "vendorListTableFilter",
+                      "dbColumnName": "createdAt",
+                      "placeholder": "Created On",
+                      "filterType": "dateRange"
+                    },
+                    {
+                      "description": "SubCategory",
+                      "filterType": "heirarchySelect",
+                      "filters": [
+                        {
+                          "label": "Category",
+                          "dbColumnPrefix": "vendorCategory",
+                          "dbColumnName": "vendorCategoryText",
+                          "type": "selectWithBusinessView",
+                          "dataSourceType": "businessView",
+                          "dataSourceDetails": {
+                            "businessViewName": "CategoryFilter_BV",
+                            "dataKey": "vendorCategoryText",
+                            "dataValue": "vendorCategoryText"
+                          }
+                        },
+                        {
+                          "label": "SubCategory",
+                          "dbColumnPrefix": "vendorCategory",
+                          "dbColumnName": "vendorSubCategoryLongText",
+                          "type": "selectWithBusinessView",
+                          "dataSourceType": "businessView",
+                          "dataSourceDetails": {
+                            "businessViewName": "vendorSubCategoryFilter_BV",
+                            "dataKey": "vendorSubCategoryLongText",
+                            "dataValue": "vendorSubCategoryLongText"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "chartConfig": {
+                  "chartStyle": {
+                    "grid": false,
+                    "legend": false,
+                    "dataLabels": true,
+                    "distributed": true,
+                    "compact": true,
+                    "yaxis": true,
+                    "closeIcon": true,
+                    "style": "style2"
+                  },
+                  "title": "Status",
+                  "description": "Status",
+                  "chartType": "column",
+                  "defaultChartCategory": "status",
+                  "sendCompressedData": true,
+                  "categorySelection": {
+                    "categories": {
+                      "dataSourceType": "tableColumn",
+                      "dataSourceDetails": {
+                        "categoryColumns": ["Status", "Initiated By"],
+                        "defaultCategoryColumns": "status"
+                      }
+                    },
+                    "onChange": {
+                      "actions": [
+                        {
+                          "action": "apiCall",
+                          "actionDetails": {
+                            "method": "GET",
+                            "params": {
+                              "objectID": null,
+                              "module": "GET",
+                              "activity": "GET API",
+                              "screen": "GET API",
+                              "epic": "SCH-SUPPLIER"
+                            },
+                            "url": "",
+                            "payload": {}
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  "categorySort": [
+                    {
+                      "category": "status",
+                      "sortOrder": [
+                        "Not Invited",
+                        "Correction Required",
+                        "Invited",
+                        "Invite Denied",
+                        "In Registration",
+                        "Pending for Approval",
+                        "Pending Resubmit",
+                        "Registration denied",
+                        "SAP Failed",
+                        "Pending Registered",
+                        "Ready To Onboard",
+                        "Modification L1 Approved",
+                        "Registered"
+                      ]
+                    }
+                  ],
+                  "dataSource": {
+                    "dataSourceType": "table"
+                  }
+                }
+              },
+              "tableColumns": {
+                "Profile": {
+                  "type": "image",
+                  "sticky": null,
+                  "dbColumnName": "organisationName"
+                },
+                "Supplier ID1": {
+                  "type": "status",
+                  "description": "Status",
+                  "width": "10",
+                  "hidden": true,
+                  "dbColumnName": "schAssociateNumber"
+                },
+                "Supplier ID": {
+                  "type": "text",
+                  "description": "Status",
+                  "width": 10,
+                  "hidden": false,
+                  "dbColumnName": null,
+                  "value": {
+                    "routerLink": "/page/ESAVendorDetail",
+                    "params": {
+                      "BPID": "{{schAssociateNumber}}"
+                    },
+                    "text": "{{schAssociateNumber}}"
+                  }
+                },
+                "Registration Form": {
+                  "type": "text",
+                  "description": "schAssociateNumber",
+                  "dbColumnName": null,
+                  "value": {
+                    "routerLink": "/page/ESAVendorDetail",
+                    "params": {
+                      "BPID": "{{schAssociateNumber}}"
+                    },
+                    "text": "Click here"
+                  }
+                },
+                "BPID": {
+                  "type": "text",
+                  "hidden": true,
+                  "description": "schAssociateNumber",
+                  "dbColumnName": null,
+                  "value": {
+                    "routerLink": "/page/ESAVendorDetail",
+                    "params": {
+                      "BPID": "{{schAssociateNumber}}"
+                    },
+                    "text": "{{schAssociateNumber}}"
+                  }
+                },
+                "Status.1": {
+                  "type": "status",
+                  "description": "Status",
+                  "hidden": true,
+                  "width": "10",
+                  "dbColumnName": "SupplierStatus"
+                },
+                "Version": {
+                  "type": "text",
+                  "hidden": false,
+                  "dbColumnName": "version"
+                },
+                "Status": {
+                  "type": "status",
+                  "description": "Status",
+                  "width": "10",
+                  "hidden": false,
+                  "dbColumnName": "status"
+                },
+                "Supplier Name": {
+                  "type": "group",
+                  "description": "Supplier Name",
+                  "width": "20",
+                  "fields": [
+                    {
+                      "dbColumnName": "userId",
+                      "lable": "User Id",
+                      "type": "text"
+                    },
+                    {
+                      "dbColumnName": "organisationName",
+                      "lable": "Supplier Name",
+                      "type": "text"
+                    }
+                  ],
+                  "emphasize": true
+                },
+                "Name": {
+                  "type": "text",
+                  "description": "Name",
+                  "dbColumnName": "organisationName",
+                  "hidden": true
+                },
+                "Collaboration": {
+                  "checkRole": {
+                    "hidden": [
+                      {
+                        "value": true,
+                        "roles": ["TemporaryVendor", "portalOneTimeVendor", "portalVendor"]
+                      }
+                    ]
+                  },
+                  "type": "message",
+                  "dbColumnName": "msgSub",
+                  "sticky": null,
+                  "changeLogIconEnabled": true,
+                  "uniqueColumns": ["Supplier ID"]
+                },
+                "Completion": {
+                  "type": "progressBar",
+                  "description": "Completion",
+                  "width": "10",
+                  "dbColumnName": "progressBar",
+                  "hidden": true
+                },
+                "Rating": {
+                  "type": "rating",
+                  "hidden": true,
+                  "dbColumnName": "rating",
+                  "showValue": false,
+                  "editable": false,
+                  "min": 0,
+                  "max": 100
+                },
+                "Contact": {
+                  "type": "group",
+                  "description": "Contact",
+                  "width": "20",
+                  "fields": [
+                    {
+                      "dbColumnName": "mobileNumber",
+                      "lable": "Contact Number",
+                      "type": "text"
+                    },
+                    {
+                      "dbColumnName": "contactEmail",
+                      "lable": "Email Address",
+                      "type": "text"
+                    }
+                  ]
+                },
+                "ICV Score %": {
+                  "checkRole": {
+                    "hidden": [
+                      {
+                        "value": true,
+                        "roles": ["TemporaryVendor", "portalOneTimeVendor", "portalVendor"]
+                      }
+                    ]
+                  },
+                  "type": "text",
+                  "dbColumnName": "icvScore",
+                  "emphasize": true,
+                  "hidden": false
+                },
+                "Supplier 360": {
+                  "type": "text",
+                  "checkRole": {
+                    "hidden": [
+                      {
+                        "value": true,
+                        "roles": ["TemporaryVendor", "portalOneTimeVendor"]
+                      }
+                    ]
+                  },
+                  "dbColumnName": null,
+                  "value": {
+                    "routerLink": "https://testservice.emiratessteel.com/sap/bc/ui5_ui5/sap/zmmvendor/index.html?sap-client=110&sap-ui-language=EN",
+                    "absoluteLink": true,
+                    "text": "Link"
+                  }
+                },
+                "Initiated By": {
+                  "checkRole": {
+                    "hidden": [
+                      {
+                        "value": true,
+                        "roles": ["TemporaryVendor", "portalOneTimeVendor"]
+                      }
+                    ]
+                  },
+                  "type": "status",
+                  "description": "Initiated By",
+                  "width": "10",
+                  "dbColumnName": "initiatedBy",
+                  "checkCondition": {
+                    "text": "Buyer",
+                    "style": "style1"
+                  }
+                },
+                "Initiator": {
+                  "checkRole": {
+                    "hidden": [
+                      {
+                        "value": true,
+                        "roles": ["TemporaryVendor", "portalOneTimeVendor", "portalVendor"]
+                      }
+                    ]
+                  },
+                  "type": "group",
+                  "emphasize": true,
+                  "description": "Initiated By",
+                  "width": "20",
+                  "fields": [
+                    {
+                      "dbColumnName": "Initiator",
+                      "lable": "Initiator",
+                      "type": "text"
+                    },
+                    {
+                      "dbColumnName": "initiatorName",
+                      "lable": "Initiator Name",
+                      "type": "text"
+                    }
+                  ],
+                  "checkCondition": {
+                    "text": "Buyer",
+                    "style": "style1"
+                  }
+                },
+                "BP Type": {
+                  "type": "text",
+                  "dbColumnName": "BPType",
+                  "hidden": true
+                },
+                "L1 Approval": {
+                  "checkRole": {
+                    "delete": [
+                      {
+                        "value": true,
+                        "roles": ["TemporaryVendor", "portalVendor", "portalOneTimeVendor"]
+                      }
+                    ]
+                  },
+                  "type": "button",
+                  "hidden": true,
+                  "enabled": false,
+                  "text": "Approve",
+                  "dbColumnName": "FATAction2",
+                  "onLoad": [
+                    {
+                      "actions": [
+                        {
+                          "action": "changeFieldValue",
+                          "checkCondition": [
+                            {
+                              "source": "Status",
+                              "sourceType": "column",
+                              "operation": "EQ",
+                              "valueof": {
+                                "text": "Non Invited"
+                              }
+                            }
+                          ],
+                          "actionDetails": {
+                            "targetColumn": ["L1 Approval"],
+                            "setProperty": {
+                              "text": "Approve",
+                              "style": "style14",
+                              "enabled": true
+                            }
+                          }
+                        },
+                        {
+                          "action": "changeFieldValue",
+                          "checkCondition": [
+                            {
+                              "source": "Status",
+                              "sourceType": "column",
+                              "operation": "NE",
+                              "valueof": {
+                                "text": "Non Invited"
+                              }
+                            }
+                          ],
+                          "actionDetails": {
+                            "targetColumn": ["L1 Approval"],
+                            "setProperty": {
+                              "text": "View",
+                              "style": "style13",
+                              "enabled": true
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "onClick": [
+                    {
+                      "actions": [
+                        {
+                          "sourceColumn": "L1 Approval",
+                          "style": "style1",
+                          "checkCondition": {
+                            "text": "Approve",
+                            "style": "style14",
+                            "enabled": true
+                          },
+                          "action": "redirect",
+                          "actionDetails": {
+                            "routerLink": "/page/ESAVendorDetail",
+                            "params": {
+                              "selectedRows": true,
+                              "selectedColumns": ["BPID"]
+                            }
+                          }
+                        },
+                        {
+                          "sourceColumn": "L1 Approval",
+                          "style": "style1",
+                          "checkCondition": {
+                            "text": "View",
+                            "style": "style13",
+                            "enabled": true
+                          },
+                          "action": "redirect",
+                          "actionDetails": {
+                            "routerLink": "/page/ESAVendorDetail",
+                            "params": {
+                              "selectedRows": true,
+                              "selectedColumns": ["BPID"]
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "L2 Approval": {
+                  "checkRole": {
+                    "delete": [
+                      {
+                        "value": true,
+                        "roles": ["TemporaryVendor", "portalVendor", "portalOneTimeVendor"]
+                      }
+                    ]
+                  },
+                  "type": "button",
+                  "hidden": true,
+                  "enabled": false,
+                  "text": "Approve",
+                  "dbColumnName": "FATAction2",
+                  "onLoad": [
+                    {
+                      "actions": [
+                        {
+                          "action": "changeFieldValue",
+                          "checkCondition": [
+                            {
+                              "source": "Status",
+                              "sourceType": "column",
+                              "operation": "EQ",
+                              "valueof": {
+                                "text": "In Registration"
+                              }
+                            }
+                          ],
+                          "actionDetails": {
+                            "targetColumn": ["L2 Approval"],
+                            "setProperty": {
+                              "text": "Approve",
+                              "style": "style14",
+                              "enabled": true
+                            }
+                          }
+                        },
+                        {
+                          "action": "changeFieldValue",
+                          "checkCondition": [
+                            {
+                              "source": "Status",
+                              "sourceType": "column",
+                              "operation": "NE",
+                              "valueof": {
+                                "text": "In Registration"
+                              }
+                            }
+                          ],
+                          "actionDetails": {
+                            "targetColumn": ["L2 Approval"],
+                            "setProperty": {
+                              "text": "Approve",
+                              "style": "style13",
+                              "enabled": false
+                            }
+                          }
+                        },
+                        {
+                          "action": "changeFieldValue",
+                          "checkCondition": [
+                            {
+                              "source": "Status",
+                              "sourceType": "column",
+                              "operation": "EQ",
+                              "valueof": {
+                                "text": "Registered"
+                              }
+                            }
+                          ],
+                          "actionDetails": {
+                            "targetColumn": ["L2 Approval"],
+                            "setProperty": {
+                              "text": "View",
+                              "style": "style13",
+                              "enabled": true
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "onClick": [
+                    {
+                      "actions": [
+                        {
+                          "sourceColumn": "L2 Approval",
+                          "style": "style1",
+                          "checkCondition": {
+                            "text": "Approve",
+                            "style": "style14",
+                            "enabled": true
+                          },
+                          "action": "redirect",
+                          "actionDetails": {
+                            "routerLink": "/page/ESAVendorDetail",
+                            "params": {
+                              "selectedRows": true,
+                              "selectedColumns": ["BPID"]
+                            }
+                          }
+                        },
+                        {
+                          "sourceColumn": "L2 Approval",
+                          "style": "style1",
+                          "checkCondition": {
+                            "text": "View",
+                            "style": "style13",
+                            "enabled": true
+                          },
+                          "action": "redirect",
+                          "actionDetails": {
+                            "routerLink": "/page/ESAVendorDetail",
+                            "params": {
+                              "selectedRows": true,
+                              "selectedColumns": ["BPID"]
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "Send Notification": {
+                  "type": "button",
+                  "hidden": true,
+                  "enabled": false,
+                  "text": "Send Notification",
+                  "dbColumnName": "FATAction2",
+                  "onLoad": [
+                    {
+                      "actions": [
+                        {
+                          "action": "changeFieldValue",
+                          "checkCondition": [
+                            {
+                              "source": "Status",
+                              "sourceType": "column",
+                              "operation": "EQ",
+                              "valueof": {
+                                "text": "Invite Denied"
+                              }
+                            },
+                            {
+                              "source": "Initiated By",
+                              "sourceType": "column",
+                              "operation": "EQ",
+                              "valueof": {
+                                "text": "Buyer"
+                              }
+                            }
+                          ],
+                          "actionDetails": {
+                            "targetColumn": ["Send Notification"],
+                            "setProperty": {
+                              "text": "Send Notification",
+                              "style": "style13",
+                              "enabled": true
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "actions": [
+                        {
+                          "action": "changeFieldValue",
+                          "checkCondition": [
+                            {
+                              "source": "Status",
+                              "sourceType": "column",
+                              "operation": "EQ",
+                              "valueof": {
+                                "text": "Registration denied"
+                              }
+                            }
+                          ],
+                          "actionDetails": {
+                            "targetColumn": ["Send Notification"],
+                            "setProperty": {
+                              "text": "Send Notification",
+                              "style": "style13",
+                              "enabled": true
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "onClick": [
+                    {
+                      "actions": [
+                        {
+                          "sourceColumn": "Send Notification",
+                          "style": "style1",
+                          "checkCondition": {
+                            "text": "Send Notification",
+                            "enabled": true,
+                            "style": "style13"
+                          },
+                          "action": "confirmationPopup",
+                          "actionDetails": {
+                            "popupName": "SendNotification"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "checkRole": {
+                    "hidden": [
+                      {
+                        "value": true,
+                        "roles": [
+                          "TemporaryVendor",
+                          "portalOneTimeVendor",
+                          "ES-MNGR-QA",
+                          "ES-MNGR-HCC",
+                          "ES-MNGR-COMPLIANCE",
+                          "ES-PROC-CATG-BUYR-MAINTOPRSER",
+                          "ES-PROC-CATG-MNGR-MAINTOPRSER",
+                          "ES-PROC-CATG-MNGR-RM",
+                          "ES-PROC-CATG-BUYR-RM",
+                          "ES-PROC-CATG-MNGR-INDIRECT",
+                          "ARK-PROC-CATG-MNGR-ALAINCEM",
+                          "ARK-PROC-CATG-MNGR-BLOCK",
+                          "ARK-PROC-CATG-MNGR-ANABEEB",
+                          "ES-PROC-CATG-MNGR-SPROPRMAINT",
+                          "ES-PROC-CATG-BUYR-SPROPRMAINT",
+                          "ES-PROC-CATG-BUYR-INDIRECT",
+                          "ARK-PROC-CATG-MNGR-BLOCK",
+                          "ARK-PROC-CATG-BUYR-BLOCK",
+                          "ARK-PROC-CATG-MNGR-ALAINCEM",
+                          "ARK-PROC-CATG-BUYR-ALAINCEM",
+                          "ARK-PROC-CATG-MNGR-ANABEEB",
+                          "ARK-PROC-CATG-BUYR-ANABEEB"
+                        ]
+                      }
+                    ]
+                  }
+                },
+                "PQ Category": {
+                  "type": "text",
+                  "hidden": true,
+                  "dbColumnName": "PQCategory"
+                },
+                "Category": {
+                  "type": "embeddedTable",
+                  "counterStyle": "style14",
+                  "style": "style3",
+                  "dataSourceName": "embeddedTableLogforVC",
+                  "componentId": "schAssociateNumber",
+                  "tableConfig": {
+                    "enableEntityCreation": false,
+                    "localPagination": true,
+                    "entityCreationDetails": {
+                      "addTableRow": false
+                    }
+                  },
+                  "tableColumns": {
+                    "Profile": {
+                      "type": "image",
+                      "dbColumnName": "categoryCode"
+                    },
+                    "CategoryCode": {
+                      "type": "text",
+                      "dbColumnName": "vendorCategory",
+                      "hidden": true
+                    },
+                    "Category": {
+                      "type": "text",
+                      "dbColumnName": "vendorCategoryText",
+                      "sticky": null
+                    },
+                    "Material Group": {
+                      "type": "text",
+                      "dbColumnName": "vendorSubCategoryCode",
+                      "hidden": true,
+                      "sticky": null
+                    },
+                    "SubCategory": {
+                      "type": "text",
+                      "dbColumnName": "subCategoryCode",
+                      "sticky": null
+                    },
+                    "SubCategory Description": {
+                      "type": "text",
+                      "dbColumnName": "vendorSubCategoryLongText",
+                      "sticky": null
+                    }
+                  }
+                },
+                "Certificate document": {
+                  "type": "embeddedTable",
+                  "counterStyle": "style14",
+                  "style": "style3",
+                  "dataSourceName": "certificationTable",
+                  "componentId": "schAssociateNumber",
+                  "tableConfig": {
+                    "enableEntityCreation": false,
+                    "entityCreationDetails": {
+                      "addTableRow": false
+                    }
+                  },
+                  "tableColumns": {
+                    "Profile": {
+                      "type": "image",
+                      "dbColumnName": "idType",
+                      "sticky": true
+                    },
+                    "Certificate Type": {
+                      "type": "text",
+                      "dbColumnName": "idType"
+                    },
+                    "Certificate Number": {
+                      "type": "text",
+                      "dbColumnName": "idNumber"
+                    },
+                    "Expiry Date": {
+                      "type": "date",
+                      "dbColumnName": "idValidTo"
+                    },
+                    "Issueing Authority / Accreditation Body": {
+                      "type": "text",
+                      "dbColumnName": "instituteIssued"
+                    },
+                    "Certificate": {
+                      "type": "attachment",
+                      "dbColumnName": "idArticleId"
+                    },
+                    "Remainder Status 1": {
+                      "type": "text",
+                      "dbColumnName": "notificationRemainder1"
+                    },
+                    "Remainder Status 2": {
+                      "type": "text",
+                      "dbColumnName": "notificationRemainder2"
+                    },
+                    "Remainder Status 3": {
+                      "type": "text",
+                      "dbColumnName": "notificationRemainder3"
+                    },
+                    "Vendor Block": {
+                      "type": "text",
+                      "dbColumnName": "",
+                      "value": "No"
+                    }
+                  }
+                },
+                "Notification": {
+                  "type": "embeddedTable",
+                  "counterStyle": "style14",
+                  "style": "style3",
+                  "dataSourceName": "notificationTable",
+                  "componentId": "schAssociateNumber",
+                  "tableConfig": {
+                    "enableEntityCreation": false,
+                    "entityCreationDetails": {
+                      "addTableRow": false
+                    }
+                  },
+                  "tableColumns": {
+                    "Profile": {
+                      "type": "image",
+                      "dbColumnName": "ResultDesc",
+                      "sticky": true
+                    },
+                    "Sent Status": {
+                      "type": "text",
+                      "dbColumnName": "ResultDesc"
+                    },
+                    "Sent Id": {
+                      "type": "text",
+                      "dbColumnName": "MailResponse"
+                    },
+                    "Resend": {
+                      "type": "button",
+                      "text": "Resend",
+                      "enabled": true,
+                      "dbColumnName": "Resend"
+                    }
+                  }
+                },
+                "Certificate Reminder": {
+                  "type": "button",
+                  "enabled": false,
+                  "text": "Remainder",
+                  "hidden": true,
+                  "dbColumnName": "FATAction2",
+                  "onLoad": [
+                    {
+                      "actions": [
+                        {
+                          "action": "changeFieldValue",
+                          "checkCondition": [
+                            {
+                              "source": "Status",
+                              "sourceType": "column",
+                              "operation": "EQ",
+                              "valueof": {
+                                "text": "In Registration"
+                              }
+                            }
+                          ],
+                          "actionDetails": {
+                            "targetColumn": ["Certificate Remainder"],
+                            "setProperty": {
+                              "text": "Remainder",
+                              "style": "style13",
+                              "enabled": true
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "onClick": [
+                    {
+                      "actions": [
+                        {
+                          "sourceColumn": "Certificate Remainder",
+                          "style": "style1",
+                          "checkCondition": {
+                            "text": "Remainder",
+                            "enabled": true,
+                            "style": "style13"
+                          },
+                          "action": "confirmationPopup",
+                          "actionDetails": {
+                            "popupName": "workflowConfirmation"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "Supplier Status": {
+                  "type": "status",
+                  "dbColumnName": "vendorStatus",
+                  "value": "Active",
+                  "editable": true,
+                  "hidden": true,
+                  "options": ["Active", "Block", "RFQ Block"],
+                  "onChange": [
+                    {
+                      "actions": [
+                        {
+                          "action": "executeRuleSet",
+                          "actionDetails": {
+                            "ruleSetId": "VendorStatusUpdate"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "Created Date": {
+                  "type": "date",
+                  "width": "10",
+                  "dbColumnName": "createdAt"
+                },
+                "MNR OSC ID": {
+                  "type": "text",
+                  "hidden": true,
+                  "dbColumnName": "oscReference"
+                },
+                "MNR Registration Status": {
+                  "type": "text",
+                  "hidden": true,
+                  "dbColumnName": "statusInKurdistan"
+                },
+                "License Expiry Date": {
+                  "type": "date",
+                  "width": "10",
+                  "hidden": true,
+                  "dbColumnName": "mnrRegistrationExpriy"
+                },
+                "Last Login Date": {
+                  "type": "date",
+                  "width": "10",
+                  "hidden": true,
+                  "dbColumnName": "lastLoginDate"
+                },
+                "Last Login Location": {
+                  "type": "text",
+                  "hidden": true,
+                  "dbColumnName": "loginLocation"
+                },
+                "SAP Supplier ID": {
+                  "type": "text",
+                  "description": "associate",
+                  "emphasize": true,
+                  "sticky": null,
+                  "dbColumnName": "sapAssociateNumber"
+                },
+                "SAP Status": {
+                  "type": "text",
+                  "description": "sapStatus",
+                  "sticky": null,
+                  "hidden": true,
+                  "dbColumnName": "sapMessage"
+                },
+                "SAP Remark": {
+                  "type": "icon",
+                  "icon": "ficon feather icon-info",
+                  "dbColumnName": null,
+                  "value": {
+                    "enabled": true,
+                    "eventId": "openItemText",
+                    "text": "{{sapMessage}}"
+                  },
+                  "onLoad": [
+                    {
+                      "actions": [
+                        {
+                          "action": "changeFieldValue",
+                          "checkCondition": [
+                            {
+                              "source": "Status.",
+                              "sourceType": "column",
+                              "operation": "EQ",
+                              "valueof": {
+                                "text": "In Registered"
+                              }
+                            }
+                          ],
+                          "actionDetails": {
+                            "targetColumn": ["Send Invitation"],
+                            "setProperty": {
+                              "text": "Send Invitation",
+                              "style": "style13",
+                              "hidden": false
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "checkRole": {
+                    "hidden": [
+                      {
+                        "value": true,
+                        "roles": ["TemporaryVendor", "portalOneTimeVendor"]
+                      }
+                    ]
+                  }
+                },
+                "SAP Error Msg": {
+                  "type": "icon",
+                  "icon": "ficon feather icon-info",
+                  "dbColumnName": null,
+                  "value": {
+                    "enabled": true,
+                    "eventId": "openItemText",
+                    "text": "{{errMessage}}"
+                  },
+                  "checkRole": {
+                    "hidden": [
+                      {
+                        "value": true,
+                        "roles": ["TemporaryVendor", "portalOneTimeVendor"]
+                      }
+                    ]
+                  }
+                },
+                "SAP Reprocess": {
+                  "type": "button",
+                  "enabled": false,
+                  "hidden": true,
+                  "text": "SAP Reprocess",
+                  "dbColumnName": "FATAction2",
+                  "onLoad": [
+                    {
+                      "actions": [
+                        {
+                          "action": "changeFieldValue",
+                          "checkCondition": [
+                            {
+                              "source": "Status",
+                              "sourceType": "column",
+                              "operation": "EQ",
+                              "valueof": {
+                                "text": "SAP Failed"
+                              }
+                            }
+                          ],
+                          "actionDetails": {
+                            "targetColumn": ["SAP Reprocess"],
+                            "setProperty": {
+                              "text": "SAP Reprocess",
+                              "style": "style13",
+                              "enabled": true
+                            }
+                          }
+                        },
+                        {
+                          "action": "changeFieldValue",
+                          "checkCondition": [
+                            {
+                              "source": "Status",
+                              "sourceType": "column",
+                              "operation": "EQ",
+                              "valueof": {
+                                "text": "Modification Failed"
+                              }
+                            }
+                          ],
+                          "actionDetails": {
+                            "targetColumn": ["SAP Reprocess"],
+                            "setProperty": {
+                              "text": "SAP Reprocess",
+                              "style": "style13",
+                              "enabled": true
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "onClick": [
+                    {
+                      "actions": [
+                        {
+                          "sourceColumn": "SAP Reprocess",
+                          "style": "style1",
+                          "checkCondition": {
+                            "text": "SAP Reprocess",
+                            "enabled": true,
+                            "style": "style13"
+                          },
+                          "action": "confirmationPopup",
+                          "actionDetails": {
+                            "popupName": "ReprocessVendor"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "checkRole": {
+                    "hidden": [
+                      {
+                        "value": false,
+                        "roles": ["ES-TEAM-VENDOR", "ES-MNGR-VENDOR"]
+                      }
+                    ]
+                  }
+                },
+                "Re-Invite": {
+                  "type": "button",
+                  "enabled": false,
+                  "text": "Re-Invite",
+                  "dbColumnName": "FATAction2",
+                  "onLoad": [
+                    {
+                      "actions": [
+                        {
+                          "action": "changeFieldValue",
+                          "checkCondition": [
+                            {
+                              "source": "Status",
+                              "sourceType": "column",
+                              "operation": "EQ",
+                              "valueof": {
+                                "text": "Invite Denied"
+                              }
+                            },
+                            {
+                              "source": "Initiated By",
+                              "sourceType": "column",
+                              "operation": "EQ",
+                              "valueof": {
+                                "text": "Buyer"
+                              }
+                            }
+                          ],
+                          "actionDetails": {
+                            "targetColumn": ["Re-Invite"],
+                            "setProperty": {
+                              "text": "Re-Invite",
+                              "style": "style13",
+                              "enabled": true
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "actions": [
+                        {
+                          "action": "changeFieldValue",
+                          "checkCondition": [
+                            {
+                              "source": "Status",
+                              "sourceType": "column",
+                              "operation": "EQ",
+                              "valueof": {
+                                "text": "Registration denied"
+                              }
+                            }
+                          ],
+                          "actionDetails": {
+                            "targetColumn": ["Re-Invite"],
+                            "setProperty": {
+                              "text": "Re-Invite",
+                              "style": "style13",
+                              "enabled": true
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "onClick": [
+                    {
+                      "actions": [
+                        {
+                          "sourceColumn": "Re-Invite",
+                          "style": "style1",
+                          "checkCondition": {
+                            "text": "Re-Invite",
+                            "enabled": true,
+                            "style": "style13"
+                          },
+                          "action": "confirmationPopup",
+                          "actionDetails": {
+                            "popupName": "ReInvite"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "checkRole": {
+                    "hidden": [
+                      {
+                        "value": true,
+                        "roles": [
+                          "TemporaryVendor",
+                          "portalOneTimeVendor",
+                          "ES-MNGR-QA",
+                          "ES-MNGR-HCC",
+                          "ES-MNGR-COMPLIANCE",
+                          "ES-PROC-CATG-BUYR-MAINTOPRSER",
+                          "ES-PROC-CATG-MNGR-MAINTOPRSER",
+                          "ES-PROC-CATG-MNGR-RM",
+                          "ES-PROC-CATG-BUYR-RM",
+                          "ES-PROC-CATG-MNGR-INDIRECT",
+                          "ARK-PROC-CATG-MNGR-ALAINCEM",
+                          "ARK-PROC-CATG-MNGR-BLOCK",
+                          "ARK-PROC-CATG-MNGR-ANABEEB",
+                          "ES-PROC-CATG-MNGR-SPROPRMAINT",
+                          "ES-PROC-CATG-BUYR-SPROPRMAINT",
+                          "ES-PROC-CATG-BUYR-INDIRECT",
+                          "ARK-PROC-CATG-MNGR-BLOCK",
+                          "ARK-PROC-CATG-BUYR-BLOCK",
+                          "ARK-PROC-CATG-MNGR-ALAINCEM",
+                          "ARK-PROC-CATG-BUYR-ALAINCEM",
+                          "ARK-PROC-CATG-MNGR-ANABEEB",
+                          "ARK-PROC-CATG-BUYR-ANABEEB"
+                        ]
+                      }
+                    ]
+                  }
+                },
+                "Edit Supplier": {
+                  "checkRole": {
+                    "delete": [
+                      {
+                        "value": true,
+                        "roles": [
+                          "TemporaryVendor",
+                          "portalVendor",
+                          "portalOneTimeVendor",
+                          "TemporaryVendor",
+                          "portalOneTimeVendor",
+                          "ES-MNGR-QA",
+                          "ES-MNGR-HCC",
+                          "ES-MNGR-COMPLIANCE",
+                          "ES-PROC-CATG-BUYR-MAINTOPRSER",
+                          "ES-PROC-CATG-MNGR-MAINTOPRSER",
+                          "ES-PROC-CATG-MNGR-RM",
+                          "ES-PROC-CATG-BUYR-RM",
+                          "ES-PROC-CATG-MNGR-INDIRECT",
+                          "ARK-PROC-CATG-MNGR-ALAINCEM",
+                          "ARK-PROC-CATG-MNGR-BLOCK",
+                          "ARK-PROC-CATG-MNGR-ANABEEB",
+                          "ES-PROC-CATG-MNGR-SPROPRMAINT",
+                          "ES-PROC-CATG-BUYR-SPROPRMAINT",
+                          "ES-PROC-CATG-BUYR-INDIRECT",
+                          "ARK-PROC-CATG-MNGR-BLOCK",
+                          "ARK-PROC-CATG-BUYR-BLOCK",
+                          "ARK-PROC-CATG-MNGR-ALAINCEM",
+                          "ARK-PROC-CATG-BUYR-ALAINCEM",
+                          "ARK-PROC-CATG-MNGR-ANABEEB",
+                          "ARK-PROC-CATG-BUYR-ANABEEB"
+                        ]
+                      }
+                    ]
+                  },
+                  "type": "button",
+                  "hidden": false,
+                  "dbColumnName": "FATAction2",
+                  "onLoad": [
+                    {
+                      "actions": [
+                        {
+                          "action": "changeFieldValue",
+                          "checkCondition": [
+                            {
+                              "source": "Status",
+                              "sourceType": "column",
+                              "operation": "EQ",
+                              "valueof": {
+                                "text": "Registered"
+                              }
+                            }
+                          ],
+                          "actionDetails": {
+                            "targetColumn": ["Edit Supplier"],
+                            "setProperty": {
+                              "text": "Edit",
+                              "style": "style14",
+                              "enabled": true
+                            }
+                          }
+                        },
+                        {
+                          "action": "changeFieldValue",
+                          "checkCondition": [
+                            {
+                              "source": "Status",
+                              "sourceType": "column",
+                              "operation": "NE",
+                              "valueof": {
+                                "text": "Registered"
+                              }
+                            }
+                          ],
+                          "actionDetails": {
+                            "targetColumn": ["Edit Supplier"],
+                            "setProperty": {
+                              "text": "Edit",
+                              "style": "style14",
+                              "enabled": false
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "onClick": [
+                    {
+                      "actions": [
+                        {
+                          "sourceColumn": "Edit Supplier",
+                          "style": "style1",
+                          "checkCondition": {
+                            "text": "Edit",
+                            "style": "style14",
+                            "enabled": true
+                          },
+                          "action": "redirect",
+                          "actionDetails": {
+                            "routerLink": "/page/editSupplier2",
+                            "params": {
+                              "selectedRows": true,
+                              "selectedColumns": ["Supplier ID1"]
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "Send Invite": {
+                  "type": "button",
+                  "enabled": false,
+                  "text": "Send Invite",
+                  "dbColumnName": "FATAction2",
+                  "onLoad": [
+                    {
+                      "actions": [
+                        {
+                          "action": "changeFieldValue",
+                          "checkCondition": [
+                            {
+                              "source": "Status",
+                              "sourceType": "column",
+                              "operation": "EQ",
+                              "valueof": {
+                                "text": "Pending Registered"
+                              }
+                            }
+                          ],
+                          "actionDetails": {
+                            "targetColumn": ["Send Invite"],
+                            "setProperty": {
+                              "text": "Send Invite",
+                              "style": "style13",
+                              "enabled": true
+                            }
+                          }
+                        },
+                        {
+                          "action": "changeFieldValue",
+                          "checkCondition": [
+                            {
+                              "source": "Status",
+                              "sourceType": "column",
+                              "operation": "EQ",
+                              "valueof": {
+                                "text": "Invited"
+                              }
+                            }
+                          ],
+                          "actionDetails": {
+                            "targetColumn": ["Send Invite"],
+                            "setProperty": {
+                              "text": "Send Invite",
+                              "style": "style13",
+                              "enabled": true
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "onClick": [
+                    {
+                      "actions": [
+                        {
+                          "sourceColumn": "Send Invite",
+                          "style": "style1",
+                          "checkCondition": {
+                            "text": "Send Invite",
+                            "enabled": true,
+                            "style": "style13"
+                          },
+                          "action": "confirmationPopup",
+                          "actionDetails": {
+                            "popupName": "sendInvitation"
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "checkRole": {
+                    "hidden": [
+                      {
+                        "value": true,
+                        "roles": [
+                          "TemporaryVendor",
+                          "portalVendor",
+                          "portalOneTimeVendor",
+                          "TemporaryVendor",
+                          "portalOneTimeVendor",
+                          "ES-MNGR-QA",
+                          "ES-MNGR-HCC",
+                          "ES-MNGR-COMPLIANCE",
+                          "ES-PROC-CATG-BUYR-MAINTOPRSER",
+                          "ES-PROC-CATG-MNGR-MAINTOPRSER",
+                          "ES-PROC-CATG-MNGR-RM",
+                          "ES-PROC-CATG-BUYR-RM",
+                          "ES-PROC-CATG-MNGR-INDIRECT",
+                          "ARK-PROC-CATG-MNGR-ALAINCEM",
+                          "ARK-PROC-CATG-MNGR-BLOCK",
+                          "ARK-PROC-CATG-MNGR-ANABEEB",
+                          "ES-PROC-CATG-MNGR-SPROPRMAINT",
+                          "ES-PROC-CATG-BUYR-SPROPRMAINT",
+                          "ES-PROC-CATG-BUYR-INDIRECT",
+                          "ARK-PROC-CATG-MNGR-BLOCK",
+                          "ARK-PROC-CATG-BUYR-BLOCK",
+                          "ARK-PROC-CATG-MNGR-ALAINCEM",
+                          "ARK-PROC-CATG-BUYR-ALAINCEM",
+                          "ARK-PROC-CATG-MNGR-ANABEEB",
+                          "ARK-PROC-CATG-BUYR-ANABEEB"
+                        ]
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

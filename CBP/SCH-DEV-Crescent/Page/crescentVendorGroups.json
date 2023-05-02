@@ -1,0 +1,403 @@
+{
+    "_id": ObjectId("641420abd9fe484b92dbd0e8"),
+    "tenant": "100",
+    "epic": "SCH-SUPPLIER",
+    "pageName": "crescentVendorGroups",
+    "version": "Grid",
+    "showPageBanner": false,
+    "pageActions": [
+        {
+            "text": "Select",
+            "showLabel": true,
+            "type": "router",
+            "style": "style2",
+            "onClick": [
+                {
+                    "actions": [
+                        {
+                            "action": "inputToTable"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "text": "Close",
+            "icon": "feather icon-x",
+            "showLabel": true,
+            "type": "router",
+            "style": "style1",
+            "onClick": [
+                {
+                    "actions": [
+                        {
+                            "action": "closePopup"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "dataSource": [
+        {
+            "dataSourceType": "businessView",
+            "dataSourceName": "vendorGroupingList",
+            "dataSourceDetails": {
+                "businessView": "vendorGroupingListRFQ_BV"
+            }
+        },
+        {
+            "dataSourceType": "businessView",
+            "dataSourceName": "BPGroupModification_BV",
+            "dataSourceDetails": {
+                "businessView": "BPGroupModification_BV"
+            }
+        }
+    ],
+    "rows": [
+        {
+            "columns": [
+                {
+                    "width": "100%",
+                    "components": [
+                        {
+                            "componentId": "simpleFormList",
+                            "type": "table",
+                            "title": "BP Group List",
+                            "description": "Group List",
+                            "icon": "Simple Form",
+                            "dataSourceName": "vendorGroupingList",
+                            "tableConfig": {
+                                "businessComponent": "Factory",
+                                "layoutIcon": false,
+                                "downloadIcon": true,
+                                "columnFilterIcon": true,
+                                "rowFilterIcon": true,
+                                "fullscreenIcon": true,
+                                "aggregationFooter": false,
+                                "checkbox": true,
+                                "singleCheckboxSelection": true,
+                                "checkboxOnChange": [
+                                    {
+                                        "checkCondition": {
+                                            "value": true
+                                        },
+                                        "action": "changeColumnProperty",
+                                        "actionDetails": {
+                                            "targetColumn": [
+                                                "Action"
+                                            ],
+                                            "setProperty": {
+                                                "enabled": true
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "checkCondition": {
+                                            "value": false
+                                        },
+                                        "action": "changeColumnProperty",
+                                        "actionDetails": {
+                                            "targetColumn": [
+                                                "Action"
+                                            ],
+                                            "setProperty": {
+                                                "enabled": false
+                                            }
+                                        }
+                                    }
+                                ],
+                                "headerActions": [],
+                                "uniqueColumns": [
+                                    "Group Name"
+                                ]
+                            },
+                            "tableColumns": {
+                                "Profile": {
+                                    "type": "image",
+                                    "description": "Profile",
+                                    "dbColumnName": "groupName"
+                                },
+                                "Group Name": {
+                                    "type": "text",
+                                    "dbColumnName": null,
+                                    "value": {
+                                        "action": "getInputFromPopUpPage",
+                                        "routerLink": "/page/VendorGroupDetails",
+                                        "params": {
+                                            "groupId": "{{groupId}}"
+                                        },
+                                        "text": "{{groupName}}"
+                                    },
+                                    "sticky": false
+                                },
+                                "GroupId": {
+                                    "type": "text",
+                                    "description": "GROUPId",
+                                    "dbColumnName": "groupId",
+                                    "hidden": true,
+                                    "sticky": null
+                                },
+                                "Action": {
+                                    "type": "button",
+                                    "hidden": false,
+                                    "description": "Request (I)",
+                                    "dbColumnName": "formAction",
+                                    "sticky": null
+                                },
+                                "Created On": {
+                                    "type": "date",
+                                    "description": "VERSION",
+                                    "dbColumnName": "createdAt",
+                                    "sticky": null
+                                },
+                                "Created By": {
+                                    "type": "text",
+                                    "description": "STATUS",
+                                    "dbColumnName": "createdBy",
+                                    "sticky": null
+                                },
+                                "Modified On": {
+                                    "type": "date",
+                                    "description": "QUOTATION DATE",
+                                    "dbColumnName": "modifiedAt",
+                                    "sticky": null
+                                },
+                                "Modified By": {
+                                    "type": "text",
+                                    "description": "VENDOR",
+                                    "dbColumnName": "modifiedBy",
+                                    "sticky": null
+                                },
+                                "Active": {
+                                    "type": "radioButton",
+                                    "dbColumnName": "activeGroup",
+                                    "formcontrol": "activeGroup",
+                                    "mandatory": false,
+                                    "sticky": null,
+                                    "hidden": true,
+                                    "radioButtons": [
+                                        {
+                                            "label": "Yes",
+                                            "value": "Yes"
+                                        },
+                                        {
+                                            "label": "No",
+                                            "value": "No"
+                                        }
+                                    ]
+                                },
+                                "Edit": {
+                                    "type": "icon",
+                                    "sticky": true,
+                                    "dbColumnName": null,
+                                    "hidden": true,
+                                    "value": {
+                                        "enabled": true,
+                                        "eventId": "openItemText",
+                                        "text": "{{groupId}}",
+                                        "routerLink": "/page/EditVendorGroup",
+                                        "params": {
+                                            "groupId": "{{groupId}}"
+                                        }
+                                    },
+                                    "icon": "feather icon-edit-1"
+                                },
+                                "Delete": {
+                                    "type": "menu",
+                                    "dbColumnName": "menu",
+                                    "hidden": true,
+                                    "sticky": true,
+                                    "menuDetails": {
+                                        "menuIcon": "feather icon-more-vertical",
+                                        "menuItems": [
+                                            {
+                                                "text": "Delete",
+                                                "icon": "feather icon-trash-2",
+                                                "action": "deleteRow"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "columns": [
+                {
+                    "width": "100%",
+                    "components": [
+                        {
+                            "componentId": "componentContainer",
+                            "type": "table",
+                            "title": "Add Business Partners",
+                            "dataSourceName": "BPGroupModification_BV",
+                            "description": "Business Partners Grouping",
+                            "dbColumnName": "BPGroupModification_BV",
+                            "icon": "V",
+                            "tableConfig": {
+                                "businessComponent": "VENDOR",
+                                "layoutIcon": false,
+                                "downloadIcon": false,
+                                "columnFilterIcon": true,
+                                "rowFilterIcon": true,
+                                "fullscreenIcon": true,
+                                "aggregationFooter": false,
+                                "checkbox": true,
+                                "headerActions": []
+                            },
+                            "tableColumns": {
+                                "Profile": {
+                                    "type": "image",
+                                    "dbColumnName": "name"
+                                },
+                                "BP Code and Name": {
+                                    "type": "group",
+                                    "description": "Vendor",
+                                    "width": "10",
+                                    "fields": [
+                                        {
+                                            "dbColumnName": null,
+                                            "lable": "1. BP Code",
+                                            "type": "expression",
+                                            "value": "{{schAssociateNumber}}",
+                                            "formcontrol": "schAssociateNumber",
+                                            "css": {}
+                                        },
+                                        {
+                                            "dbColumnName": "name",
+                                            "lable": "2. BP Name",
+                                            "type": "text",
+                                            "formcontrol": "name",
+                                            "css": {}
+                                        }
+                                    ]
+                                },
+                                "Contact no": {
+                                    "width": "m",
+                                    "type": "text",
+                                    "dbColumnName": "contactNumber",
+                                    "sticky": null
+                                },
+                                "Email id": {
+                                    "type": "text",
+                                    "dbColumnName": "emailAddress",
+                                    "sticky": null
+                                },
+                                "Country": {
+                                    "type": "text",
+                                    "dbColumnName": "country",
+                                    "sticky": null
+                                },
+                                "Status": {
+                                    "type": "status",
+                                    "hidden": true,
+                                    "description": "Status",
+                                    "dbColumnName": "status",
+                                    "sticky": null
+                                },
+                                "Allow PDF Quotation": {
+                                    "type": "checkbox",
+                                    "hidden": true,
+                                    "dbColumnName": "checkbox",
+                                    "sticky": null
+                                },
+                                "Spend-C Y US($)": {
+                                    "type": "text",
+                                    "hidden": true,
+                                    "dbColumnName": "empanellmentHQ",
+                                    "sticky": null
+                                },
+                                "MNR OSC ID": {
+                                    "type": "text",
+                                    "dbColumnName": "oscReference"
+                                },
+                                "Created": {
+                                    "type": "date",
+                                    "dbColumnName": "createdAt",
+                                    "sticky": null
+                                },
+                                "Delete": {
+                                    "type": "menu",
+                                    "dbColumnName": "menu",
+                                    "sticky": true,
+                                    "menuDetails": {
+                                        "menuIcon": "feather icon-more-vertical",
+                                        "menuItems": [
+                                            {
+                                                "text": "Delete",
+                                                "icon": "feather icon-trash-2",
+                                                "action": "deleteRow"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "MNR Lic Exp Date": {
+                                    "type": "date",
+                                    "dbColumnName": "mnrRegistrationExpriy"
+                                },
+                                "Vendor Group": {
+                                    "type": "text",
+                                    "hidden": true,
+                                    "dbColumnName": "associateGroup"
+                                },
+                                "User ID": {
+                                    "type": "text",
+                                    "dbColumnName": "userId"
+                                },
+                                "Category": {
+                                    "type": "text",
+                                    "dbColumnName": "associateCategory",
+                                    "sticky": null,
+                                    "hidden": true
+                                },
+                                "Permission": {
+                                    "type": "status",
+                                    "dbColumnName": "permission",
+                                    "sticky": null,
+                                    "hidden": true,
+                                    "onLoad": [
+                                        {
+                                            "actions": [
+                                                {
+                                                    "action": "changeFieldValue",
+                                                    "actionDetails": {
+                                                        "targetColumn": [
+                                                            "Permission Remark"
+                                                        ],
+                                                        "setProperty": {
+                                                            "readOnly": true
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "Response": {
+                                    "type": "text",
+                                    "dbColumnName": null,
+                                    "sticky": null,
+                                    "hidden": true,
+                                    "value": {
+                                        "text": "No Response"
+                                    }
+                                },
+                                "Permission Remark": {
+                                    "width": "s",
+                                    "type": "inputString",
+                                    "dbColumnName": "permissionRemark",
+                                    "hidden": true
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "updatedAt": "2022-07-22T11:37:23.477Z"
+}

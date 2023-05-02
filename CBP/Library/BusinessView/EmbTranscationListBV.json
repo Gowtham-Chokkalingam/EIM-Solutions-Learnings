@@ -1,9 +1,9 @@
 {
   "ruleId": "",
-  "businessView": "LibraryTranscationLogBV",
+  "businessView": "EmbTranscationListBV",
   "defaultSortSetting": {
-    "sortField": "createdAt",
-    "sortDirection": -1
+    "sortField": "bookId",
+    "sortDirection": 1
   },
   "collection": "LibraryTranscationList",
   "aggregation": [
@@ -11,50 +11,18 @@
       "($)facet": {
         "paginatedResults": [
           {
-            "($)match": {}
+            "($)match": { "bookId": "{{toString inputParams.bookId}}" }
           },
           {
             "($)addFields": {
-              "gggg": "gowtham"
-            }
-          },
-          {
-            "($)addFields": {
-              "daysBetween": {
-                "($)divide": [
-                  {
-                    "($)subtract": [
-                      {
-                        "($)toDate": "($)returnedAt"
-                      },
-                      {
-                        "($)toDate": "($)returnDate"
-                      }
-                    ]
-                  },
-                  86400000
-                ]
+              "totalBooksCon": {
+                "($)toString": "($)totalBooks"
               }
             }
           },
           {
             "($)project": {
               "bookId": "($)bookId",
-
-              "dueDays": {
-                "($)cond": {
-                  "if": { "($)gt": ["($)daysBetween", 0] },
-                  "then": { "($)round": ["($)daysBetween", 0] },
-                  "else": "0"
-                }
-              },
-              "overDue": {
-                "($)cond": {
-                  "if": { "($)gt": ["($)daysBetween", 0] },
-                  "then": { "($)multiply": [{ "($)round": ["($)daysBetween", 0] }, 5] },
-                  "else": "NoDue"
-                }
-              },
               "userID": "($)userID",
               "title": "($)title",
               "publicationDate": "($)publicationDate",
@@ -65,8 +33,7 @@
               "borrowDate": "($)borrowDate",
               "returnDate": "($)returnDate",
               "returnedAt": "($)returnedAt",
-              "createdAt": "($)createdAt",
-              "currency": "Rupees"
+              "createdAt": "($)createdAt"
             }
           },
           {
