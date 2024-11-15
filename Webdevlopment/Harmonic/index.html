@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PRZ Finder</title>
+    <link rel="stylesheet" href="prz.css" />
+    <script src="finder.js" defer></script>
+  </head>
+  
+  <body>
+      <!-- Include Navbar -->
+      <div id="navbar"></div>
+      <script>
+        // Load the navbar from navbar.html
+        fetch("navbar.html")
+          .then((response) => response.text())
+          .then((data) => {
+            document.getElementById("navbar").innerHTML = data;
+          });
+      </script>
+    <div class="container">
+      <h1>Retracement & Projection Finder</h1>
+      <!-- Update this part in your existing code -->
+
+      <label for="compareInput"></label>
+      <div class="input-group">
+        <input type="number" id="compareInput" step="0.001" placeholder="Enter a value" required />
+        <button onclick="findNearestValue()">Find Prz</button>
+      </div>
+
+      <!-- Popup error message -->
+      <div id="popupMessage" class="popup">Please enter a valid number greater than 0 and less than 3.</div>
+
+      <h3>Results:</h3>
+      <p id="nearestValueOutput">Nearest Retracement Value:</p>
+      <p id="projectionValueOutput">Projection Value:</p>
+
+      <!-- Projection Table -->
+      <table>
+        <thead>
+          <tr>
+            <th>Retracement</th>
+            <th>Projection</th>
+          </tr>
+        </thead>
+        <tbody id="projectionTableBody">
+          <!-- Rows will be added here dynamically -->
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+      const Retracement = [0.236, 0.382, 0.5, 0.618, 0.707, 0.786, 0.886];
+      const ProjectionValue = {
+        0.236: 3.0,
+        0.382: 2.618,
+        0.5: 2.0,
+        0.618: 1.618,
+        0.707: 1.414,
+        0.786: 1.272,
+        0.886: 1.13,
+      };
+
+      // Function to populate the Projection table with data
+      function populateProjectionTable() {
+        const tableBody = document.getElementById("projectionTableBody");
+        tableBody.innerHTML = ""; // Clear existing rows
+
+        for (const [retracement, projection] of Object.entries(ProjectionValue)) {
+          const row = document.createElement("tr");
+
+          const cellRetracement = document.createElement("td");
+          cellRetracement.textContent = retracement;
+
+          const cellProjection = document.createElement("td");
+          cellProjection.textContent = projection;
+
+          row.appendChild(cellRetracement);
+          row.appendChild(cellProjection);
+
+          tableBody.appendChild(row);
+        }
+      }
+
+      function showPopupMessage(message) {
+        const popup = document.getElementById("popupMessage");
+        popup.textContent = message;
+        popup.classList.add("show");
+
+        // Hide the popup after 3 seconds
+        setTimeout(() => {
+          popup.classList.remove("show");
+        }, 3000);
+      }
+
+      function findNearestValue() {
+        // Get the compare value from the input field
+        const compareValue = parseFloat(document.getElementById("compareInput").value);
+
+        // Check if compareValue is a valid number and within the specified range
+        if (isNaN(compareValue) || compareValue <= 0 || compareValue >= 1) {
+          showPopupMessage("Please enter a valid number greater than 0 and less than 1.");
+          return;
+        }
+
+        // Find the nearest value in the Retracement array
+        const nearestValue = Retracement.reduce((closest, current) => {
+          return Math.abs(current - compareValue) < Math.abs(closest - compareValue) ? current : closest;
+        });
+
+        // Get the corresponding projection value based on the nearest value found
+        const projection = ProjectionValue[nearestValue];
+
+        // Display the results
+        document.getElementById("nearestValueOutput").textContent = `Nearest Retracement Value: ${nearestValue}`;
+        document.getElementById("projectionValueOutput").textContent = `Projection Value: ${projection}`;
+      }
+
+      // Populate the projection table on page load
+      populateProjectionTable();
+    </script>
+  </body>
+</html>

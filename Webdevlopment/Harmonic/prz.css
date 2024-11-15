@@ -1,0 +1,158 @@
+/* styles.css */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f9;
+}
+
+.navbar {
+  background-color: #333;
+  padding: 1em;
+  text-align: center;
+}
+
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar ul li {
+  display: inline;
+  margin: 0 15px;
+}
+
+.navbar ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.navbar ul li a:hover {
+  color: #4caf50;
+}
+
+.container {
+  background-color: #fff;
+  margin: 2em auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 300px;
+  text-align: center;
+  position: relative;
+}
+
+h1 {
+  font-size: 1.5em;
+  color: #333;
+  margin-bottom: 1em;
+}
+
+label {
+  font-weight: bold;
+  font-size: 0.9em;
+  color: #555;
+  display: block;
+  margin-bottom: 0.5em;
+}
+
+/* Update this CSS in your existing code */
+
+.input-group {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Spacing between the input and button */
+  margin-bottom: 1em;
+}
+
+/* Stylish input field */
+input[type="number"] {
+  flex: 1;
+  padding: 8px 10px;
+  border: 2px solid #292323;
+  border-radius: 8px;
+  font-size: 0.95em;
+  transition: all 0.3s ease; /* Smooth transition */
+  outline: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow */
+}
+
+/* Change color on focus */
+input[type="number"]:focus {
+  border-color: #4caf50; /* Green border on focus */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slightly deeper shadow */
+}
+
+button {
+  padding: 8px 8px 5px 2px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8em;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: #125b15;
+}
+
+h3 {
+  color: #333;
+  font-size: 1.2em;
+  margin-top: 1em;
+}
+
+p {
+  font-size: 1em;
+  color: #666;
+}
+
+#nearestValueOutput,
+#projectionValueOutput {
+  font-weight: bold;
+  color: #0e2c09;
+}
+
+/* Popup message styling */
+.popup {
+  display: none;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #ffdddd;
+  color: #d8000c;
+  border: 1px solid #d8000c;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 0.9em;
+  width: calc(100% - 20px);
+  box-sizing: border-box;
+}
+
+.popup.show {
+  display: block;
+}
+
+/* Table styling */
+table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+  font-size: 0.9em;
+}
+
+th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
