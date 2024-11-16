@@ -3,22 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PRZ Finder</title>
+    <title>AC Finder</title>
     <link rel="stylesheet" href="prz.css" />
-    <script src="finder.js" defer></script>
+    <script src="finderj.js" defer></script>
   </head>
-  
+
   <body>
-      <!-- Include Navbar -->
-      <div id="navbar"></div>
-      <script>
-        // Load the navbar from navbar.html
-        fetch("navbar.html")
-          .then((response) => response.text())
-          .then((data) => {
-            document.getElementById("navbar").innerHTML = data;
-          });
-      </script>
+    <!-- Include Navbar -->
+    <div id="navbar"></div>
+    <script>
+      // Load the navbar from navbar.html
+      fetch("navbar.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("navbar").innerHTML = data;
+        });
+    </script>
     <div class="container">
       <h1>Retracement & Projection Finder</h1>
       <!-- Update this part in your existing code -->
@@ -26,7 +26,7 @@
       <label for="compareInput"></label>
       <div class="input-group">
         <input type="number" id="compareInput" step="0.001" placeholder="Enter a value" required />
-        <button onclick="findNearestValue()">Find Prz</button>
+        <button onclick="findNearestValue()">Find AC</button>
       </div>
 
       <!-- Popup error message -->
@@ -35,19 +35,7 @@
       <h3>Results:</h3>
       <p id="nearestValueOutput">Nearest Retracement Value:</p>
       <p id="projectionValueOutput">Projection Value:</p>
-
-      <!-- Projection Table -->
-      <table>
-        <thead>
-          <tr>
-            <th>Retracement</th>
-            <th>Projection</th>
-          </tr>
-        </thead>
-        <tbody id="projectionTableBody">
-          <!-- Rows will be added here dynamically -->
-        </tbody>
-      </table>
+      <div id="instructions"></div>
     </div>
 
     <script>
@@ -61,6 +49,13 @@
         0.786: 1.272,
         0.886: 1.13,
       };
+      const instructions = [
+        { instruction: "Draw Fib Retracement on B to C leg, Mark projection value AC" },
+
+        { instruction: "Draw trend based Fib extension on ABC leg, mark the nearest fib value 1" },
+        { instruction: "If Value 1 Fails -> Draw the trend based fib retracement on ABC leg.Mark the fib value of 1.272 " },
+        { instruction: "If Value 1.272 Fails ->  Draw trend based Fib extension on ABC leg, mark the nearest fib value 1.618" },
+      ];
 
       // Function to populate the Projection table with data
       function populateProjectionTable() {
@@ -114,11 +109,40 @@
 
         // Display the results
         document.getElementById("nearestValueOutput").textContent = `Nearest Retracement Value: ${nearestValue}`;
-        document.getElementById("projectionValueOutput").textContent = `Projection Value: ${projection}`;
+        document.getElementById("projectionValueOutput").textContent = `Projection Value AC: ${projection}`;
+
+        // Display the Instructions
+
+        const instructionsHTML = `
+        <table>
+          <thead>
+            <tr>
+              <th>Step</th>
+              <th>Instructions</th>
+          
+            </tr>
+          </thead>
+          <tbody>
+            ${instructions
+              .map(
+                (entry, index) => `
+              <tr>
+                <td>${index + 1}</td>
+                <td>${entry.instruction}</td>
+                
+             
+              </tr>
+            `
+              )
+              .join("")}
+          </tbody>
+        </table>
+      `;
+        document.getElementById("instructions").innerHTML = instructionsHTML;
       }
 
       // Populate the projection table on page load
-      populateProjectionTable();
+      // populateProjectionTable();
     </script>
   </body>
 </html>
