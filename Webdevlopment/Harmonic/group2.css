@@ -198,3 +198,32 @@ table {
     padding: 10px;
   }
 }
+
+/* For mobile devices */
+@media (max-width: 768px) {
+  .container {
+    width: 85%;
+    padding: 10px;
+  }
+
+
+
+  input[type="number"],
+  button {
+    width: 100%; /* Full-width inputs and button */
+  }
+
+  th,
+  td {
+    font-size: 0.8em; /* Adjust table font size */
+    padding: 6px;
+  }
+
+  h1 {
+    font-size: 1.3em; /* Reduce heading size */
+  }
+
+  h3 {
+    font-size: 1.1em; /* Reduce subheading size */
+  }
+}

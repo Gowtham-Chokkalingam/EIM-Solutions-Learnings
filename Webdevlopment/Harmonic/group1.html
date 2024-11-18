@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Group 1 Finder</title>
     <link rel="stylesheet" href="prz.css" />
-    
   </head>
   <body>
     <!-- Include Navbar -->
@@ -23,7 +22,7 @@
 
       <!-- Input and button -->
       <label for="compareInput"></label>
-      <p ">AC Should be less than 1 (0.97)</p>
+      <p>AC Should be less than 1 (0.97)</p>
       <div class="input-group">
         <input type="number" id="compareInput" step="0.001" placeholder="Enter XB value " required />
         <button onclick="findNearestValue()">Find XD</button>
@@ -37,9 +36,6 @@
       <p id="nearestValueOutput">Nearest Retracement Value:</p>
       <div id="resultsTable"></div>
       <div id="instructions"></div>
-      
-        
-      </div>
     </div>
 
     <script>
@@ -200,7 +196,7 @@
 
         // Display the table
         document.getElementById("resultsTable").innerHTML = tableHTML;
-        
+
         // Display the Instructions
 
         const instructionsHTML = `
@@ -217,7 +213,7 @@
               .map(
                 (entry, index) => `
               <tr>
-                <td>${index+1}</td>
+                <td>${index + 1}</td>
                 <td>${entry.instruction}</td>
                 
              
@@ -228,8 +224,7 @@
           </tbody>
         </table>
       `;
-      document.getElementById("instructions").innerHTML = instructionsHTML;
-
+        document.getElementById("instructions").innerHTML = instructionsHTML;
       }
     </script>
   </body>

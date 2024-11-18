@@ -1,4 +1,4 @@
-/* styles.css */
+/* Global styles */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -19,7 +19,7 @@ body {
 }
 
 .navbar ul li {
-  display: inline;
+  display: inline-block;
   margin: 0 15px;
 }
 
@@ -39,11 +39,13 @@ body {
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  width: 360px;
+  width: 80%;
+  max-width: 400px;
   text-align: center;
   position: relative;
 }
 
+/* Headings and labels */
 h1 {
   font-size: 1.5em;
   color: #333;
@@ -58,19 +60,19 @@ label {
   margin-bottom: 0.5em;
 }
 
-/* Update this CSS in your existing code */
-
+/* Input group */
 .input-group {
   display: flex;
   align-items: center;
   gap: 10px; /* Spacing between the input and button */
   margin-bottom: 1em;
+  flex-wrap: wrap; /* Allow components to wrap on smaller screens */
 }
 
 /* Stylish input field */
 input[type="number"] {
   flex: 1;
-  padding: 8px 10px;
+  padding: 8px;
   border: 2px solid #292323;
   border-radius: 8px;
   font-size: 0.95em;
@@ -85,8 +87,9 @@ input[type="number"]:focus {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slightly deeper shadow */
 }
 
+/* Button styles */
 button {
-  padding: 8px 8px 5px 2px;
+  padding: 8px;
   background-color: #4caf50;
   color: white;
   border: none;
@@ -94,14 +97,14 @@ button {
   cursor: pointer;
   font-size: 0.8em;
   font-weight: bold;
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
-  padding: 10px 10px 8px 4px;
-  cursor: pointer;
   background-color: #125b15;
 }
 
+/* Headings and results */
 h3 {
   color: #333;
   font-size: 1.2em;
@@ -158,6 +161,7 @@ th {
   background-color: #f4f4f4;
   font-weight: bold;
 }
+
 /* Alternate row colors */
 tr:nth-child(even) {
   background-color: #e5f88d; /* Light gray for even rows */
@@ -173,8 +177,6 @@ tr:hover {
   cursor: pointer;
 }
 
-
-
 /* Image styling inside the table */
 td img {
   max-width: 50px;
@@ -185,34 +187,46 @@ td img {
 
 /* Add a subtle border to the entire table */
 table {
-  border: 2px solid #4CAF50; /* Matches the header color */
+  border: 2px solid #4caf50; /* Matches the header color */
 }
 
-/* Responsive design for smaller screens */
-@media (max-width: 768px) {
+/* Responsive Design */
+
+/* For tablets and small laptops */
+@media (max-width: 1024px) {
+  .container {
+    width: 90%; /* Reduce width for smaller screens */
+    padding: 15px;
+  }
+
   th,
   td {
-    font-size: 0.9em; /* Adjust font size for smaller screens */
+    font-size: 0.85em; /* Adjust table font size */
+    padding: 8px;
+  }
+
+  button {
+    font-size: 0.9em;
     padding: 10px;
   }
 }
+
 /* For mobile devices */
 @media (max-width: 768px) {
   .container {
-    width: 85%;
+    width: 95%;
     padding: 10px;
-  }
-
-
-
-  input[type="number"],
-  button {
-    width: 50%; /* Full-width inputs and button */
   }
 
   .input-group {
     flex-direction: column; /* Stack inputs and button vertically */
   }
+
+  input[type="number"],
+  button {
+    width: 100%; /* Full-width inputs and button */
+  }
+
   th,
   td {
     font-size: 0.8em; /* Adjust table font size */

@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AC Finder</title>
     <link rel="stylesheet" href="prz.css" />
-    <script src="finderj.js" defer></script>
   </head>
 
   <body>
@@ -101,7 +100,13 @@
 
         // Find the nearest value in the Retracement array
         const nearestValue = Retracement.reduce((closest, current) => {
-          return Math.abs(current - compareValue) < Math.abs(closest - compareValue) ? current : closest;
+          const diffCurrent = current - compareValue;
+          const diffClosest = closest - compareValue;
+
+          // Choose `current` if its difference is closer to zero than `closest`'s difference
+          return (diffCurrent >= 0 && diffCurrent < diffClosest) || (diffCurrent < 0 && diffClosest < 0 && diffCurrent > diffClosest)
+            ? current
+            : closest;
         });
 
         // Get the corresponding projection value based on the nearest value found
